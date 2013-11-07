@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 public class WorldGenerator : MonoBehaviour 
 {
-	public GameObject floorTile;
 	public GameObject treasureTile;
-	public GameObject spawnTile;
+	public GameObject wallTile;
+	public GameObject player;
 	
-	private List<Tile> tileList;
+	private List<Tile> floorTileList;
+	private List<Tile> wallTileList;
 	private List<Tile> treasureList;
 	private List<FloorWalker> walkerList;
 	private List<FloorWalker> deadWalkerList;
@@ -17,18 +18,20 @@ public class WorldGenerator : MonoBehaviour
 	private bool generating = false;
 	private int walkerSteps = 150;
 	private Tile treasureSpawn;
+	private Tile playerSpawn;
 	
 	private float tileSizeOffset = 2f;
 	
 	private enum TileType
 	{
-		Floor,
-		Treasure
+		Treasure,
+		Wall
 	}
 	
 	void Start()
 	{	
-		tileList = new List<Tile>();
+		floorTileList = new List<Tile>();
+		wallTileList = new List<Tile>();
 		treasureList = new List<Tile>();
 		walkerList = new List<FloorWalker>();
 		deadWalkerList = new List<FloorWalker>();
@@ -42,8 +45,7 @@ public class WorldGenerator : MonoBehaviour
 	{
 		generating = true;
 		
-		// do spawnpoint
-		GenerateSpawnpoint();
+		GenerateSpawnpoint(); // do spawnpoint
 		
 		// generate world
 		while (generating)
@@ -88,14 +90,43 @@ public class WorldGenerator : MonoBehaviour
 				generating = false;
 		}
 		
-		KeepSingleChest();
+		KeepSingleChest(); // only keep one chest
+		GenerateWalls();   // create all the walls
+		
+		// tell game we're done with world gen.
+		GlobalParams.MarkWorldGenComplete();
 	}
 	
 	void GenerateSpawnpoint()
 	{
-		InstantiateTile(spawnTile, Vector2.zero, TileType.Floor);
 		Tile t = new Tile(Vector2.zero);
-	    tileList.Add(t);
+	    floorTileList.Add(t);
+		playerSpawn = t;
+	}
+	
+	public Vector2 getPlayerSpawnPosition()
+	{
+		return playerSpawn.getPosition();
+	}
+	
+	void GenerateWalls()
+	{
+		// for each floor piece put up walls if there's no adjacent floor piece and no existing wall
+		foreach(Tile t in floorTileList)
+		{
+			for(int x = -1; x <= 1; x++)
+			{
+				for(int y = -1; y <= 1; y++)
+				{
+					Vector2 offset = new Vector2(x,y);
+					if(!TileExistsWithPosition(t.getPosition() + offset, floorTileList) && !TileExistsWithPosition(t.getPosition() + offset, wallTileList))
+					{
+						InstantiateTile(wallTile, t.getPosition() + offset);
+						wallTileList.Add(new Tile(t.getPosition() + offset));
+					}
+				}
+			}
+		}
 	}
 	
 	// remove all chests but furthest
@@ -116,7 +147,7 @@ public class WorldGenerator : MonoBehaviour
 		
 		// set treasure spawn and draw tile
 		treasureSpawn = furthestTile;
-		InstantiateTile(treasureTile, treasureSpawn.getPosition(), TileType.Treasure);
+		InstantiateTile(treasureTile, treasureSpawn.getPosition());
 		
 		// clear treasure list
 		treasureList.Clear();
@@ -133,8 +164,9 @@ public class WorldGenerator : MonoBehaviour
 				Destroy(child.gameObject);
 			}
 			
-			// reset tileList
-			tileList.Clear();
+			// reset tile Lists
+			floorTileList.Clear();
+			wallTileList.Clear();
 			
 			// reset walkerList
 			walkerList.Clear();
@@ -146,13 +178,11 @@ public class WorldGenerator : MonoBehaviour
 	
 	void AddTile(Vector2 position, int actionNum) 
 	{
-		if (!tileListContainsTileWithPosition(position)) 
+		if (!TileExistsWithPosition(position, floorTileList)) 
 		{
 			// create tile object for adding to list
 		    Tile t = new Tile(position);
-			tileList.Add(t);
-			
-			InstantiateTile(floorTile, position, TileType.Floor);
+			floorTileList.Add(t);
 			
 			// based on walker action, create different tile
 			// (0:none, 1:left, 2:right:, 3:around)
@@ -167,16 +197,16 @@ public class WorldGenerator : MonoBehaviour
 		}
 	}
 	
-	void InstantiateTile(GameObject tile, Vector2 position, TileType type)
+	void InstantiateTile(GameObject tile, Vector2 position)
 	{
 		// instantiate tile prefab in unity and set it as child object to World
-		GameObject newTile = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, -1.5f + (float)type, position.y * tileSizeOffset), Quaternion.identity);
+		GameObject newTile = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, 0, position.y * tileSizeOffset), Quaternion.identity);
 		newTile.transform.parent = gameObject.transform;
 	}
 	
-	bool tileListContainsTileWithPosition(Vector2 position)
+	bool TileExistsWithPosition(Vector2 position, List<Tile> tileGroup)
 	{
-		var matches = tileList.Where(x => x.getPosition() == position);
+		var matches = tileGroup.Where(x => x.getPosition() == position);
 		return (matches.Count() > 0);
 	}
 
