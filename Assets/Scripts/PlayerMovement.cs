@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 	
-	private float movementSpeed = 5;
+	private float movementSpeed = 8;
 	
     void FixedUpdate() {
         float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
