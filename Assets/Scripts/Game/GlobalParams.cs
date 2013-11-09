@@ -7,7 +7,7 @@ public class GlobalParams {
 	
 	void Start()
 	{
-		Physics.IgnoreLayerCollision(8,8);
+		Screen.lockCursor = true; // lock the mouse
 	}
 	public static void MarkWorldGenComplete()
 	{
