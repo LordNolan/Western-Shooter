@@ -17,7 +17,10 @@ public class BulletCollision : MonoBehaviour
 	
 	void PlayParticleEffect(ParticleSystem particles)
 	{
-		ParticleSystem part = GameObject.Instantiate(particles, transform.position, transform.rotation) as ParticleSystem;
+		// always be firing particles back as us
+		float y = transform.rotation.eulerAngles.y + 180;
+		
+		ParticleSystem part = GameObject.Instantiate(particles, transform.position, Quaternion.Euler(20,y,0)) as ParticleSystem;
         part.Play();
 	}
 }
