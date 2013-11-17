@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletMovement : MonoBehaviour {
+public class BulletMovement : MonoBehaviour
+{
 	
-	private float speed = 40f;
+    private float speed = 20f;
 	
-	void Start () {
+    void Start ()
+    {
 	
-	}
+    }
 	
-	void FixedUpdate () {
-		transform.position += transform.up * speed * Time.deltaTime;
-	}
+    void FixedUpdate ()
+    {
+        transform.position += transform.up * speed * Time.deltaTime;
+    }
 }
