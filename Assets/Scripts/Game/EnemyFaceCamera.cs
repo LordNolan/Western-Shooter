@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpriteFacePlayer : MonoBehaviour
+// TODO: will need to show back of enemy if between player and camera
+public class EnemyFaceCamera : MonoBehaviour
 {
-    Camera cam;
+    private Camera cam;
     
     void Start()
     {
