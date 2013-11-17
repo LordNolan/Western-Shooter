@@ -3,15 +3,9 @@ using System.Collections;
 
 public class BulletMovement : MonoBehaviour
 {
+    public float speed;
 	
-    private float speed = 20f;
-	
-    void Start ()
-    {
-	
-    }
-	
-    void FixedUpdate ()
+    void FixedUpdate()
     {
         transform.position += transform.up * speed * Time.deltaTime;
     }

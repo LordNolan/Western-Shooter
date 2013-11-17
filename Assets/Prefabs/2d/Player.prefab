@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: 5da9a1977de2ee5409e30a4a92e1a545, type: 2}
+  bulletSpeed: 10
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86cb12973e597145bc5e6a05a7ec9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 2
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
