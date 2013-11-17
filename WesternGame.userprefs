@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Tetris\Assets\scripts\PieceDropper.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Hitpoints.cs">
     <Files>
-      <File FileName="..\Tetris\Assets\scripts\PieceDropper.cs" Line="42" Column="66" />
+      <File FileName="Assets\Scripts\Player\Hitpoints.cs" Line="12" Column="24" />
+      <File FileName="Assets\Scripts\Bullet\BulletCollision.cs" Line="20" Column="65" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
