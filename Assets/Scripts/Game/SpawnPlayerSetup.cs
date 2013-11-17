@@ -3,27 +3,26 @@ using System.Collections;
 
 public class SpawnPlayerSetup : MonoBehaviour
 {	
-	public GameObject playerPrefab;
+    public GameObject playerPrefab;
 	 
-	private bool playerSpawned = false;
+    private bool playerSpawned = false;
 	
-	void Update () 
-	{
-		if (!playerSpawned && GlobalParams.IsWorldGenComplete())
-		{
-			// spawn player
-			Vector2 pos = GetComponent<WorldGenerator>().getPlayerSpawnPosition();
-			GameObject player = (GameObject)Instantiate(playerPrefab, pos, playerPrefab.transform.rotation);
+    void Update ()
+    {
+        if (!playerSpawned && GlobalParams.IsWorldGenComplete ()) {
+            // spawn player
+            Vector2 pos = GetComponent<WorldGenerator> ().getPlayerSpawnPosition ();
+            GameObject player = (GameObject)Instantiate (playerPrefab, new Vector3 (pos.x, playerPrefab.transform.position.y, pos.y), playerPrefab.transform.rotation);
 			
-			// tell camera to link up to player
-			GameObject.Find("Camera").BroadcastMessage("PlayerSpawned", player);
-			playerSpawned = true;
-		}
-	}
+            // tell camera to link up to player
+            GameObject.Find ("Camera").BroadcastMessage ("PlayerSpawned", player);
+            playerSpawned = true;
+        }
+    }
 	
-	public void ResetPlayerSpawn()
-	{
-		// destroy player
-		// reset spawn bool
-	}
+    public void ResetPlayerSpawn ()
+    {
+        // destroy player
+        // reset spawn bool
+    }
 }
