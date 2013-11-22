@@ -10,11 +10,19 @@ public class Hitpoints : MonoBehaviour
     void Start()
     {
         HP = startingHP;
+        if (CompareTag("Player"))
+            GameObject.Find("UI").BroadcastMessage("SetPlayerHitpoints", startingHP);
     }
     
     void TakeDamage(int amount)
     {
-        if((HP -= amount) <= 0)
-            Debug.Log(tag + " dead");
+        if (CompareTag("Player")) {
+            GameObject.Find("UI").BroadcastMessage("PlayerHit", amount);
+            if ((HP -= amount) <= 0)
+                GameObject.Find("Environment").SendMessage("PlayerDied");
+        } else {
+            if ((HP -= amount) <= 0)
+                Destroy(gameObject);
+        }
     }
 }
