@@ -32,6 +32,6 @@ public class GameController : MonoBehaviour
     public void PlayerDied()
     {
         currentState = GameState.PlayerDead;
-        Debug.Log("death");
+        GameObject.Find("UI").BroadcastMessage("SetMessage", "YOU ARE DEAD");
     }
 }
