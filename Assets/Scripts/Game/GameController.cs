@@ -6,6 +6,10 @@ public class GameController : MonoBehaviour
     GameState currentState;
     bool isDead = false;
     
+    public double mobAIdelay = 2.0;
+    double currentTimer = 0;
+    
+    
     enum GameState
     {
         PromptStart,
@@ -26,8 +30,12 @@ public class GameController : MonoBehaviour
             
         switch (currentState) {
         case GameState.PromptStart:
+            if (GlobalParams.IsWorldGenComplete())
+                currentState = GameState.Playing;
             break;
         case GameState.Playing:
+            if ((currentTimer += Time.deltaTime) > mobAIdelay)
+                GlobalParams.MarkMobAIDelayComplete();
             break;
         case GameState.PlayerDead:
             break;
