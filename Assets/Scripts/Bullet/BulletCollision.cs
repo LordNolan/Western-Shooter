@@ -5,6 +5,7 @@ public class BulletCollision : MonoBehaviour
 {
     public ParticleSystem wallParticles;
     public ParticleSystem barrelParticles;
+    public ParticleSystem cactusParticles;
 	
     void OnCollisionEnter(Collision collision)
     {
@@ -35,6 +36,13 @@ public class BulletCollision : MonoBehaviour
         // bullet hits barrel
         if (collision.gameObject.CompareTag("Barrel")) {
             PlayParticleEffect(barrelParticles);
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+        
+        // bullet hits cactus
+        if (collision.gameObject.CompareTag("Cactus")) {
+            PlayParticleEffect(cactusParticles);
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }

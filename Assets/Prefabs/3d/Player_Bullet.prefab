@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallParticles: {fileID: 19800000, guid: 836ee5ca4a6a4b74fa380bc6ba06e415, type: 2}
   barrelParticles: {fileID: 19800000, guid: d20a88f6fb6aacf4590381af092be69e, type: 2}
+  cactusParticles: {fileID: 19800000, guid: bc16290309d77554ab6f5e9f6bc32703, type: 2}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -8,6 +8,7 @@ public class WorldGenerator : MonoBehaviour
     public GameObject wallTile;
     public GameObject enemy1;
     public GameObject scenery1;
+    public GameObject scenery2;
 	
     private List<Tile> floorTileList;
     private List<Tile> wallTileList;
@@ -98,7 +99,10 @@ public class WorldGenerator : MonoBehaviour
                     // if (Random.Range(0, 2) == 1)
                     //     InstantiateObject(enemy1, t.getPosition());
                     // else
-                    InstantiateObject(scenery1, t.getPosition());
+                    if (Random.Range(0, 2) == 1)
+                        InstantiateObject(scenery1, t.getPosition());
+                    else
+                        InstantiateObject(scenery2, t.getPosition());
                 }
             }
         }
@@ -112,7 +116,7 @@ public class WorldGenerator : MonoBehaviour
     // player always spawns at 0,0
     bool FarFromPlayerSpawn(Vector2 pos)
     {
-        return pos.x + pos.y > 2;
+        return Mathf.Abs(pos.x) + Mathf.Abs(pos.y) > 2;
     }
     
     void GenerateSpawnpoint()
