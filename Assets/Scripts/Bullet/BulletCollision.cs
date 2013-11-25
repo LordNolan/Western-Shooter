@@ -4,18 +4,19 @@ using System.Collections;
 public class BulletCollision : MonoBehaviour
 {
     public ParticleSystem wallParticles;
+    public ParticleSystem barrelParticles;
 	
     void OnCollisionEnter(Collision collision)
     {
         // bullet hits wall
-        if(collision.gameObject.CompareTag("Wall")) {
+        if (collision.gameObject.CompareTag("Wall")) {
             PlayParticleEffect(wallParticles);
             Destroy(gameObject);
         }
         
         // player bullet
-        if(CompareTag("PlayerBullet")) {
-            if(collision.gameObject.CompareTag("Enemy")) {
+        if (CompareTag("PlayerBullet")) {
+            if (collision.gameObject.CompareTag("Enemy")) {
                 Debug.Log("we shot bandit");
                 collision.collider.SendMessage("TakeDamage", 1);
                 Destroy(gameObject);
@@ -23,12 +24,19 @@ public class BulletCollision : MonoBehaviour
         }
         
         // enemy bullet
-        if(CompareTag("EnemyBullet")) {
-            if(collision.gameObject.CompareTag("Player")) {
+        if (CompareTag("EnemyBullet")) {
+            if (collision.gameObject.CompareTag("Player")) {
                 Debug.Log("bandit shot us");
                 collision.collider.SendMessage("TakeDamage", 1);
                 Destroy(gameObject);
             }
+        }
+        
+        // bullet hits barrel
+        if (collision.gameObject.CompareTag("Barrel")) {
+            PlayParticleEffect(barrelParticles);
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
     }
 	

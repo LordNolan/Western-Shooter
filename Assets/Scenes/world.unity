@@ -118,6 +118,7 @@ MonoBehaviour:
   treasureTile: {fileID: 100012, guid: 6e6b1b4c4fbeac849846c13ed12d89d9, type: 2}
   wallTile: {fileID: 100012, guid: 0c2acfdeb8405e94997a263c4521d80f, type: 2}
   enemy1: {fileID: 100000, guid: bff0d35fa52d5d94a96c69eb6b0b7b73, type: 2}
+  scenery1: {fileID: 100000, guid: 8f576c147468c4447a25bf55038614b1, type: 2}
 --- !u!114 &57835977
 MonoBehaviour:
   m_ObjectHideFlags: 0

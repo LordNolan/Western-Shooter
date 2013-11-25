@@ -5,7 +5,7 @@ public class PlayerFireWeapon : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float bulletSpeed;
-    void Update() 
+    void Update()
     {
         if (Input.GetMouseButtonDown(0)) { // left click
             // create bullet rotated to match player's facing direction
@@ -13,6 +13,7 @@ public class PlayerFireWeapon : MonoBehaviour
             float y = transform.localEulerAngles.y;
             SetBulletSpeed();
             Instantiate(bulletPrefab, transform.position, Quaternion.Euler(x, y, 0));
+            audio.Play();
         }
     }
 

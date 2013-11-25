@@ -7,6 +7,7 @@ public class WorldGenerator : MonoBehaviour
     public GameObject treasureTile;
     public GameObject wallTile;
     public GameObject enemy1;
+    public GameObject scenery1;
 	
     private List<Tile> floorTileList;
     private List<Tile> wallTileList;
@@ -94,15 +95,18 @@ public class WorldGenerator : MonoBehaviour
         foreach (Tile t in floorTileList) {
             if (FarFromPlayerSpawn(t.getPosition())) {
                 if (Random.Range(0, 10) <= 0) {
-                    InstantiateEnemy(enemy1, t.getPosition());
+                    if (Random.Range(0, 2) == 1)
+                        InstantiateObject(enemy1, t.getPosition());
+                    else
+                        InstantiateObject(scenery1, t.getPosition());
                 }
             }
         }
     }
     
-    void InstantiateEnemy(GameObject enemy, Vector2 position)
+    void InstantiateObject(GameObject obj, Vector2 position)
     {
-        Instantiate(enemy, new Vector3(position.x * tileSizeOffset, enemy.transform.position.y, position.y * tileSizeOffset), Quaternion.identity);
+        Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), obj.transform.rotation);
     }
     
     // player always spawns at 0,0
