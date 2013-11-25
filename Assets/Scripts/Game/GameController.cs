@@ -20,6 +20,9 @@ public class GameController : MonoBehaviour
 	
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+            Screen.lockCursor = true;
+            
         switch (currentState) {
         case GameState.PromptStart:
             break;
