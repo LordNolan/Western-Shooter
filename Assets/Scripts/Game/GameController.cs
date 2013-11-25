@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     
     void Start()
     {
+        Screen.lockCursor = true;
         currentState = GameState.PromptStart;
     }
 	
