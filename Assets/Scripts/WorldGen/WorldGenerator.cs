@@ -95,14 +95,15 @@ public class WorldGenerator : MonoBehaviour
     {
         foreach (Tile t in floorTileList) {
             if (FarFromPlayerSpawn(t.getPosition())) {
-                if (Random.Range(0, 4) <= 0) {
-                    // if (Random.Range(0, 2) == 1)
-                    //     InstantiateObject(enemy1, t.getPosition());
-                    // else
-                    if (Random.Range(0, 2) == 1)
-                        InstantiateObject(scenery1, t.getPosition());
-                    else
-                        InstantiateObject(scenery2, t.getPosition());
+                if (Random.Range(0, 10) <= 0) {
+                    if (Random.Range(0, 4) == 1)
+                        InstantiateObject(enemy1, t.getPosition());
+                    else {
+                        if (Random.Range(0, 2) == 1)
+                            InstantiateObject(scenery1, t.getPosition());
+                        else
+                            InstantiateObject(scenery2, t.getPosition());
+                    }
                 }
             }
         }

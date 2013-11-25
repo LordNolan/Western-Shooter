@@ -4,6 +4,7 @@ using System.Collections;
 public class GameController : MonoBehaviour
 {
     GameState currentState;
+    bool isDead = false;
     
     enum GameState
     {
@@ -35,7 +36,11 @@ public class GameController : MonoBehaviour
     
     public void PlayerDied()
     {
-        currentState = GameState.PlayerDead;
-        GameObject.Find("UI").BroadcastMessage("SetMessage", "YOU ARE DEAD");
+        if (!isDead) {
+            isDead = true;
+            currentState = GameState.PlayerDead;
+            GameObject.Find("UI").BroadcastMessage("SetMessage", "YOU ARE DEAD");
+            audio.Play();
+        }
     }
 }
