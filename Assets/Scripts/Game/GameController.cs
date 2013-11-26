@@ -3,25 +3,26 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-    GameState currentState;
+    public GameState currentState;
     bool isDead = false;
     
     public double mobAIdelay = 2.0;
     double currentTimer = 0;
     
-    int mobCount = 0;
+    public int mobCount = 0;
     
-    enum GameState
+    public enum GameState
     {
-        PromptStart,
+        NewGame,
         Playing,
-        PlayerDead
+        PlayerDead,
+        LevelWon
     }
     
     void Start()
     {
         Screen.lockCursor = true;
-        currentState = GameState.PromptStart;
+        currentState = GameState.NewGame;
     }
 	
     void Update()
@@ -30,17 +31,36 @@ public class GameController : MonoBehaviour
             Screen.lockCursor = true;
             
         switch (currentState) {
-        case GameState.PromptStart:
-            if (GlobalParams.IsWorldGenComplete())
+        case GameState.NewGame:
+            currentTimer = 0;
+            if (GlobalParams.IsWorldGenComplete()) {
+                GameObject.Find("UI").BroadcastMessage("SetMessage", "");
                 currentState = GameState.Playing;
+            }
             break;
         case GameState.Playing:
             if ((currentTimer += Time.deltaTime) > mobAIdelay)
                 GlobalParams.MarkMobAIDelayComplete();
             break;
         case GameState.PlayerDead:
+            GlobalParams.ResetForNewLevel();
+            ResetPlayer();
+            currentState = GameState.NewGame;
+            SendMessage("GenerateWorld");
+            break;
+        case GameState.LevelWon:
+            GlobalParams.ResetForNewLevel();
+            currentState = GameState.NewGame;
+            SendMessage("GenerateWorld");
             break;
         }
+        
+    }
+    
+    void ResetPlayer()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Hitpoints>().ResetHP();
+        isDead = false;
     }
     
     public int GetMobCount()
@@ -57,7 +77,10 @@ public class GameController : MonoBehaviour
     public void MobDied()
     {
         mobCount--;
-        GameObject.Find("UI").BroadcastMessage("SetEnemiesLeft", mobCount);
+        if (mobCount <= 0) {
+            currentState = GameState.LevelWon;
+        } else
+            GameObject.Find("UI").BroadcastMessage("SetEnemiesLeft", mobCount);
     }
     
     public void PlayerDied()

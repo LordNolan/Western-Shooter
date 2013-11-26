@@ -1,14 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WorldGen\WorldGenerator.cs">
     <Files>
-      <File FileName="Assets\Scripts\Mobs\PlayerFireWeapon.cs" Line="16" Column="26" />
-      <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="91" Column="21" />
-      <File FileName="Assets\Scripts\Bullet\BulletCollision.cs" Line="48" Column="10" />
-      <File FileName="Assets\Scripts\Game\GameController.cs" Line="9" Column="33" />
-      <File FileName="Assets\Scripts\Mobs\Hitpoints.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Mobs\EnemyFireWeapon.cs" Line="16" Column="34" />
-      <File FileName="Assets\Scripts\Game\GlobalParams.cs" Line="25" Column="35" />
+      <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="193" Column="29" />
+      <File FileName="Assets\Scripts\Game\GameController.cs" Line="25" Column="37" />
+      <File FileName="Assets\Scripts\Game\GlobalParams.cs" Line="14" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

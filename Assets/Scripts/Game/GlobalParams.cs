@@ -10,6 +10,13 @@ public class GlobalParams
     {
         Screen.lockCursor = true; // lock the mouse
     }
+    
+    public static void ResetForNewLevel()
+    {
+        worldGenComplete = false;
+        mobAIDelayComplete = false;
+    }
+    
     public static void MarkWorldGenComplete()
     {
         worldGenComplete = true;

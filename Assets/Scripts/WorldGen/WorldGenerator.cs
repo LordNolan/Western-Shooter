@@ -43,8 +43,20 @@ public class WorldGenerator : MonoBehaviour
         GenerateWorld();
     }
 	
-    void GenerateWorld()
+    public void GenerateWorld()
     {
+        // remove all child objects from world
+        foreach (Transform child in gameObject.transform) {
+            Destroy(child.gameObject);
+        }
+        
+        // reset tile Lists
+        floorTileList.Clear();
+        wallTileList.Clear();
+        
+        // reset walkerList
+        walkerList.Clear();
+        walkerList.Add(new FloorWalker(Vector2.zero, walkerSteps));
         generating = true;
 		
         GenerateSpawnpoint(); // do spawnpoint
@@ -178,19 +190,6 @@ public class WorldGenerator : MonoBehaviour
     {
         // regenerate on keypress
         if (!generating && Input.GetKeyDown(KeyCode.R)) {
-            // remove all child objects from world
-            foreach (Transform child in gameObject.transform) {
-                Destroy(child.gameObject);
-            }
-			
-            // reset tile Lists
-            floorTileList.Clear();
-            wallTileList.Clear();
-			
-            // reset walkerList
-            walkerList.Clear();
-            walkerList.Add(new FloorWalker(Vector2.zero, walkerSteps));
-			
             GenerateWorld();
         }
     }
