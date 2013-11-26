@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public double mobAIdelay = 2.0;
     double currentTimer = 0;
     
+    int mobCount = 0;
     
     enum GameState
     {
@@ -40,6 +41,23 @@ public class GameController : MonoBehaviour
         case GameState.PlayerDead:
             break;
         }
+    }
+    
+    public int GetMobCount()
+    {
+        return mobCount;
+    }
+    
+    public void SetMobCount(int amount)
+    {
+        mobCount = amount;
+        GameObject.Find("UI").BroadcastMessage("SetEnemiesLeft", mobCount);
+    }
+    
+    public void MobDied()
+    {
+        mobCount--;
+        GameObject.Find("UI").BroadcastMessage("SetEnemiesLeft", mobCount);
     }
     
     public void PlayerDied()

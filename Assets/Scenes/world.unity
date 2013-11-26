@@ -88,7 +88,7 @@ GameObject:
   - 82: {fileID: 57835979}
   m_Layer: 0
   m_Name: Environment
-  m_TagString: Untagged
+  m_TagString: Global
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,8 +102,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 426143383}
+  m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &57835976
 MonoBehaviour:
@@ -231,7 +230,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 60, y: 1, z: 60}
   m_Children: []
-  m_Father: {fileID: 57835975}
+  m_Father: {fileID: 0}
 --- !u!23 &426143384
 Renderer:
   m_ObjectHideFlags: 0
@@ -403,7 +402,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Material: {fileID: 0}
-  m_FontSize: 130
+  m_FontSize: 100
   m_FontStyle: 1
   m_Color:
     serializedVersion: 2
@@ -642,7 +641,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 57835975}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 400000, guid: 22bfc0839c315944c947f3c43229086e, type: 2}
       propertyPath: m_LocalPosition.x

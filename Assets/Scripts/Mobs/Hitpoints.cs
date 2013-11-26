@@ -21,8 +21,10 @@ public class Hitpoints : MonoBehaviour
             if ((HP -= amount) <= 0)
                 GameObject.Find("Environment").SendMessage("PlayerDied");
         } else {
-            if ((HP -= amount) <= 0)
+            if ((HP -= amount) <= 0) {
+                GameObject.Find("Environment").SendMessage("MobDied");
                 Destroy(gameObject);
+            }
         }
     }
 }

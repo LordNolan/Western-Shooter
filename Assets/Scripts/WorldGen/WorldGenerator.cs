@@ -93,12 +93,14 @@ public class WorldGenerator : MonoBehaviour
 	
     void SpawnEnemies()
     {
+        int mobcount = 0;
         foreach (Tile t in floorTileList) {
             if (FarFromPlayerSpawn(t.getPosition())) {
                 if (Random.Range(0, 10) <= 0) {
-                    if (Random.Range(0, 4) == 1)
+                    if (Random.Range(0, 4) == 1) {
                         InstantiateObject(enemy1, t.getPosition());
-                    else {
+                        mobcount++;
+                    } else {
                         if (Random.Range(0, 2) == 1)
                             InstantiateObject(scenery1, t.getPosition());
                         else
@@ -107,11 +109,13 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
+        GameObject.Find("Environment").GetComponent<GameController>().SetMobCount(mobcount);
     }
     
     void InstantiateObject(GameObject obj, Vector2 position)
     {
-        Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), obj.transform.rotation);
+        GameObject newObj = (GameObject) Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), obj.transform.rotation);
+        newObj.transform.parent = gameObject.transform;
     }
     
     // player always spawns at 0,0
