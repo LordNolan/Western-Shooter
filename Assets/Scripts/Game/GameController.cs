@@ -35,31 +35,31 @@ public class GameController : MonoBehaviour
             Screen.lockCursor = true;
             
         switch (currentState) {
-            case GameState.NewGame:
-                currentTimer = 0;
-                if (GlobalParams.IsWorldGenComplete()) {
-                    GameObject.Find("UI").BroadcastMessage("SetMessage", "");
-                    currentState = GameState.Playing;
-                }
-                break;
-            case GameState.Playing:
-                if ((currentTimer += Time.deltaTime) > mobAIdelay)
-                    GlobalParams.MarkMobAIDelayComplete();
-                break;
-            case GameState.PlayerDead:
-                PlayLoseAudio();
-                GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded();
-                GameObject.Find("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart");
-                if (Input.GetKeyDown(KeyCode.Space))
-                    StartNewGameFromDead();
-                break;
-            case GameState.LevelWon:
-                PlayWinAudio(); 
-                GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded();
-                GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level");
-                if (Input.GetKeyDown(KeyCode.Space))
-                    StartNewLevelFromWin();
-                break;
+        case GameState.NewGame:
+            currentTimer = 0;
+            if (GlobalParams.IsWorldGenComplete()) {
+                GameObject.Find("UI").BroadcastMessage("SetMessage", "");
+                currentState = GameState.Playing;
+            }
+            break;
+        case GameState.Playing:
+            if ((currentTimer += Time.deltaTime) > mobAIdelay)
+                GlobalParams.MarkMobAIDelayComplete();
+            break;
+        case GameState.PlayerDead:
+            PlayLoseAudio();
+            GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded();
+            GameObject.Find("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart");
+            if (Input.GetKeyDown(KeyCode.Space))
+                StartNewGameFromDead();
+            break;
+        case GameState.LevelWon:
+            PlayWinAudio(); 
+            GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded();
+            GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level");
+            if (Input.GetKeyDown(KeyCode.Space))
+                StartNewLevelFromWin();
+            break;
         }
     }
     
@@ -85,7 +85,6 @@ public class GameController : MonoBehaviour
         GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear();
         GameObject.Find("UI").BroadcastMessage("SetMessage", "");
         GlobalParams.ResetForNewLevel();
-        ResetPlayer();
         GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
         GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
         currentState = GameState.NewGame;
@@ -99,14 +98,14 @@ public class GameController : MonoBehaviour
         GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear();
         GameObject.Find("UI").BroadcastMessage("SetMessage", "");
         GlobalParams.ResetForNewLevel();
-        ResetPlayer();
+        ResetPlayerFromDeath();
         GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
         GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
         currentState = GameState.NewGame;
         SendMessage("GenerateWorld");
     }
     
-    void ResetPlayer()
+    void ResetPlayerFromDeath()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Hitpoints>().ResetHP();
         isDead = false;
@@ -120,7 +119,6 @@ public class GameController : MonoBehaviour
     public void SetMobCount(int amount)
     {
         mobCount = amount;
-        GameObject.Find("UI").BroadcastMessage("SetEnemiesLeft", mobCount);
     }
     
     public void MobDied()
@@ -130,8 +128,6 @@ public class GameController : MonoBehaviour
         if (mobCount <= 0) {
             currentState = GameState.LevelWon;
             GlobalParams.EnterNonPlayingState();
-        } else {
-            GameObject.Find("UI").BroadcastMessage("SetEnemiesLeft", mobCount);
         }
     }
     
