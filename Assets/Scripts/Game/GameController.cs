@@ -8,9 +8,12 @@ public class GameController : MonoBehaviour
     public double mobAIdelay = 2.0;
     private double currentTimer = 0;
     public int mobCount = 0;
+    private int mobsKilled = 0;
     
     public AudioSource winAudio;
     public AudioSource loseAudio;
+    private bool winPlayed = false;
+    private bool losePlayed = false;
     
     public enum GameState
     {
@@ -44,24 +47,51 @@ public class GameController : MonoBehaviour
                 GlobalParams.MarkMobAIDelayComplete();
             break;
         case GameState.PlayerDead:
-            GlobalParams.ResetForNewLevel();
-            ResetPlayer();
-            GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
-            GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
-            currentState = GameState.NewGame;
-            loseAudio.Play();
-            SendMessage("GenerateWorld");
+            PlayLoseAudio();
+            GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded();
+            GameObject.Find("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart");
+            if (Input.GetKeyDown(KeyCode.Space))
+                StartNewGameFromDead();
             break;
         case GameState.LevelWon:
+            PlayWinAudio();
             GlobalParams.ResetForNewLevel();
             GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
             GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
             currentState = GameState.NewGame;
-            winAudio.Play();
             SendMessage("GenerateWorld");
             break;
         }
-        
+    }
+    
+    void PlayLoseAudio()
+    {
+        if (!losePlayed) {
+            losePlayed = true;
+            loseAudio.Play();
+        }
+    }
+    
+    void PlayWinAudio()
+    {
+        if (!winPlayed) {
+            winPlayed = true;
+            winAudio.Play();
+        }
+    }
+    
+    void StartNewGameFromDead()
+    {
+        losePlayed = false;
+        mobsKilled = 0;
+        GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear();
+        GameObject.Find("UI").BroadcastMessage("SetMessage", "");
+        GlobalParams.ResetForNewLevel();
+        ResetPlayer();
+        GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
+        GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
+        currentState = GameState.NewGame;
+        SendMessage("GenerateWorld");
     }
     
     void ResetPlayer()
@@ -84,6 +114,7 @@ public class GameController : MonoBehaviour
     public void MobDied()
     {
         mobCount--;
+        mobsKilled++;
         if (mobCount <= 0) {
             currentState = GameState.LevelWon;
         } else
@@ -95,7 +126,7 @@ public class GameController : MonoBehaviour
         if (!isDead) {
             isDead = true;
             currentState = GameState.PlayerDead;
-            //GameObject.Find("UI").BroadcastMessage("SetMessage", "YOU ARE DEAD");
+            GlobalParams.MarkPlayerDead();
         }
     }
 }

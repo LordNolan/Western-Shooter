@@ -3,16 +3,17 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-	
     public float movementSpeed = 8;
 	
-    void FixedUpdate ()
+    void FixedUpdate()
     {
-        float horizontal = Input.GetAxis ("Horizontal") * movementSpeed * Time.deltaTime;
-        transform.Translate (horizontal, 0, 0);
-        float vertical = Input.GetAxis ("Vertical") * movementSpeed * Time.deltaTime;
-        transform.Translate (0, 0, vertical);
+        if (!GlobalParams.IsPlayerDead()) {
+            float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+            transform.Translate(horizontal, 0, 0);
+            float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+            transform.Translate(0, 0, vertical);
 		
-        rigidbody.velocity = Vector3.zero;
+            rigidbody.velocity = Vector3.zero;
+        }
     }
 }

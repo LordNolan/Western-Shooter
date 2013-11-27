@@ -14,7 +14,7 @@ public class MouseAimCamera : MonoBehaviour
     void LateUpdate()
     {
         if (GlobalParams.IsWorldGenComplete()) {
-            if (target != null) {
+            if (target != null && !GlobalParams.IsPlayerDead()) {
                 float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
                 target.transform.Rotate(0, horizontal, 0);
                 float desiredAngle = target.transform.eulerAngles.y;
