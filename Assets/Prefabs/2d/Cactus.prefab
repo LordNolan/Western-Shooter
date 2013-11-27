@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
   m_Layer: 11
-  m_Name: Bandit
+  m_Name: Cactus
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: eff34385fbce6eb4a88624782860e661, type: 2}
   bulletSpeed: 10
+  firingRange: 5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

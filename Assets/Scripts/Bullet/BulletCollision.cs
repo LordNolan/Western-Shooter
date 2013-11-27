@@ -18,7 +18,6 @@ public class BulletCollision : MonoBehaviour
         // player bullet
         if (CompareTag("PlayerBullet")) {
             if (collision.gameObject.CompareTag("Enemy")) {
-                Debug.Log("we shot bandit");
                 collision.collider.SendMessage("TakeDamage", 1);
                 Destroy(gameObject);
             }
