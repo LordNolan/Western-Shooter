@@ -649,7 +649,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1450945224}
-  - 20: {fileID: 1450945225}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -672,35 +671,6 @@ Transform:
   - {fileID: 1055353990}
   - {fileID: 1620308133}
   m_Father: {fileID: 0}
---- !u!20 &1450945225
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1450945223}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
-  m_OcclusionCulling: 1
 --- !u!1 &1620308132
 GameObject:
   m_ObjectHideFlags: 0
