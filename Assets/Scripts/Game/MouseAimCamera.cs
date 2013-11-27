@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MouseAimCamera : MonoBehaviour
@@ -14,7 +14,7 @@ public class MouseAimCamera : MonoBehaviour
     void LateUpdate()
     {
         if (GlobalParams.IsWorldGenComplete()) {
-            if (target != null && !GlobalParams.IsPlayerDead()) {
+            if (target != null && !GlobalParams.InNonPlayingState()) {
                 float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
                 target.transform.Rotate(0, horizontal, 0);
                 float desiredAngle = target.transform.eulerAngles.y;

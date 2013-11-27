@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyFireWeapon : MonoBehaviour
@@ -22,7 +22,7 @@ public class EnemyFireWeapon : MonoBehaviour
             GameObject player = (GameObject) GameObject.FindGameObjectWithTag("Player");
             
             // fire at the player
-            if (player != null && !GlobalParams.IsPlayerDead() && WithinFiringRange(player.transform.position) && (currentTime += Time.deltaTime) >= currentDelay) {
+            if (player != null && !GlobalParams.InNonPlayingState() && WithinFiringRange(player.transform.position) && (currentTime += Time.deltaTime) >= currentDelay) {
                 currentTime = 0;
                 SetBulletSpeed();
                 // create bullet rotated to point at player (not camera)

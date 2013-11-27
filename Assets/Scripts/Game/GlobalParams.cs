@@ -5,28 +5,28 @@ public class GlobalParams
 {
     static bool worldGenComplete = false;
     static bool mobAIDelayComplete = false;
-    static bool isPlayerDead = false;
+    static bool inNonPlayingState = false;
     
     void Start()
     {
         Screen.lockCursor = true; // lock the mouse
     }
     
-    public static void MarkPlayerDead()
+    public static void EnterNonPlayingState()
     {
-        isPlayerDead = true;
+        inNonPlayingState = true;
     }
     
-    public static bool IsPlayerDead()
+    public static bool InNonPlayingState()
     {
-        return isPlayerDead;
+        return inNonPlayingState;
     }
     
     public static void ResetForNewLevel()
     {
         worldGenComplete = false;
         mobAIDelayComplete = false;
-        isPlayerDead = false;
+        inNonPlayingState = false;
     }
     
     public static void MarkWorldGenComplete()

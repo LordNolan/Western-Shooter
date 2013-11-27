@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerFireWeapon : MonoBehaviour
@@ -7,7 +7,7 @@ public class PlayerFireWeapon : MonoBehaviour
     public float bulletSpeed;
     void Update()
     {
-        if (!GlobalParams.IsPlayerDead() && Input.GetMouseButtonDown(0)) { // left click
+        if (!GlobalParams.InNonPlayingState() && Input.GetMouseButtonDown(0)) { // left click
             // create bullet rotated to match player's facing direction
             float x = bulletPrefab.transform.localEulerAngles.x;
             float y = transform.localEulerAngles.y;

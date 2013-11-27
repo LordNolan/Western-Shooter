@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	
     void FixedUpdate()
     {
-        if (!GlobalParams.IsPlayerDead()) {
+        if (!GlobalParams.InNonPlayingState()) {
             float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             transform.Translate(horizontal, 0, 0);
             float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
