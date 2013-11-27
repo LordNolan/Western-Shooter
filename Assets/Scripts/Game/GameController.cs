@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     public AudioSource loseAudio;
     private bool winPlayed = false;
     private bool losePlayed = false;
+    private bool wonPrevious = false;
+    private int winningHP;
     
     public enum GameState
     {
@@ -21,6 +23,15 @@ public class GameController : MonoBehaviour
         Playing,
         PlayerDead,
         LevelWon
+    }
+    
+    public int GetWinningHP()
+    {
+        if (wonPrevious) {
+            wonPrevious = false;
+            return winningHP;
+        }
+        return -1;
     }
     
     void Start()
@@ -39,7 +50,9 @@ public class GameController : MonoBehaviour
             currentTimer = 0;
             if (GlobalParams.IsWorldGenComplete()) {
                 GameObject.Find("UI").BroadcastMessage("SetMessage", "");
-                currentState = GameState.Playing;
+                if (GetComponent<SpawnPlayerSetup>().DidPlayerSpawn()) {
+                    currentState = GameState.Playing;
+                }
             }
             break;
         case GameState.Playing:
@@ -55,6 +68,7 @@ public class GameController : MonoBehaviour
             break;
         case GameState.LevelWon:
             PlayWinAudio(); 
+            wonPrevious = true;
             GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded();
             GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level");
             if (Input.GetKeyDown(KeyCode.Space))
@@ -81,11 +95,13 @@ public class GameController : MonoBehaviour
     
     void StartNewLevelFromWin()
     {
-        losePlayed = false;
+        winPlayed = false;
+        wonPrevious = true;
+        winningHP = GameObject.FindGameObjectWithTag("Player").GetComponent<Hitpoints>().HP;
         GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear();
         GameObject.Find("UI").BroadcastMessage("SetMessage", "");
         GlobalParams.ResetForNewLevel();
-        GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
+        GetComponent<SpawnPlayerSetup>().DestroyPlayer();
         GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
         currentState = GameState.NewGame;
         SendMessage("GenerateWorld");
@@ -98,16 +114,10 @@ public class GameController : MonoBehaviour
         GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear();
         GameObject.Find("UI").BroadcastMessage("SetMessage", "");
         GlobalParams.ResetForNewLevel();
-        ResetPlayerFromDeath();
-        GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
+        GetComponent<SpawnPlayerSetup>().DestroyPlayer();
         GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
         currentState = GameState.NewGame;
         SendMessage("GenerateWorld");
-    }
-    
-    void ResetPlayerFromDeath()
-    {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Hitpoints>().ResetHP();
         isDead = false;
     }
     

@@ -4,14 +4,22 @@ using System.Collections;
 public class Hitpoints : MonoBehaviour
 {
     public int startingHP;
-    public int HP { get; private set; }
+    public int HP;
     
-    // Use this for initialization
     void Start()
     {
+        // default behavior
         HP = startingHP;
-        if (CompareTag("Player"))
-            GameObject.Find("UI").BroadcastMessage("SetPlayerHitpoints", startingHP);
+        
+        // if we're player and we won last level, lets set our hp to that amount
+        if (CompareTag("Player")) {
+            int winningHP = GameObject.Find("Environment").GetComponent<GameController>().GetWinningHP();
+            if (winningHP != -1)
+                HP = winningHP;
+            else
+                HP = startingHP;
+            GameObject.Find("UI").BroadcastMessage("SetPlayerHitpoints", HP);
+        }  
     }
     
     void TakeDamage(int amount)

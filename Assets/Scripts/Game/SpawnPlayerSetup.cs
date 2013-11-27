@@ -20,7 +20,12 @@ public class SpawnPlayerSetup : MonoBehaviour
         }
     }
 	
-    public void ResetPlayerSpawn()
+    public bool DidPlayerSpawn()
+    {
+        return playerSpawned;
+    }
+    
+    public void DestroyPlayer()
     {
         // destroy player
         Destroy(GameObject.FindGameObjectWithTag("Player"));
