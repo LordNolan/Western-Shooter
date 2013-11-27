@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WorldGen\WorldGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameController.cs">
     <Files>
       <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="193" Column="29" />
-      <File FileName="Assets\Scripts\Game\GameController.cs" Line="25" Column="37" />
-      <File FileName="Assets\Scripts\Game\GlobalParams.cs" Line="14" Column="42" />
+      <File FileName="Assets\Scripts\Game\GameController.cs" Line="81" Column="47" />
+      <File FileName="Assets\Scripts\Game\GlobalParams.cs" Line="30" Column="37" />
+      <File FileName="Assets\Scripts\Game\Mobs\Hitpoints.cs" Line="25" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

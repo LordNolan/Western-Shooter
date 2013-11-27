@@ -86,6 +86,7 @@ GameObject:
   - 114: {fileID: 57835977}
   - 114: {fileID: 57835978}
   - 82: {fileID: 57835979}
+  - 82: {fileID: 57835980}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Global
@@ -143,7 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952f1cc5fc5de954aa2ab9be0ca8f082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   mobAIdelay: 2
+  mobCount: 0
+  winAudio: {fileID: 57835979}
+  loseAudio: {fileID: 57835980}
 --- !u!82 &57835979
 AudioSource:
   m_ObjectHideFlags: 0
@@ -153,6 +158,64 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: d94fe62dbb2ae354885bf15577c36c8c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &57835980
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 57835974}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: b3e4d89f82fe1de48ac0e0c00e88b87d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -369,6 +432,8 @@ MonoBehaviour:
   target: {fileID: 100000, guid: bae4861064b4ed64b9752737d06432a2, type: 2}
   rotateSpeed: 5
   cameraVerticalOffset: {x: 0, y: .200000003, z: 0}
+  defaultPosition: {x: 0, y: 0, z: -1}
+  defaultRotation: {x: 30, y: 0, z: 0, w: 0}
 --- !u!1 &1055353988
 GameObject:
   m_ObjectHideFlags: 0

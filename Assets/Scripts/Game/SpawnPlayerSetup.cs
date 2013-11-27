@@ -7,22 +7,25 @@ public class SpawnPlayerSetup : MonoBehaviour
 	 
     private bool playerSpawned = false;
 	
-    void Update ()
+    void Update()
     {
-        if (!playerSpawned && GlobalParams.IsWorldGenComplete ()) {
+        if (!playerSpawned && GlobalParams.IsWorldGenComplete()) {
             // spawn player
-            Vector2 pos = GetComponent<WorldGenerator> ().getPlayerSpawnPosition ();
-            GameObject player = (GameObject)Instantiate (playerPrefab, new Vector3 (pos.x, playerPrefab.transform.position.y, pos.y), playerPrefab.transform.rotation);
+            Vector2 pos = GetComponent<WorldGenerator>().getPlayerSpawnPosition();
+            GameObject player = (GameObject) Instantiate(playerPrefab, new Vector3(pos.x, playerPrefab.transform.position.y, pos.y), playerPrefab.transform.rotation);
 			
             // tell camera to link up to player
-            GameObject.Find ("Camera").BroadcastMessage ("PlayerSpawned", player);
+            GameObject.Find("Camera").BroadcastMessage("PlayerSpawned", player);
             playerSpawned = true;
         }
     }
 	
-    public void ResetPlayerSpawn ()
+    public void ResetPlayerSpawn()
     {
         // destroy player
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        
         // reset spawn bool
+        playerSpawned = false;
     }
 }

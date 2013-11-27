@@ -4,12 +4,13 @@ using System.Collections;
 public class GameController : MonoBehaviour
 {
     public GameState currentState;
-    bool isDead = false;
-    
+    private bool isDead = false;
     public double mobAIdelay = 2.0;
-    double currentTimer = 0;
-    
+    private double currentTimer = 0;
     public int mobCount = 0;
+    
+    public AudioSource winAudio;
+    public AudioSource loseAudio;
     
     public enum GameState
     {
@@ -45,12 +46,18 @@ public class GameController : MonoBehaviour
         case GameState.PlayerDead:
             GlobalParams.ResetForNewLevel();
             ResetPlayer();
+            GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
+            GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
             currentState = GameState.NewGame;
+            loseAudio.Play();
             SendMessage("GenerateWorld");
             break;
         case GameState.LevelWon:
             GlobalParams.ResetForNewLevel();
+            GetComponent<SpawnPlayerSetup>().ResetPlayerSpawn();
+            GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
             currentState = GameState.NewGame;
+            winAudio.Play();
             SendMessage("GenerateWorld");
             break;
         }
@@ -88,8 +95,7 @@ public class GameController : MonoBehaviour
         if (!isDead) {
             isDead = true;
             currentState = GameState.PlayerDead;
-            GameObject.Find("UI").BroadcastMessage("SetMessage", "YOU ARE DEAD");
-            audio.Play();
+            //GameObject.Find("UI").BroadcastMessage("SetMessage", "YOU ARE DEAD");
         }
     }
 }
