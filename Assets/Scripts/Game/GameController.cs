@@ -112,7 +112,6 @@ public class GameController : MonoBehaviour
         ClearMessageUI();
         GlobalParams.ResetForNewLevel();
         GetComponent<SpawnPlayerSetup>().DestroyPlayer();
-        GameObject.Find("Camera").GetComponent<MouseAimCamera>().ResetCamera();
         currentState = GameState.NewGame;
         SendMessage("GenerateWorld");
     }

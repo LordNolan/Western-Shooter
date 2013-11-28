@@ -15,7 +15,7 @@ public class SpawnPlayerSetup : MonoBehaviour
             GameObject player = (GameObject) Instantiate(playerPrefab, new Vector3(pos.x, playerPrefab.transform.position.y, pos.y), playerPrefab.transform.rotation);
 			
             // tell camera to link up to player
-            GameObject.Find("Camera").BroadcastMessage("PlayerSpawned", player);
+            // GameObject.Find("Camera").BroadcastMessage("PlayerSpawned", player);
             playerSpawned = true;
         }
     }

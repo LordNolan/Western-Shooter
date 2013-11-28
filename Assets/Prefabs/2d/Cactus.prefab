@@ -148,6 +148,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 100000, guid: eff34385fbce6eb4a88624782860e661, type: 2}
   bulletSpeed: 10
   firingRange: 5
+  delay: 1
+  delayVariance: .200000003
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 3
+  HP: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
