@@ -101,9 +101,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 1.25038717e-08, y: -.618448555, z: 1.63560969e-07, w: .785825312}
-  m_LocalPosition: {x: -.746183276, y: 5.63352813e-08, z: 1.35041773e-08}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 1.15936949e-08, y: -.611567438, z: 1.64071253e-07, w: .791192293}
+  m_LocalPosition: {x: -.746183276, y: 5.63352742e-08, z: 1.35041773e-08}
+  m_LocalScale: {x: 1.00000012, y: 1, z: 1.00000012}
   m_Children: []
   m_Father: {fileID: 400002}
 --- !u!4 &400002
@@ -112,9 +112,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 1.49760908e-07, y: .86954689, z: -3.12566812e-07, w: -.49385038}
+  m_LocalRotation: {x: 1.49760851e-07, y: .869546831, z: -3.12566613e-07, w: -.493850499}
   m_LocalPosition: {x: -.675314903, y: 5.0984859e-08, z: 0}
-  m_LocalScale: {x: 1, y: .999999821, z: 1}
+  m_LocalScale: {x: 1, y: .999999762, z: 1}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 400004}
@@ -124,8 +124,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: .613880575, y: .613880336, z: -.350928605, w: .350928336}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: .613880575, y: .613880336, z: -.350928634, w: .350928336}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -136,7 +136,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
+  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
@@ -191,8 +191,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: .699999988}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: .5, z: .699999988}
+  m_Center: {x: 0, y: .25999999, z: 0}
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
