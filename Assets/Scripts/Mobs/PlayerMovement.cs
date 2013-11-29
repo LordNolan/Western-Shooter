@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     float rotationX = 0;
     float rotationY = 0;
     
-    void Update()
+    void FixedUpdate()
     {
         if (!GlobalParams.InNonPlayingState()) {
             float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
@@ -25,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
             rotationY += Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime * isInvertedAxis();
             rotationY = Mathf.Clamp(rotationY, -80.0f, 80.0f); // don't rotate further than 80 so we don't flip
             transform.localEulerAngles = new Vector3(rotationY, rotationX, 0);
-
-            rigidbody.velocity = Vector3.zero;
         }
     }
     

@@ -8,7 +8,7 @@ public class BulletCollision : MonoBehaviour
     public ParticleSystem cactusParticles;
 	
     void OnCollisionEnter(Collision collision)
-    {
+    {   
         // bullet hits wall
         if (collision.gameObject.CompareTag("Wall")) {
             PlayParticleEffect(wallParticles);
