@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
             // ensures that we're always moving on x/z plane no matter the x rotation (looking up/down)
             Vector3 forwardVector = new Vector3(horizontal, 0, vertical);
             forwardVector = Quaternion.Euler(-transform.eulerAngles.x, 0, 0) * forwardVector;
-            transform.Translate(forwardVector);
+            CharacterController controller = GetComponent<CharacterController>();
+            controller.SimpleMove(transform.TransformDirection(forwardVector) * movementSpeed);
             
             rotationX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
             rotationX = rotationX % 360; // we just want remainder so we don't have crazy rotation values
