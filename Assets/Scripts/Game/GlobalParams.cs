@@ -7,9 +7,16 @@ public class GlobalParams
     static bool mobAIDelayComplete = false;
     static bool inNonPlayingState = false;
     
+    public static float fireXRotationOffset = 10.0f;
+    
     void Start()
     {
         Screen.lockCursor = true; // lock the mouse
+    }
+    
+    public static float GetFireXRotationOffset()
+    {
+        return fireXRotationOffset;
     }
     
     public static void EnterNonPlayingState()
