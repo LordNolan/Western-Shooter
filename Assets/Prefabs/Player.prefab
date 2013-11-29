@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  rotateSpeed: 3
+  rotateSpeed: 60
   invertedAxis: 0
 --- !u!114 &11400004
 MonoBehaviour:

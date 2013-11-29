@@ -11,7 +11,7 @@ public class PlayerFireWeapon : MonoBehaviour
     {
         if (!GlobalParams.InNonPlayingState() && Input.GetMouseButtonDown(0)) { // left click
             // create bullet rotated to match player's facing direction
-            float x = Camera.main.transform.localEulerAngles.x + bulletPrefab.transform.localEulerAngles.x;
+            float x = transform.localEulerAngles.x + bulletPrefab.transform.localEulerAngles.x;
             float y = transform.localEulerAngles.y;
             SetBulletSpeed();
             Instantiate(bulletPrefab, GetBulletSpawnPosition(), Quaternion.Euler(x, y, 0));
