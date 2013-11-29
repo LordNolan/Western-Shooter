@@ -12,10 +12,7 @@ public class SpawnPlayerSetup : MonoBehaviour
         if (!playerSpawned && GlobalParams.IsWorldGenComplete()) {
             // spawn player
             Vector2 pos = GetComponent<WorldGenerator>().getPlayerSpawnPosition();
-            GameObject player = (GameObject) Instantiate(playerPrefab, new Vector3(pos.x, playerPrefab.transform.position.y, pos.y), playerPrefab.transform.rotation);
-			
-            // tell camera to link up to player
-            GameObject.Find("Camera").BroadcastMessage("PlayerSpawned", player);
+            Instantiate(playerPrefab, new Vector3(pos.x, playerPrefab.transform.position.y, pos.y), playerPrefab.transform.rotation);
             playerSpawned = true;
         }
     }
