@@ -121,7 +121,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 7bbf1e01acbefe94e99ae5e8bed6a444, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  rotateSpeed: 60
+  rotateSpeed: 80
   invertedAxis: 0
 --- !u!114 &11400004
 MonoBehaviour:

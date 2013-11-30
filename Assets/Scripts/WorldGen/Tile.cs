@@ -10,12 +10,12 @@ public class Tile
         _position = position;
     }
 	
-    public Vector2 getPosition()
+    public Vector2 GetPosition()
     {
         return _position;
     }
     
-    public void setPosition(Vector2 position)
+    public void SetPosition(Vector2 position)
     {
         _position = position;
     }

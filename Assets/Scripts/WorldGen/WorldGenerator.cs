@@ -96,7 +96,7 @@ public class WorldGenerator : MonoBehaviour
         }
 		
         GenerateWalls();   // create all the walls
-        KeepSingleChest(); // only keep one chest
+        GenerateChest(); // only keep one chest
         SpawnEnemies();
         
         // tell game we're done with world gen.
@@ -107,33 +107,21 @@ public class WorldGenerator : MonoBehaviour
     {
         int mobcount = 0;
         foreach (Tile t in floorTileList) {
-            if (t.getPosition() != treasureSpawn.getPosition() && FarFromPlayerSpawn(t.getPosition())) {
+            if (t.GetPosition() != treasureSpawn.GetPosition() && FarFromPlayerSpawn(t.GetPosition())) {
                 if (Random.Range(0, 10) <= 0) {
                     if (Random.Range(0, 4) == 1) {
-                        InstantiateObject(enemy1, t.getPosition());
+                        InstantiateObject(enemy1, t.GetPosition());
                         mobcount++;
                     } else {
                         if (Random.Range(0, 2) == 1)
-                            InstantiateObject(scenery1, t.getPosition());
+                            InstantiateObject(scenery1, t.GetPosition());
                         else
-                            InstantiateObject(scenery2, t.getPosition());
+                            InstantiateObject(scenery2, t.GetPosition());
                     }
                 }
             }
         }
         GameObject.Find("Environment").GetComponent<GameController>().SetMobCount(mobcount);
-    }
-    
-    void InstantiateObject(GameObject obj, Vector2 position)
-    {
-        GameObject newObj = (GameObject) Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), obj.transform.rotation);
-        newObj.transform.parent = gameObject.transform;
-    }
-    
-    // player always spawns at 0,0
-    bool FarFromPlayerSpawn(Vector2 pos)
-    {
-        return Mathf.Abs(pos.x) + Mathf.Abs(pos.y) > 2;
     }
     
     void GenerateSpawnpoint()
@@ -145,7 +133,7 @@ public class WorldGenerator : MonoBehaviour
 	
     public Vector2 getPlayerSpawnPosition()
     {
-        return playerSpawn.getPosition();
+        return playerSpawn.GetPosition();
     }
 	
     void GenerateWalls()
@@ -155,9 +143,9 @@ public class WorldGenerator : MonoBehaviour
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
                     Vector2 offset = new Vector2(x, y);
-                    if (!TileExistsWithPosition(t.getPosition() + offset, floorTileList) && !TileExistsWithPosition(t.getPosition() + offset, wallTileList)) {
-                        InstantiateTile(wallTile, t.getPosition() + offset);
-                        wallTileList.Add(new Tile(t.getPosition() + offset));
+                    if (!TileExistsWithPosition(t.GetPosition() + offset, floorTileList) && !TileExistsWithPosition(t.GetPosition() + offset, wallTileList)) {
+                        InstantiateTile(wallTile, t.GetPosition() + offset);
+                        wallTileList.Add(new Tile(t.GetPosition() + offset));
                     }
                 }
             }
@@ -165,25 +153,45 @@ public class WorldGenerator : MonoBehaviour
     }
 	
     // remove all chests but furthest
-    void KeepSingleChest()
+    void GenerateChest()
     {
         // find furthest chest from origin
-        Tile furthestTile = treasureList [0];
-        float furthestDist = Vector2.Distance(Vector2.zero, furthestTile.getPosition());
+        Tile furthestTile = treasureList[0];
+        float furthestDist = Vector2.Distance(Vector2.zero, furthestTile.GetPosition());
         foreach (Tile t in treasureList) {
-            float dist = Vector2.Distance(Vector2.zero, t.getPosition());
+            float dist = Vector2.Distance(Vector2.zero, t.GetPosition());
             if (furthestDist < dist) {
                 furthestTile = t;
                 furthestDist = dist;
             }
         }
 		
-        // set treasure spawn and draw tile
+        // set treasure spawn
         treasureSpawn = furthestTile;
-        InstantiateTile(treasureTile, new Vector3(treasureSpawn.getPosition().x, treasureTile.transform.position.y, treasureSpawn.getPosition().y));
+        
+        // get proper rotation so that chest always faces open tile
+        Quaternion rotation = GetChestRotationFacingOpenTile(treasureSpawn.GetPosition());
+        
+        // create the chest
+        InstantiateTile(treasureTile, new Vector3(treasureSpawn.GetPosition().x, treasureTile.transform.position.y, treasureSpawn.GetPosition().y), GetChestRotationFacingOpenTile(treasureSpawn.GetPosition()));
 		
         // clear treasure list
         treasureList.Clear();
+    }
+    
+    Quaternion GetChestRotationFacingOpenTile(Vector2 chestPosition)
+    {
+        if (TileExistsWithPosition(new Vector2(chestPosition.x - 1, chestPosition.y), floorTileList)) { // left 
+            return Quaternion.Euler(new Vector3(0, 90, 0));
+        } else if (TileExistsWithPosition(new Vector2(chestPosition.x, chestPosition.y + 1), floorTileList)) { // up
+            return Quaternion.Euler(new Vector3(0, 180, 0));
+        } else if (TileExistsWithPosition(new Vector2(chestPosition.x + 1, chestPosition.y), floorTileList)) { // right
+            return Quaternion.Euler(new Vector3(0, 270, 0));
+        } else if (TileExistsWithPosition(new Vector2(chestPosition.x, chestPosition.y - 1), floorTileList)) { // down (default)
+            return Quaternion.identity;
+        } else {
+            return Quaternion.identity;
+        }
     }
 	
     void Update()
@@ -204,13 +212,19 @@ public class WorldGenerator : MonoBehaviour
             // based on walker action, create different tile
             // (0:none, 1:left, 2:right:, 3:around)
             switch (actionNum) {
-            case 3:
-                treasureList.Add(t);
-                break;
-            default:
-                break;
+                case 3:
+                    treasureList.Add(t);
+                    break;
+                default:
+                    break;
             }
         }
+    }
+    
+    void InstantiateObject(GameObject obj, Vector2 position)
+    {
+        GameObject newObj = (GameObject)Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), obj.transform.rotation);
+        newObj.transform.parent = gameObject.transform;
     }
 	
     void InstantiateTile(GameObject tile, Vector2 position)
@@ -221,13 +235,19 @@ public class WorldGenerator : MonoBehaviour
     void InstantiateTile(GameObject tile, Vector3 position)
     {
         // instantiate tile prefab in unity and set it as child object to World
-        GameObject newTile = (GameObject) Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), Quaternion.identity);
+        InstantiateTile(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), Quaternion.identity);
+    }
+    
+    void InstantiateTile(GameObject tile, Vector3 position, Quaternion rotation)
+    {
+        // instantiate tile prefab in unity and set it as child object to World
+        GameObject newTile = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), rotation);
         newTile.transform.parent = gameObject.transform;
     }
 	
     bool TileExistsWithPosition(Vector2 position, List<Tile> tileGroup)
     {
-        var matches = tileGroup.Where(x => x.getPosition() == position);
+        var matches = tileGroup.Where(x => x.GetPosition() == position);
         return (matches.Count() > 0);
     }
 
@@ -242,6 +262,12 @@ public class WorldGenerator : MonoBehaviour
         AddTile(position + new Vector2(0, 1), 0);
     }
 	
+    // player always spawns at 0,0
+    bool FarFromPlayerSpawn(Vector2 pos)
+    {
+        return Mathf.Abs(pos.x) + Mathf.Abs(pos.y) > 2;
+    }
+    
     void TrySpawnAnotherWalker(Vector2 position, int parentMovesLeft)
     {
         // depends on how many walkers exist
