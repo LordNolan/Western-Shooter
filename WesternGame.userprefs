@@ -1,8 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\TextureResize.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WorldGen\WorldGenerator.cs">
     <Files>
-      <File FileName="Assets\Scripts\UI\TextureResize.cs" Line="30" Column="54" />
+      <File FileName="Assets\Scripts\Mobs\PlayerFireWeapon.cs" Line="14" Column="97" />
+      <File FileName="Assets\Scripts\Game\GlobalParams.cs" Line="19" Column="36" />
+      <File FileName="Assets\Scripts\Game\SpawnPlayerSetup.cs" Line="15" Column="127" />
+      <File FileName="Assets\Scripts\Game\GameController.cs" Line="26" Column="6" />
+      <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="110" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
