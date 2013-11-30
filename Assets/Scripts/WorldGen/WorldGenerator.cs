@@ -173,7 +173,7 @@ public class WorldGenerator : MonoBehaviour
         Quaternion rotation = GetChestRotationFacingOpenTile(treasureSpawn.GetPosition());
         
         // create the chest
-        InstantiateTile(treasureTile, new Vector3(treasureSpawn.GetPosition().x, treasureTile.transform.position.y, treasureSpawn.GetPosition().y), GetChestRotationFacingOpenTile(treasureSpawn.GetPosition()));
+        InstantiateTile(treasureTile, new Vector3(treasureSpawn.GetPosition().x, treasureTile.transform.position.y, treasureSpawn.GetPosition().y), rotation);
 		
         // clear treasure list
         treasureList.Clear();
