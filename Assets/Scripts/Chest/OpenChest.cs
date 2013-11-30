@@ -16,9 +16,9 @@ public class OpenChest : MonoBehaviour
         animation.PlayQueued("Idle_Open", QueueMode.CompleteOthers);
     }
     
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if (!isOpen && collision.gameObject.CompareTag("Player")) {
+        if (!isOpen && collider.CompareTag("Player")) {
             PlayOpenAnimation();
             isOpen = true;
         }
