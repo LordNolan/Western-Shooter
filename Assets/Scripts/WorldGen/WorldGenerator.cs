@@ -114,9 +114,9 @@ public class WorldGenerator : MonoBehaviour
                         mobcount++;
                     } else {
                         if (Random.Range(0, 2) == 1)
-                            InstantiateObject(scenery1, t.GetPosition());
+                            InstantiateScenery(scenery1, t.GetPosition());
                         else
-                            InstantiateObject(scenery2, t.GetPosition());
+                            InstantiateScenery(scenery2, t.GetPosition());
                     }
                 }
             }
@@ -224,6 +224,13 @@ public class WorldGenerator : MonoBehaviour
     void InstantiateObject(GameObject obj, Vector2 position)
     {
         GameObject newObj = (GameObject)Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), obj.transform.rotation);
+        newObj.transform.parent = gameObject.transform;
+    }
+    
+    void InstantiateScenery(GameObject obj, Vector2 position)
+    {
+        Quaternion randomRotation = Quaternion.Euler(new Vector3(270, Random.Range(0, 4) * 90, 0));
+        GameObject newObj = (GameObject)Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), randomRotation);
         newObj.transform.parent = gameObject.transform;
     }
 	
