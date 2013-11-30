@@ -17,13 +17,19 @@ public class HitpointsUI : MonoBehaviour
     public void SetPlayerHitpoints(int amount)
     {
         hitpoints = amount;
-        // guiText.text = "HP: " + hitpoints;
+        for (int x = 0; x < amount; x++) {
+            badgeList[x].GetComponent<HPBadgeUI>().Heal();
+        }
     }
     
     public void PlayerHit(int amount)
     {
-        hitpoints = Mathf.Max(0, hitpoints - amount);
-        badgeList[0].GetComponent<HPBadgeUI>().Hit();
-        // guiText.text = "HP: " + hitpoints;
+        // when hit, we we need to remove badges equal to amount
+        // we need to start removing from last alive badge and move forward. 
+        
+        for (int x = amount; x > 0; x--) {
+            badgeList[hitpoints - 1].GetComponent<HPBadgeUI>().Hit();
+            hitpoints--;
+        }
     }
 }
