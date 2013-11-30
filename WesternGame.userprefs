@@ -1,12 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WorldGen\WorldGenerator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\HitpointsUI.cs">
     <Files>
-      <File FileName="Assets\Scripts\Mobs\PlayerFireWeapon.cs" Line="14" Column="97" />
-      <File FileName="Assets\Scripts\Game\GlobalParams.cs" Line="19" Column="36" />
-      <File FileName="Assets\Scripts\Game\SpawnPlayerSetup.cs" Line="15" Column="127" />
-      <File FileName="Assets\Scripts\Game\GameController.cs" Line="26" Column="6" />
-      <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="110" Column="17" />
+      <File FileName="Assets\Scripts\Chest\OpenChest.cs" Line="19" Column="21" />
+      <File FileName="Assets\Scripts\Mobs\PlayerCollision.cs" Line="7" Column="5" />
+      <File FileName="Assets\Scripts\UI\HitpointsUI.cs" Line="26" Column="19" />
+      <File FileName="Assets\Scripts\UI\HPBadgeUI.cs" Line="21" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
