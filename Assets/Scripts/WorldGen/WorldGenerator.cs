@@ -96,7 +96,7 @@ public class WorldGenerator : MonoBehaviour
         }
 		
         GenerateWalls();   // create all the walls
-        //KeepSingleChest(); // only keep one chest
+        KeepSingleChest(); // only keep one chest
         SpawnEnemies();
         
         // tell game we're done with world gen.
@@ -107,7 +107,7 @@ public class WorldGenerator : MonoBehaviour
     {
         int mobcount = 0;
         foreach (Tile t in floorTileList) {
-            if (FarFromPlayerSpawn(t.getPosition())) {
+            if (t.getPosition() != treasureSpawn.getPosition() && FarFromPlayerSpawn(t.getPosition())) {
                 if (Random.Range(0, 10) <= 0) {
                     if (Random.Range(0, 4) == 1) {
                         InstantiateObject(enemy1, t.getPosition());
@@ -180,7 +180,7 @@ public class WorldGenerator : MonoBehaviour
 		
         // set treasure spawn and draw tile
         treasureSpawn = furthestTile;
-        InstantiateTile(treasureTile, treasureSpawn.getPosition());
+        InstantiateTile(treasureTile, new Vector3(treasureSpawn.getPosition().x, treasureTile.transform.position.y, treasureSpawn.getPosition().y));
 		
         // clear treasure list
         treasureList.Clear();
@@ -215,8 +215,13 @@ public class WorldGenerator : MonoBehaviour
 	
     void InstantiateTile(GameObject tile, Vector2 position)
     {
+        InstantiateTile(tile, new Vector3(position.x, 0, position.y));
+    }
+    
+    void InstantiateTile(GameObject tile, Vector3 position)
+    {
         // instantiate tile prefab in unity and set it as child object to World
-        GameObject newTile = (GameObject) Instantiate(tile, new Vector3(position.x * tileSizeOffset, 0, position.y * tileSizeOffset), Quaternion.identity);
+        GameObject newTile = (GameObject) Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), Quaternion.identity);
         newTile.transform.parent = gameObject.transform;
     }
 	
