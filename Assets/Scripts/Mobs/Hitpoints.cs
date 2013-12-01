@@ -46,7 +46,8 @@ public class Hitpoints : MonoBehaviour
     void MobDied()
     {
         GameObject.Find("Environment").SendMessage("MobDied");
-        GetComponent<SpriteRenderer>().sprite = deadSprite;
+        GetComponent<SpriteRenderer>().sprite = deadSprite; // set it to dead sprite
+        collider.enabled = false; // turn off collider
         mobDead = true;
     }
     
