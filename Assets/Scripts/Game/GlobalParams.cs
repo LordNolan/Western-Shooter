@@ -6,17 +6,21 @@ public class GlobalParams
     static bool worldGenComplete = false;
     static bool mobAIDelayComplete = false;
     static bool inNonPlayingState = false;
-    
-    public static float fireXRotationOffset = 10.0f;
+    static bool playerSpawned = false;
     
     void Start()
     {
         Screen.lockCursor = true; // lock the mouse
     }
     
-    public static float GetFireXRotationOffset()
+    public static bool IsPlayerSpawned()
     {
-        return fireXRotationOffset;
+        return playerSpawned;
+    }
+    
+    public static void MarkPlayerSpawned()
+    {
+        playerSpawned = true;
     }
     
     public static void EnterNonPlayingState()
@@ -34,6 +38,7 @@ public class GlobalParams
         worldGenComplete = false;
         mobAIDelayComplete = false;
         inNonPlayingState = false;
+        playerSpawned = false;
     }
     
     public static void MarkWorldGenComplete()

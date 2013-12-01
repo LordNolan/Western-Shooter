@@ -38,34 +38,41 @@ public class GameController : MonoBehaviour
             
         switch (currentState) {
         // new game or new level because of win/death
-        case GameState.NewGame:
-            if (GlobalParams.IsWorldGenComplete()) {
-                ClearMessageUI();
-                if (GetComponent<SpawnPlayerSetup>().DidPlayerSpawn()) { // player spawned, let's play
-                    currentState = GameState.Playing;
-                    currentTimer = 0; // timer for mob delay before kicking off AI
+            case GameState.NewGame:
+                if (GlobalParams.IsWorldGenComplete()) {
+                    if (GlobalParams.IsPlayerSpawned()) { // player spawned, let's play
+                        ClearMessageUI();
+                        currentState = GameState.Playing;
+                        currentTimer = 0; // timer for mob delay before kicking off AI
+                    } else {
+                        if (wonPrevious) {
+                            GetComponent<SpawnPlayer>().ResetPlayerSpawn();
+                            wonPrevious = false;
+                        } else {
+                            GetComponent<SpawnPlayer>().SpawnNewPlayer();
+                        }
+                    }
                 }
-            }
-            break;
-        case GameState.Playing:
-            if ((currentTimer += Time.deltaTime) > mobAIdelay) // wait for delay before kicking off AI
-                GlobalParams.MarkMobAIDelayComplete();
-            break;
-        case GameState.PlayerDead:
-            PlayLoseAudio(); // play death sound
-            GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-            GameObject.Find("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart"); // inform player of kill count
-            if (Input.GetKeyDown(KeyCode.Space))
-                StartNewGameFromDead(); // start new game if spacebar
-            break;
-        case GameState.LevelWon:
-            PlayWinAudio(); // play win sound
-            wonPrevious = true; // bool for carrying over previous level values
-            GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-            GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
-            if (Input.GetKeyDown(KeyCode.Space))
-                StartNewLevelFromWin(); // start new level if spacebar
-            break;
+                break;
+            case GameState.Playing:
+                if ((currentTimer += Time.deltaTime) > mobAIdelay) // wait for delay before kicking off AI
+                    GlobalParams.MarkMobAIDelayComplete();
+                break;
+            case GameState.PlayerDead:
+                PlayLoseAudio(); // play death sound
+                GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+                GameObject.Find("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart"); // inform player of kill count
+                if (Input.GetKeyDown(KeyCode.Space))
+                    StartNewGameFromDead(); // start new game if spacebar
+                break;
+            case GameState.LevelWon:
+                PlayWinAudio(); // play win sound
+                wonPrevious = true; // bool for carrying over previous level values
+                GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+                GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
+                if (Input.GetKeyDown(KeyCode.Space))
+                    StartNewLevelFromWin(); // start new level if spacebar
+                break;
         }
     }
     
@@ -94,7 +101,6 @@ public class GameController : MonoBehaviour
     {
         winPlayed = false;  // reset audio play
         wonPrevious = true; // set flag for carrying over values
-        winningHP = GameObject.FindGameObjectWithTag("Player").GetComponent<Hitpoints>().HP; // keep previous HP
         NewGameProcess();
     }
     
@@ -102,7 +108,6 @@ public class GameController : MonoBehaviour
     {
         losePlayed = false; // reset audio play
         mobsKilled = 0;     // reset mob kill count
-        isDead = false;     // reset player death flag
         NewGameProcess();
     }
     
@@ -111,7 +116,10 @@ public class GameController : MonoBehaviour
         GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear(); // clear faded background
         ClearMessageUI();
         GlobalParams.ResetForNewLevel();
-        GetComponent<SpawnPlayerSetup>().DestroyPlayer();
+        if (isDead) {
+            isDead = false;     // reset player death flag
+            GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
+        }
         currentState = GameState.NewGame;
         SendMessage("GenerateWorld");
     }
@@ -143,14 +151,5 @@ public class GameController : MonoBehaviour
             currentState = GameState.PlayerDead;
             GlobalParams.EnterNonPlayingState();
         }
-    }
-    
-    public int GetWinningHP()
-    {
-        if (wonPrevious) {
-            wonPrevious = false;
-            return winningHP;
-        }
-        return -1;
     }
 }

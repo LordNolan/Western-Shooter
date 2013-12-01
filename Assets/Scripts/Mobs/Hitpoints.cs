@@ -17,11 +17,7 @@ public class Hitpoints : MonoBehaviour
         
         // if we're player and we won last level, lets set our hp to that amount
         if (CompareTag("Player")) {
-            int winningHP = GameObject.Find("Environment").GetComponent<GameController>().GetWinningHP();
-            if (winningHP != -1)
-                HP = winningHP;
-            else
-                HP = startingHP;
+            HP = startingHP;
             GameObject.Find("UI").BroadcastMessage("SetPlayerHitpoints", HP);
         }  
     }

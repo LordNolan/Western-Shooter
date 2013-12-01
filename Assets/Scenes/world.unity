@@ -85,8 +85,8 @@ GameObject:
   - 114: {fileID: 57835976}
   - 114: {fileID: 57835977}
   - 114: {fileID: 57835978}
-  - 82: {fileID: 57835979}
   - 82: {fileID: 57835980}
+  - 82: {fileID: 57835979}
   - 131: {fileID: 57835981}
   - 114: {fileID: 57835982}
   m_Layer: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 57835974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f26c1ffbee2a524a882c1a2ec0c8ebe, type: 3}
+  m_Script: {fileID: 11500000, guid: 18d952868b1010243beba456d2cded1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 100002, guid: 38d61b1c43ac3384f9e762fbbcc504b4, type: 2}
@@ -162,7 +162,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: d94fe62dbb2ae354885bf15577c36c8c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 0
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Priority: 128
@@ -220,7 +220,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b3e4d89f82fe1de48ac0e0c00e88b87d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 2
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Priority: 128

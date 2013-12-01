@@ -96,7 +96,7 @@ public class WorldGenerator : MonoBehaviour
         }
 		
         GenerateWalls();   // create all the walls
-        GenerateChest(); // only keep one chest
+        GenerateChest();   // only keep one chest
         SpawnEnemies();
         
         // tell game we're done with world gen.
