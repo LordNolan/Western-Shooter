@@ -257,6 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHP: 3
   HP: 0
+  mobDead: 0
+  deadSprite: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: 5da9a1977de2ee5409e30a4a92e1a545, type: 2}
-  bulletSpeed: 10
+  bulletSpeed: 20
   heightOffset: 0
   forwardOffset: .5
 --- !u!124 &12400000

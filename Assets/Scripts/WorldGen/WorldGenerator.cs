@@ -272,7 +272,7 @@ public class WorldGenerator : MonoBehaviour
     // player always spawns at 0,0
     bool FarFromPlayerSpawn(Vector2 pos)
     {
-        return Mathf.Abs(pos.x) + Mathf.Abs(pos.y) > 2;
+        return Vector2.Distance(pos, Vector2.zero) > 5;
     }
     
     void TrySpawnAnotherWalker(Vector2 position, int parentMovesLeft)
