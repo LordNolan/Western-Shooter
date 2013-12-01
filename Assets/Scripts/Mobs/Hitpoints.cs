@@ -6,6 +6,8 @@ public class Hitpoints : MonoBehaviour
     public int startingHP;
     public int HP;
     
+    public bool mobDead = false;
+    
     public Sprite deadSprite;
     
     void Start()
@@ -44,8 +46,8 @@ public class Hitpoints : MonoBehaviour
     void MobDied()
     {
         GameObject.Find("Environment").SendMessage("MobDied");
-        
-        Destroy(gameObject);
+        GetComponent<SpriteRenderer>().sprite = deadSprite;
+        mobDead = true;
     }
     
     public void ResetHP()
