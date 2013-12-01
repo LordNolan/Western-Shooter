@@ -28,8 +28,10 @@ public class HitpointsUI : MonoBehaviour
         // we need to start removing from last alive badge and move forward. 
         
         for (int x = amount; x > 0; x--) {
-            badgeList[hitpoints - 1].GetComponent<HPBadgeUI>().Hit();
-            hitpoints--;
+            if (hitpoints > 0) {
+                badgeList[hitpoints - 1].GetComponent<HPBadgeUI>().Hit();
+                hitpoints--;
+            }
         }
     }
 }

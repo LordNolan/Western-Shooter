@@ -256,9 +256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 3
-  HP: 0
-  mobDead: 0
   deadSprite: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 2da27f884710a1e48ba0d02a11f4cc61, type: 3}
+  deathSound: {fileID: 0}
+  mobDead: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,6 +289,7 @@ MonoBehaviour:
   bulletSpeed: 20
   heightOffset: 0
   forwardOffset: .5
+  FiringXRotationOffset: -10
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

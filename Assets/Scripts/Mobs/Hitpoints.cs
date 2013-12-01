@@ -4,11 +4,12 @@ using System.Collections;
 public class Hitpoints : MonoBehaviour
 {
     public int startingHP;
-    public int HP;
-    
+    public Sprite deadSprite;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
     public bool mobDead = false;
     
-    public Sprite deadSprite;
+    int HP;
     
     void Start()
     {
@@ -28,9 +29,13 @@ public class Hitpoints : MonoBehaviour
             GameObject.Find("UI").BroadcastMessage("PlayerHit", amount);
             if ((HP -= amount) <= 0)
                 PlayerDied();
+            else
+                audio.PlayOneShot(hurtSound);
         } else {
             if ((HP -= amount) <= 0)
                 MobDied();
+            else
+                audio.PlayOneShot(hurtSound);
         }
     }
     
@@ -41,6 +46,7 @@ public class Hitpoints : MonoBehaviour
     
     void MobDied()
     {
+        audio.PlayOneShot(deathSound);
         GameObject.Find("Environment").SendMessage("MobDied");
         GetComponent<SpriteRenderer>().sprite = deadSprite; // set it to dead sprite
         collider.enabled = false; // turn off collider
