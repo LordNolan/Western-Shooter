@@ -6,6 +6,8 @@ public class Hitpoints : MonoBehaviour
     public int startingHP;
     public int HP;
     
+    public Sprite deadSprite;
+    
     void Start()
     {
         // default behavior
@@ -42,6 +44,7 @@ public class Hitpoints : MonoBehaviour
     void MobDied()
     {
         GameObject.Find("Environment").SendMessage("MobDied");
+        
         Destroy(gameObject);
     }
     
