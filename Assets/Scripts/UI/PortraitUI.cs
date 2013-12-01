@@ -21,6 +21,7 @@ public class PortraitUI : MonoBehaviour
     {
         p_texture = GetComponent<GUITexture>();
         currentState = p_State.forward;
+        transform.localScale = Vector2.zero;
     }
     
     private double timer = 0;
@@ -36,18 +37,18 @@ public class PortraitUI : MonoBehaviour
     void SwapTexture()
     {
         switch (currentState) {
-        case p_State.forward:
-            p_texture.texture = p_left;
-            currentState = p_State.left;
-            break;
-        case p_State.left:
-            p_texture.texture = p_right;
-            currentState = p_State.right;
-            break;
-        case p_State.right:
-            p_texture.texture = p_forward;
-            currentState = p_State.forward;
-            break;
+            case p_State.forward:
+                p_texture.texture = p_left;
+                currentState = p_State.left;
+                break;
+            case p_State.left:
+                p_texture.texture = p_right;
+                currentState = p_State.right;
+                break;
+            case p_State.right:
+                p_texture.texture = p_forward;
+                currentState = p_State.forward;
+                break;
         }
     }
 }
