@@ -39,8 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7eb6110e30c4f419a2f5b3065f5846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badge_full: {fileID: 2800000, guid: cca0d8b3e9966974cb7f03414781b75d, type: 3}
-  badge_empty: {fileID: 2800000, guid: eef4c1c336edfad429bb701b2bd6c74e, type: 3}
+  badge_full: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
+  badge_empty: {fileID: 2800000, guid: 1d250bda9ab3da745b3d013586ee4730, type: 3}
 --- !u!131 &13100000
 GUITexture:
   m_ObjectHideFlags: 1
@@ -48,7 +48,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: cca0d8b3e9966974cb7f03414781b75d, type: 3}
+  m_Texture: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
