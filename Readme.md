@@ -1,3 +1,5 @@
 ## Western Game
 
-Made in Unity3D, 3rd Person Shooter.  It's amazing for reals.  Commits watched by channel.
+Made in Unity3D, 1st Person Shooter.
+
+- Repo moved to private bitbucket account -
