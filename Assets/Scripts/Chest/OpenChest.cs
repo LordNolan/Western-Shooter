@@ -3,6 +3,7 @@ using System.Collections;
 
 public class OpenChest : MonoBehaviour
 {
+    public GameObject powerup;
     private bool isOpen = false;
     
     void Start()
@@ -13,6 +14,7 @@ public class OpenChest : MonoBehaviour
     void PlayOpenAnimation()
     {
         animation.PlayQueued("Open", QueueMode.CompleteOthers);
+        Instantiate(powerup, transform.position, transform.rotation);
         animation.PlayQueued("Idle_Open", QueueMode.CompleteOthers);
     }
     

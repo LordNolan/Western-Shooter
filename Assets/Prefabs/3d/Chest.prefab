@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe21503e8a01d024cacb14fac0ed2410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerup: {fileID: 100000, guid: a7d20d83f46558547bc8ef8bc7d3e7b7, type: 2}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
