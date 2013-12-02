@@ -6,9 +6,10 @@ public class WorldGenerator : MonoBehaviour
 {
     public GameObject treasureTile;
     public GameObject wallTile;
-    public GameObject enemy1;
-    public GameObject scenery1;
-    public GameObject scenery2;
+    public GameObject enemy1; // cactus bandit
+    public GameObject enemy2; // bug bandit
+    public GameObject scenery1; // barrel
+    public GameObject scenery2; // cactus
 	
     private List<Tile> floorTileList;
     private List<Tile> wallTileList;
@@ -110,7 +111,10 @@ public class WorldGenerator : MonoBehaviour
             if (t.GetPosition() != treasureSpawn.GetPosition() && FarFromPlayerSpawn(t.GetPosition())) {
                 if (Random.Range(0, 10) <= 0) {
                     if (Random.Range(0, 4) == 1) {
-                        InstantiateObject(enemy1, t.GetPosition());
+                        if (Random.Range(0, 2) == 1)
+                            InstantiateObject(enemy1, t.GetPosition());
+                        else
+                            InstantiateObject(enemy2, t.GetPosition());
                         mobcount++;
                     } else {
                         if (Random.Range(0, 2) == 1)
