@@ -3,7 +3,6 @@ using System.Collections;
 
 public class OpenChest : MonoBehaviour
 {
-    public GameObject powerup;
     private bool isOpen = false;
     
     void Start()
@@ -11,7 +10,7 @@ public class OpenChest : MonoBehaviour
         animation.PlayQueued("Idle_Closed", QueueMode.CompleteOthers);
     }
     
-    void PlayOpenAnimation()
+    void PlayOpenAnimation(GameObject powerup)
     {
         animation.PlayQueued("Open", QueueMode.CompleteOthers);
         Instantiate(powerup, transform.position, transform.rotation);
@@ -21,7 +20,9 @@ public class OpenChest : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         if (!isOpen && collider.CompareTag("Player")) {
-            PlayOpenAnimation();
+            // Get random powerup so we can pop it up on lid open
+            GameObject powerup = GameObject.FindGameObjectWithTag("Global").GetComponent<PowerupController>().AddRandomPowerup();
+            PlayOpenAnimation(powerup);
             isOpen = true;
         }
     }

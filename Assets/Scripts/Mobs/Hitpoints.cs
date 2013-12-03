@@ -52,9 +52,4 @@ public class Hitpoints : MonoBehaviour
         collider.enabled = false; // turn off collider
         mobDead = true;
     }
-    
-    public void ResetHP()
-    {
-        Start();
-    }
 }

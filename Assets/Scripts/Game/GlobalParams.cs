@@ -8,11 +8,6 @@ public class GlobalParams
     static bool inNonPlayingState = false;
     static bool playerSpawned = false;
     
-    void Start()
-    {
-        Screen.lockCursor = true; // lock the mouse
-    }
-    
     public static bool IsPlayerSpawned()
     {
         return playerSpawned;

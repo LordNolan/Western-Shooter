@@ -67,7 +67,6 @@ public class GameController : MonoBehaviour
                 break;
             case GameState.LevelWon:
                 PlayWinAudio(); // play win sound
-                wonPrevious = true; // bool for carrying over previous level values
                 GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
                 GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -108,6 +107,9 @@ public class GameController : MonoBehaviour
     {
         losePlayed = false; // reset audio play
         mobsKilled = 0;     // reset mob kill count
+        isDead = false;     // reset player death flag
+        GameObject.Find("UI").BroadcastMessage("Reset");
+        GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
         NewGameProcess();
     }
     
@@ -116,10 +118,6 @@ public class GameController : MonoBehaviour
         GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear(); // clear faded background
         ClearMessageUI();
         GlobalParams.ResetForNewLevel();
-        if (isDead) {
-            isDead = false;     // reset player death flag
-            GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
-        }
         currentState = GameState.NewGame;
         SendMessage("GenerateWorld");
     }

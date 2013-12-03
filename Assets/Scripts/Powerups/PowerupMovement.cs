@@ -3,11 +3,11 @@ using System.Collections;
 
 public class PowerupMovement : MonoBehaviour {
  
-    public float rotateSpeed;
-    public float tweenDelay;
-    public float tweenHeight;
-    public float tweenTime;
-    public float aliveTime;
+    float rotateSpeed = 50.0f;
+    float tweenDelay = 0.2f;
+    float tweenHeight = 0.45f;
+    float tweenTime = 3.0f;
+    float aliveTime = 5.0f;
     float currentTime = 0;
     
     float yRotation;

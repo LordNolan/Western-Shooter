@@ -11,6 +11,9 @@ TagManager:
   - Cactus
   - Global
   - Chest
+  - Model
+  - Icon
+  - UI
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
