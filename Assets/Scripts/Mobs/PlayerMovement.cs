@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     float rotationX = 0;
     float rotationY = 0;
     
+    public float pu_SpeedBoost = 0f;
+    
     void FixedUpdate()
     {
         if (!GlobalParams.InNonPlayingState()) {
-            float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-            float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+            float horizontal = Input.GetAxis("Horizontal") * (movementSpeed + pu_SpeedBoost)  * Time.deltaTime;
+            float vertical = Input.GetAxis("Vertical") * (movementSpeed + pu_SpeedBoost) * Time.deltaTime;
             
             // ensures that we're always moving on x/z plane no matter the x rotation (looking up/down)
             Vector3 forwardVector = new Vector3(horizontal, 0, vertical);

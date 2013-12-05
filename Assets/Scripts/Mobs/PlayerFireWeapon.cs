@@ -8,6 +8,9 @@ public class PlayerFireWeapon : MonoBehaviour
     public float heightOffset = 0.3f;
     public float forwardOffset = 0.3f;
     public float FiringXRotationOffset = -10.0f;
+    
+    public int pu_DamageModifier = 1;  // variable for double damage
+    
     void Update()
     {
         if (!GlobalParams.InNonPlayingState() && Input.GetMouseButtonDown(0)) { // left click
@@ -15,6 +18,7 @@ public class PlayerFireWeapon : MonoBehaviour
             float x = transform.localEulerAngles.x + bulletPrefab.transform.localEulerAngles.x + FiringXRotationOffset;
             float y = transform.localEulerAngles.y;
             SetBulletSpeed();
+            SetBulletDamage();
             Instantiate(bulletPrefab, GetBulletSpawnPosition(), Quaternion.Euler(x, y, 0));
             audio.Play();
         }
@@ -29,5 +33,10 @@ public class PlayerFireWeapon : MonoBehaviour
     void SetBulletSpeed()
     {
         bulletPrefab.GetComponent<BulletMovement>().speed = bulletSpeed;
+    }
+    
+    void SetBulletDamage()
+    {
+        bulletPrefab.GetComponent<BulletCollision>().damageModifier = pu_DamageModifier;
     }
 }

@@ -20,18 +20,13 @@ public class PowerupController : MonoBehaviour
         powerups.Add(doubleDamage);
         powerups.Add(speedBuff);
 	}
-	
-	void Update () 
-    {
-        
-	}
     
     // returns child object model for chest and sends other child object icon to UI
     public GameObject AddRandomPowerup()
     {
         GameObject choice = powerups[Random.Range(0, powerups.Count)];
         activePowerups.Add(choice.name);
-        
+        ActivatePowerup(choice.name);
         GameObject[] children = GetChildrenArrayFromPowerup(choice);
         GameObject.FindGameObjectWithTag("UI").BroadcastMessage("AddPower", children[1]); // to UI
         return children[0]; // to chest
@@ -54,5 +49,21 @@ public class PowerupController : MonoBehaviour
     public void Reset() 
     {
         activePowerups.Clear();
+    }
+    
+    void ActivatePowerup(string name)
+    {
+        switch(name)
+        {
+            case "DoubleDamage":
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerFireWeapon>().pu_DamageModifier *= 2;
+                break;
+            case "SpeedBuff":
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().pu_SpeedBoost += 2.0f;
+                break;
+            default:
+                Debug.LogError("[PowerupController.ActivatePowerup] name not found.");
+                break;
+        }
     }
 }

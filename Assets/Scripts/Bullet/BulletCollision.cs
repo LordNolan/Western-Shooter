@@ -6,6 +6,9 @@ public class BulletCollision : MonoBehaviour
     public ParticleSystem wallParticles;
     public ParticleSystem barrelParticles;
     public ParticleSystem cactusParticles;
+    
+    public int damage = 1;
+    public int damageModifier = 1;
 	
     void OnCollisionEnter(Collision collision)
     {   
@@ -18,7 +21,7 @@ public class BulletCollision : MonoBehaviour
         // player bullet
         if (CompareTag("PlayerBullet")) {
             if (collision.gameObject.CompareTag("Enemy")) {
-                collision.collider.SendMessage("TakeDamage", 1);
+                collision.collider.SendMessage("TakeDamage", damage * damageModifier);
                 Destroy(gameObject);
             }
         }
@@ -26,7 +29,7 @@ public class BulletCollision : MonoBehaviour
         // enemy bullet
         if (CompareTag("EnemyBullet")) {
             if (collision.gameObject.CompareTag("Player")) {
-                collision.collider.SendMessage("TakeDamage", 1);
+                collision.collider.SendMessage("TakeDamage", damage);
                 Destroy(gameObject);
             }
         }
