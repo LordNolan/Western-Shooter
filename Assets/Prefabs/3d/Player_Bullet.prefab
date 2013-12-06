@@ -73,7 +73,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d73008cc3e40640a14fee21f09cc62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfDestructTime: 3
   speed: 10
 --- !u!114 &11400002
 MonoBehaviour:
@@ -101,6 +102,8 @@ MonoBehaviour:
   wallParticles: {fileID: 19800000, guid: 836ee5ca4a6a4b74fa380bc6ba06e415, type: 2}
   barrelParticles: {fileID: 19800000, guid: d20a88f6fb6aacf4590381af092be69e, type: 2}
   cactusParticles: {fileID: 19800000, guid: bc16290309d77554ab6f5e9f6bc32703, type: 2}
+  damage: 1
+  damageModifier: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
