@@ -14,14 +14,15 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!GlobalParams.InNonPlayingState()) {
-            float horizontal = Input.GetAxis("Horizontal") * (movementSpeed + pu_SpeedBoost)  * Time.deltaTime;
-            float vertical = Input.GetAxis("Vertical") * (movementSpeed + pu_SpeedBoost) * Time.deltaTime;
+            
+            Vector3 forwardVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // get input
+            forwardVector.Normalize(); // normalize vector so we have unit vector in direction
+            forwardVector *= (movementSpeed + pu_SpeedBoost) * Time.deltaTime; // set magnitude 
             
             // ensures that we're always moving on x/z plane no matter the x rotation (looking up/down)
-            Vector3 forwardVector = new Vector3(horizontal, 0, vertical);
             forwardVector = Quaternion.Euler(-transform.eulerAngles.x, 0, 0) * forwardVector;
             CharacterController controller = GetComponent<CharacterController>();
-            controller.SimpleMove(transform.TransformDirection(forwardVector) * movementSpeed);
+            controller.SimpleMove(transform.TransformDirection(forwardVector));
             
             rotationX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
             rotationX = rotationX % 360; // we just want remainder so we don't have crazy rotation values

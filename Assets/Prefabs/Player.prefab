@@ -271,9 +271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86cb12973e597145bc5e6a05a7ec9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 100
   rotateSpeed: 80
   invertedAxis: 0
+  pu_SpeedBoost: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,6 +291,7 @@ MonoBehaviour:
   heightOffset: 0
   forwardOffset: .5
   FiringXRotationOffset: -10
+  pu_DamageModifier: 1
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
