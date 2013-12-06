@@ -28,7 +28,7 @@ public class PowerupController : MonoBehaviour
         activePowerups.Add(choice.name);
         ActivatePowerup(choice.name);
         GameObject[] children = GetChildrenArrayFromPowerup(choice);
-        GameObject.FindGameObjectWithTag("UI").BroadcastMessage("AddPower", children[1]); // to UI
+        GameObject.FindWithTag("UI").BroadcastMessage("AddPower", children[1]); // to UI
         return children[0]; // to chest
     }
     
@@ -56,10 +56,10 @@ public class PowerupController : MonoBehaviour
         switch(name)
         {
             case "DoubleDamage":
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerFireWeapon>().pu_DamageModifier *= 2;
+                GameObject.FindWithTag("Player").GetComponent<PlayerFireWeapon>().pu_DamageModifier *= 2;
                 break;
             case "SpeedBuff":
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().pu_SpeedBoost += 2.0f;
+                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().pu_SpeedBoost += 2.0f;
                 break;
             default:
                 Debug.LogError("[PowerupController.ActivatePowerup] name not found.");

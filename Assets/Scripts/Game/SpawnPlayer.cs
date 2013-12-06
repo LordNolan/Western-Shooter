@@ -23,7 +23,7 @@ public class SpawnPlayer : MonoBehaviour
         
         // reset player's position
         Vector2 pos = GetComponent<WorldGenerator>().getPlayerSpawnPosition();
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(pos.x, playerPrefab.transform.position.y, pos.y);
+        GameObject.FindWithTag("Player").transform.position = new Vector3(pos.x, playerPrefab.transform.position.y, pos.y);
         GlobalParams.MarkPlayerSpawned();
       
     }
@@ -31,6 +31,6 @@ public class SpawnPlayer : MonoBehaviour
     public void DestroyPlayer()
     {
         // destroy player
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Destroy(GameObject.FindWithTag("Player"));
     }
 }

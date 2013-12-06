@@ -60,15 +60,15 @@ public class GameController : MonoBehaviour
                 break;
             case GameState.PlayerDead:
                 PlayLoseAudio(); // play death sound
-                GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-                GameObject.Find("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart"); // inform player of kill count
+                GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart"); // inform player of kill count
                 if (Input.GetKeyDown(KeyCode.Space))
                     StartNewGameFromDead(); // start new game if spacebar
                 break;
             case GameState.LevelWon:
                 PlayWinAudio(); // play win sound
-                GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-                GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
+                GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
                 if (Input.GetKeyDown(KeyCode.Space))
                     StartNewLevelFromWin(); // start new level if spacebar
                 break;
@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour
     
     void ClearMessageUI()
     {
-        GameObject.Find("UI").BroadcastMessage("SetMessage", "");
+        GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "");
     }
     
     void PlayLoseAudio()
@@ -108,14 +108,14 @@ public class GameController : MonoBehaviour
         losePlayed = false; // reset audio play
         mobsKilled = 0;     // reset mob kill count
         isDead = false;     // reset player death flag
-        GameObject.Find("UI").BroadcastMessage("Reset");
+        GameObject.FindWithTag("UI").BroadcastMessage("Reset");
         GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
         NewGameProcess();
     }
     
     void NewGameProcess()
     {
-        GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear(); // clear faded background
+        GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeClear(); // clear faded background
         ClearMessageUI();
         GlobalParams.ResetForNewLevel();
         currentState = GameState.NewGame;

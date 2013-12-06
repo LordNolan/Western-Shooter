@@ -125,7 +125,7 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
-        GameObject.Find("Environment").GetComponent<GameController>().SetMobCount(mobcount);
+        GameObject.FindWithTag("Global").GetComponent<GameController>().SetMobCount(mobcount);
     }
     
     void GenerateSpawnpoint()

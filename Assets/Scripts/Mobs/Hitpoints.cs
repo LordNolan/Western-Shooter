@@ -19,14 +19,14 @@ public class Hitpoints : MonoBehaviour
         // if we're player and we won last level, lets set our hp to that amount
         if (CompareTag("Player")) {
             HP = startingHP;
-            GameObject.Find("UI").BroadcastMessage("SetPlayerHitpoints", HP);
+            GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
         }  
     }
     
     void TakeDamage(int amount)
     {
         if (CompareTag("Player")) {
-            GameObject.Find("UI").BroadcastMessage("PlayerHit", amount);
+            GameObject.FindWithTag("UI").BroadcastMessage("PlayerHit", amount);
             if ((HP -= amount) <= 0)
                 PlayerDied();
             else
@@ -41,13 +41,13 @@ public class Hitpoints : MonoBehaviour
     
     void PlayerDied()
     {
-        GameObject.Find("Environment").SendMessage("PlayerDied");
+        GameObject.FindWithTag("Global").SendMessage("PlayerDied");
     }
     
     void MobDied()
     {
         audio.PlayOneShot(deathSound);
-        GameObject.Find("Environment").SendMessage("MobDied");
+        GameObject.FindWithTag("Global").SendMessage("MobDied");
         GetComponent<SpriteRenderer>().sprite = deadSprite; // set it to dead sprite
         collider.enabled = false; // turn off collider
         mobDead = true;

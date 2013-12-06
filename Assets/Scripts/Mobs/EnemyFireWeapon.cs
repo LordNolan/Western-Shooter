@@ -19,7 +19,7 @@ public class EnemyFireWeapon : MonoBehaviour
     void Update()
     {
         if (GlobalParams.IsMobAIDelayComplete() && !GetComponent<Hitpoints>().mobDead) {
-            GameObject player = (GameObject)GameObject.FindGameObjectWithTag("Player");
+            GameObject player = (GameObject)GameObject.FindWithTag("Player");
             
             // fire at the player
             if (player != null && !GlobalParams.InNonPlayingState() && WithinFiringRange(player.transform.position) && (currentTime += Time.deltaTime) >= currentDelay) {

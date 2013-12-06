@@ -21,7 +21,7 @@ public class OpenChest : MonoBehaviour
     {
         if (!isOpen && collider.CompareTag("Player")) {
             // Get random powerup so we can pop it up on lid open
-            GameObject powerup = GameObject.FindGameObjectWithTag("Global").GetComponent<PowerupController>().AddRandomPowerup();
+            GameObject powerup = GameObject.FindWithTag("Global").GetComponent<PowerupController>().AddRandomPowerup();
             PlayOpenAnimation(powerup);
             isOpen = true;
         }
