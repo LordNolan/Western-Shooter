@@ -16,7 +16,9 @@ public class PlayerMovement : MonoBehaviour
         if (!GlobalParams.InNonPlayingState()) {
             
             Vector3 forwardVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // get input
-            forwardVector.Normalize(); // normalize vector so we have unit vector in direction
+            // normalize vector so we have unit vector in direction of input
+            if (forwardVector.magnitude > 1) 
+                forwardVector.Normalize(); 
             forwardVector *= (movementSpeed + pu_SpeedBoost) * Time.deltaTime; // set magnitude 
             
             // ensures that we're always moving on x/z plane no matter the x rotation (looking up/down)
