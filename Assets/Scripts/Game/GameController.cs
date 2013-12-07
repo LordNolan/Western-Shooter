@@ -61,9 +61,14 @@ public class GameController : MonoBehaviour
             case GameState.PlayerDead:
                 PlayLoseAudio(); // play death sound
                 GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart"); // inform player of kill count
-                if (Input.GetKeyDown(KeyCode.Space))
+                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!"); // inform player of kill count
+				if (!loseAudio.isPlaying) {
+				GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart");
+				}
+				// don't allow spacebar continue until audio is done playing.
+				if (Input.GetKeyDown(KeyCode.Space) && !loseAudio.isPlaying) {
                     StartNewGameFromDead(); // start new game if spacebar
+				}
                 break;
             case GameState.LevelWon:
                 PlayWinAudio(); // play win sound
@@ -80,11 +85,13 @@ public class GameController : MonoBehaviour
         GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "");
     }
     
-    void PlayLoseAudio()
-    {
+    void PlayLoseAudio() 
+	{
         if (!losePlayed) {
-            losePlayed = true;
+        	losePlayed = true;
             loseAudio.Play();
+
+
         }
     }
     
