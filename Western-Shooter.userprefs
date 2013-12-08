@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_HOTween Examples/Path Basics/PathBasics.cs">
     <Files>
-      <File FileName="Assets/Scripts/Game/GameController.cs" Line="66" Column="134" />
+      <File FileName="Assets/Scripts/Powerups/PowerupMovement.cs" Line="3" Column="1" />
+      <File FileName="Assets/Scripts/Bullet/GunSwayX.cs" Line="6" Column="22" />
+      <File FileName="Assets/Scripts/Bullet/GunSwayY.cs" Line="14" Column="92" />
+      <File FileName="Assets/_HOTween Examples/Path Basics/PathBasics.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
