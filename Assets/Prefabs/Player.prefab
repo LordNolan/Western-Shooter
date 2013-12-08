@@ -11,8 +11,6 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 95: {fileID: 9500000}
-  - 114: {fileID: 11400008}
-  - 114: {fileID: 11400010}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -294,32 +292,6 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: 2da27f884710a1e48ba0d02a11f4cc61, type: 3}
   deathSound: {fileID: 0}
   mobDead: 0
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94050239a552b415d987a8f406b7bdb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenX: -.00999999978
-  tweenTime: .600000024
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dfac1a8fcea544db95488f1ddafdd6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenY: -.00999999978
-  tweenTime: .600000024
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

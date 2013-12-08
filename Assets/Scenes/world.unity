@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d952868b1010243beba456d2cded1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 100002, guid: 38d61b1c43ac3384f9e762fbbcc504b4, type: 2}
+  playerPrefab: {fileID: 100004, guid: 38d61b1c43ac3384f9e762fbbcc504b4, type: 2}
 --- !u!114 &57835978
 MonoBehaviour:
   m_ObjectHideFlags: 0
