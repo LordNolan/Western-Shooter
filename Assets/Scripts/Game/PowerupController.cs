@@ -11,6 +11,8 @@ public class PowerupController : MonoBehaviour
     HashSet<string> activePowerups;
     List<GameObject> powerups;
     
+    public AudioSource powerupSound;
+    
 	void Start () 
     {
         activePowerups = new HashSet<string>();
@@ -28,6 +30,7 @@ public class PowerupController : MonoBehaviour
         activePowerups.Add(choice.name);
         ActivatePowerup(choice.name);
         GameObject[] children = GetChildrenArrayFromPowerup(choice);
+        powerupSound.Play(); // playaudio
         GameObject.FindWithTag("UI").BroadcastMessage("AddPower", children[1]); // to UI
         return children[0]; // to chest
     }
