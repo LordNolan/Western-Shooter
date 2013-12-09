@@ -258,7 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xAmplitude: .00499999989
   yAmplitude: -.00499999989
-  speed: 4
+  speed: 6
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

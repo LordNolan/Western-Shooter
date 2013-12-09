@@ -8,14 +8,20 @@ public class PlayerMovement : MonoBehaviour
     public bool invertedAxis = false;
     float rotationX = 0;
     float rotationY = 0;
+    Vector3 forwardVector;
     
     public float pu_SpeedBoost = 0f;
+    
+    void Start()
+    {
+        forwardVector = Vector3.zero;
+    }
     
     void FixedUpdate()
     {
         if (!GlobalParams.InNonPlayingState()) {
             
-            Vector3 forwardVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // get input
+            forwardVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // get input
             // normalize vector so we have unit vector in direction of input
             if (forwardVector.magnitude > 1) 
                 forwardVector.Normalize(); 
@@ -37,5 +43,10 @@ public class PlayerMovement : MonoBehaviour
     int isInvertedAxis()
     {
         return (invertedAxis) ? 1 : -1;
+    }
+    
+    public bool IsMoving()
+    {
+        return forwardVector.magnitude > 0;
     }
 }
