@@ -59,7 +59,7 @@ public class PowerupController : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<PlayerFireWeapon>().pu_DamageModifier *= 2;
                 break;
             case "SpeedBuff":
-                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().pu_SpeedBoost += 10.0f;
+                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().pu_SpeedBoost += 20.0f;
                 break;
             default:
                 Debug.LogError("[PowerupController.ActivatePowerup] name not found.");

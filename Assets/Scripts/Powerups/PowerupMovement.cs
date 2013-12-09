@@ -14,15 +14,18 @@ public class PowerupMovement : MonoBehaviour {
     
     float yRotation;
     
-    void Start() {
-         //iTween.MoveBy(gameObject, iTween.Hash("y", tweenHeight, "easeType", "easeOutElastic", "delay", tweenDelay, "time", tweenTime));
+    void Start() 
+    {
+        //iTween.MoveBy(gameObject, iTween.Hash("y", tweenHeight, "easeType", "easeOutElastic", "delay", tweenDelay, "time", tweenTime));
 		HOTween.To(transform, tweenTime, 
 		           new TweenParms().Prop("localPosition", new Vector3(0, tweenHeight, 0))
 		           .Delay(tweenDelay)
 		           .Ease(EaseType.EaseOutBack)
 		           );
     }
-	void Update () {
+    
+	void Update () 
+    {
         if ((currentTime += Time.deltaTime) > aliveTime) 
             Destroy(gameObject);
         
