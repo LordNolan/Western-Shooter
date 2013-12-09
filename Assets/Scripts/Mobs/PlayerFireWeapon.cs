@@ -11,9 +11,21 @@ public class PlayerFireWeapon : MonoBehaviour
     
     public int pu_DamageModifier = 1;  // variable for double damage
     
+    public float fireDelayTime;
+    float currentTime;
+    
+    void Start()
+    {
+        // ensures we can fire as soon as game starts
+        currentTime = fireDelayTime;
+    }
+    
     void Update()
     {
-        if (!GlobalParams.InNonPlayingState() && Input.GetMouseButtonDown(0)) { // left click
+        currentTime += Time.deltaTime;
+        
+        if (currentTime > fireDelayTime && !GlobalParams.InNonPlayingState() && Input.GetMouseButton(0)) { // left click or held down
+            currentTime = 0; // reset delay            
             // create bullet rotated to match player's facing direction + rotation offset due to UI
             float x = transform.localEulerAngles.x + bulletPrefab.transform.localEulerAngles.x + FiringXRotationOffset;
             float y = transform.localEulerAngles.y;
