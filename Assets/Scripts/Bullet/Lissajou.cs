@@ -21,11 +21,13 @@ public class Lissajou : MonoBehaviour
     
 	void Update() 
     {
+        float playerMovement = transform.parent.GetComponent<PlayerMovement>().GetForwardMagnitude();
+        
         // only when we are moving should we sway the pistol
         if (transform.parent.GetComponent<PlayerMovement>().IsMoving()) 
-            t += Time.deltaTime * speed;
-        float x = Mathf.Cos(t + Mathf.PI/4) * xAmplitude;
-        float y = Mathf.Sin(t * 2) * yAmplitude; // invert so we get parabola going down
+            t += Time.deltaTime * speed * playerMovement;
+        float x = Mathf.Cos(t + Mathf.PI/4) * xAmplitude * playerMovement;
+        float y = Mathf.Sin(t * 2) * yAmplitude * playerMovement; // invert so we get parabola going down
         transform.localPosition = new Vector3(local_X + x, local_Y + y, transform.localPosition.z);
 	}
 }

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     float rotationX = 0;
     float rotationY = 0;
     Vector3 forwardVector;
+    float movementMagnitude;
     
     public float pu_SpeedBoost = 0f;
     
@@ -24,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
             forwardVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // get input
             // normalize vector so we have unit vector in direction of input
             if (forwardVector.magnitude > 1) 
-                forwardVector.Normalize(); 
+                forwardVector.Normalize();
+            movementMagnitude = forwardVector.magnitude;
             forwardVector *= (movementSpeed + pu_SpeedBoost) * Time.deltaTime; // set magnitude 
             
             // ensures that we're always moving on x/z plane no matter the x rotation (looking up/down)
@@ -47,6 +49,11 @@ public class PlayerMovement : MonoBehaviour
     
     public bool IsMoving()
     {
-        return forwardVector.magnitude > 0;
+        return movementMagnitude > 0;
+    }
+    
+    public float GetForwardMagnitude()
+    {
+        return movementMagnitude;
     }
 }
