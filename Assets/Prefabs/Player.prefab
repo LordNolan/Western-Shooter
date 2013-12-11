@@ -12,9 +12,10 @@ GameObject:
   - 23: {fileID: 2300000}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Pistol
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +77,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: .087155737, y: 0, z: 0, w: .99619472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .200000003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -270,12 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a42429df98f6345875463fb812ae9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 100000, guid: 5da9a1977de2ee5409e30a4a92e1a545, type: 2}
-  bulletSpeed: 800
   heightOffset: 0
-  forwardOffset: .5
-  FiringXRotationOffset: -10
-  pu_DamageModifier: 1
+  directionOffset: .150000006
   fireDelayTime: .5
 --- !u!114 &11400004
 MonoBehaviour:
@@ -308,6 +305,23 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: 2da27f884710a1e48ba0d02a11f4cc61, type: 3}
   deathSound: {fileID: 0}
   mobDead: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4751ac4066cd32442a5b7d7522e2b35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallParticles: {fileID: 19800000, guid: 836ee5ca4a6a4b74fa380bc6ba06e415, type: 2}
+  barrelParticles: {fileID: 19800000, guid: d20a88f6fb6aacf4590381af092be69e, type: 2}
+  cactusParticles: {fileID: 19800000, guid: bc16290309d77554ab6f5e9f6bc32703, type: 2}
+  floorParticles: {fileID: 19800000, guid: dbca55f2685b0e144a287439dbc3648e, type: 2}
+  damage: 1
+  pu_DamageModifier: 1
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

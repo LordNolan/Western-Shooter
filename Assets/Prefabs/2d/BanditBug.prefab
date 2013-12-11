@@ -178,6 +178,7 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: 5c859f2bcbc059c46be62a83b9fde793, type: 3}
   deathSound: {fileID: 8300000, guid: 697a479efc38aeb4cb10cd1625598ddd, type: 3}
   mobDead: 0
+  maxFlickerTime: .100000001
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -59,7 +59,7 @@ public class PowerupController : MonoBehaviour
         switch(name)
         {
             case "DoubleDamage":
-                GameObject.FindWithTag("Player").GetComponent<PlayerFireWeapon>().pu_DamageModifier *= 2;
+                GameObject.FindWithTag("Weapon").GetComponent<RaycastFire>().pu_DamageModifier *= 2;
                 break;
             case "SpeedBuff":
                 GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().pu_SpeedBoost += 20.0f;

@@ -8,8 +8,10 @@ public class Hitpoints : MonoBehaviour
     public AudioClip hurtSound;
     public AudioClip deathSound;
     public bool mobDead = false;
-    
+    bool flicker = false;
     int HP;
+    float flickerTime;
+    public float maxFlickerTime;
     
     void Start()
     {
@@ -35,8 +37,14 @@ public class Hitpoints : MonoBehaviour
             if ((HP -= amount) <= 0)
                 MobDied();
             else
-                audio.PlayOneShot(hurtSound);
+                flicker = true; // enemy flicker
+                audio.PlayOneShot(hurtSound); // enemy hit sound
         }
+    }
+    
+    void Update()
+    {
+        MobSpriteFlicker();
     }
     
     void PlayerDied()
@@ -51,5 +59,18 @@ public class Hitpoints : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = deadSprite; // set it to dead sprite
         collider.enabled = false; // turn off collider
         mobDead = true;
+    }
+    
+    void MobSpriteFlicker()
+    {
+        if (flicker) {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            if ((flickerTime += Time.deltaTime) > maxFlickerTime) {
+                GetComponent<SpriteRenderer>().color = Color.white;
+                flicker = false;
+                flickerTime = 0;
+            }
+            
+        }
     }
 }
