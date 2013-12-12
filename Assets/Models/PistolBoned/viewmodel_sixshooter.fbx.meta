@@ -34,6 +34,7 @@ ModelImporter:
     4300000: Revolver
     7400000: Default Take
     9500000: //RootNode
+    11100000: //RootNode
     13700000: Revolver
   materials:
     importMaterials: 1
@@ -85,5 +86,5 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   userData: 

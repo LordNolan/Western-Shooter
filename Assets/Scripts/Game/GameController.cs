@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Holoville.HOTween;
-using Holoville.HOTween.Plugins;
 
 public class GameController : MonoBehaviour
 {
@@ -30,7 +28,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Screen.lockCursor = true; // lock mouse cursor on screen
-		HOTween.Init();
         currentState = GameState.NewGame;
     }
 	

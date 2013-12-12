@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Holoville.HOTween;
-using Holoville.HOTween.Plugins;
 
 public class PowerupMovement : MonoBehaviour {
  
@@ -16,12 +14,7 @@ public class PowerupMovement : MonoBehaviour {
     
     void Start() 
     {
-        //iTween.MoveBy(gameObject, iTween.Hash("y", tweenHeight, "easeType", "easeOutElastic", "delay", tweenDelay, "time", tweenTime));
-		HOTween.To(transform, tweenTime, 
-		           new TweenParms().Prop("localPosition", new Vector3(0, tweenHeight, 0))
-		           .Delay(tweenDelay)
-		           .Ease(EaseType.EaseOutBack)
-		           );
+        iTween.MoveBy(gameObject, iTween.Hash("y", tweenHeight, "easeType", "easeOutElastic", "delay", tweenDelay, "time", tweenTime));
     }
     
 	void Update () 

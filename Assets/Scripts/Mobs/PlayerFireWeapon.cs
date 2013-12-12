@@ -30,6 +30,7 @@ public class PlayerFireWeapon : MonoBehaviour
                 audio.PlayOneShot(fireEmpty);
             }
             else {
+                transform.FindChild("Pistol").GetComponent<PistolAnimation>().Fire(); // fire animation
                 audio.PlayOneShot(fireBullet);
                 transform.FindChild("Pistol").GetComponent<RaycastFire>().Fire(GetBulletSpawnPosition(), GetForwardDirection()); // fire raycast
             }

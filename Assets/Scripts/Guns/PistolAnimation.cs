@@ -1,43 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Holoville.HOTween;
-using Holoville.HOTween.Plugins;
 
 public class PistolAnimation : MonoBehaviour {
  
-    public Transform hammerBone;
-    public Transform chamberBone;
+    public GameObject hammerBone;
+    public GameObject chamberBone;
+    public GameObject rigBone;
 	
     Quaternion hammerInitRotation;
     
     void Start()
     {
-        hammerInitRotation = hammerBone.rotation;
+        hammerInitRotation = hammerBone.transform.localRotation;
     }
     
-    float time = 0;
-    int shotsFired = 0;
-	void Update () {
-        //chamberBone.Rotate(Vector3.right * Time.deltaTime * 125.0f);
-        //hammerBone.Rotate(Vector3.up * Time.deltaTime * 1.0f);
-        if ((time += Time.deltaTime) > 2)
-        {
-            time = 0;
-            AnimateHammer();
-            AnimateChamber();
-        }
-	}
+	public void Fire() {
+        AnimateHammer();
+        AnimateChamber();
+        Recoil();
+    }
     
     void AnimateHammer()
     {
         // hammer goes instantly full down then lerps back to pulled back
-        hammerBone.rotation = hammerInitRotation;
-        HOTween.To(hammerBone, 0.5f, new TweenParms().Prop("rotation", Vector3.right * 40.0f, true).Delay(0.2f).Ease(EaseType.EaseOutCubic));
+        hammerBone.transform.localRotation = hammerInitRotation;
+        iTween.RotateAdd(hammerBone, iTween.Hash("amount", Vector3.up * 40.0f, "easeType", "easeOutCubic", "delay", 0.2f, "time", 0.5f));
     }
     
     void AnimateChamber()
     {
         // when hammer pulled back, rotate chamber
-        HOTween.To(chamberBone, 0.5f, new TweenParms().Prop("rotation", Vector3.right * 60.0f, true).Delay(0.2f).Ease(EaseType.EaseOutCubic));
+        iTween.RotateAdd(chamberBone, iTween.Hash("amount", Vector3.right * 60.0f, "easeType", "easeOutCubic", "delay", 0.2f, "time", 0.5f));
+    }
+    
+    void Recoil()
+    {
+        iTween.RotateAdd(rigBone, iTween.Hash("amount", Vector3.forward * 30.0f, "easeType", "easeOutElastic", "time", 0.2f, "oncomplete", "SettleRecoil", "oncompletetarget", gameObject));
+    }
+    
+    void SettleRecoil()
+    {
+        iTween.RotateAdd(rigBone, iTween.Hash("amount", Vector3.back * 30.0f, "easeType", "easeOutSine", "time", 0.2f));
     }
 }
