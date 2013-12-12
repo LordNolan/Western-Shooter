@@ -51,8 +51,8 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
-  - 82: {fileID: 8200000}
   - 143: {fileID: 14300000}
+  - 82: {fileID: 8200000}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -175,9 +175,9 @@ AudioSource:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 7bbf1e01acbefe94e99ae5e8bed6a444, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0f63b2de943abd74fa3ab80a234eca18, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .75
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -273,7 +273,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heightOffset: 0
   directionOffset: .150000006
+  ammoAmount: 25
   fireDelayTime: .5
+  fireBullet: {fileID: 8300000, guid: 7bbf1e01acbefe94e99ae5e8bed6a444, type: 3}
+  fireEmpty: {fileID: 8300000, guid: 0f63b2de943abd74fa3ab80a234eca18, type: 3}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,6 +308,7 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: 2da27f884710a1e48ba0d02a11f4cc61, type: 3}
   deathSound: {fileID: 0}
   mobDead: 0
+  maxFlickerTime: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
