@@ -1821,6 +1821,7 @@ GameObject:
   - 4: {fileID: 1208374820}
   - 132: {fileID: 1208374822}
   - 131: {fileID: 1208374821}
+  - 114: {fileID: 1208374823}
   m_Layer: 0
   m_Name: Ammo
   m_TagString: Untagged
@@ -1866,7 +1867,7 @@ GUIText:
   m_GameObject: {fileID: 1208374819}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: ': 100'
+  m_Text: ': 20'
   m_Anchor: 4
   m_Alignment: 0
   m_PixelOffset: {x: 70, y: 0}
@@ -1881,6 +1882,17 @@ GUIText:
     rgba: 4278190080
   m_PixelCorrect: 1
   m_RichText: 1
+--- !u!114 &1208374823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208374819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90731475ce01a154aa43207140d67e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1336191468
 GameObject:
   m_ObjectHideFlags: 0
