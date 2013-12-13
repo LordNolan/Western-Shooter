@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
 
 public class GameController : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class GameController : MonoBehaviour
     public double mobAIdelay = 2.0;
     private double currentTimer = 0;
     public int mobCount = 0;
+    
+    // scoreboard vars
     private int mobsKilled = 0;
+    private int roundsWon = 0;
+    private float timePlayed = 0;
     
     public AudioSource winAudio;
     public AudioSource loseAudio;
@@ -57,13 +62,14 @@ public class GameController : MonoBehaviour
             case GameState.Playing:
                 if ((currentTimer += Time.deltaTime) > mobAIdelay) // wait for delay before kicking off AI
                     GlobalParams.MarkMobAIDelayComplete();
+                timePlayed += Time.deltaTime; // increment time counter
                 break;
             case GameState.PlayerDead:
                 PlayLoseAudio(); // play death sound
                 GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!"); // inform player of kill count
+                string sb = DisplayScoreboard();
 				if (!loseAudio.isPlaying) {
-				GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart");
+                    GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb + "Press Spacebar to Restart");
 				}
 				// don't allow spacebar continue until audio is done playing.
 				if (Input.GetKeyDown(KeyCode.Space) && !loseAudio.isPlaying) {
@@ -80,6 +86,25 @@ public class GameController : MonoBehaviour
         }
     }
     
+    string DisplayScoreboard()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("You were killed. RIP");
+        sb.AppendLine("Mobs Killed:\t" + mobsKilled);
+        sb.AppendLine("Rounds Won:\t" + roundsWon);
+        sb.AppendLine("Time Played:\t" + GetTimePlayedString());
+        GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb.ToString());
+        return sb.ToString();
+    }
+    
+    string GetTimePlayedString() 
+    {
+        if (timePlayed >= 60)
+            return (int)(timePlayed / 60) + "m " + (int)(timePlayed % 60) + "s";
+        else
+            return (int)timePlayed + "s";
+    }
+        
     void ClearMessageUI()
     {
         GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "");
@@ -90,8 +115,6 @@ public class GameController : MonoBehaviour
         if (!losePlayed) {
         	losePlayed = true;
             loseAudio.Play();
-
-
         }
     }
     
@@ -107,17 +130,24 @@ public class GameController : MonoBehaviour
     {
         winPlayed = false;  // reset audio play
         wonPrevious = true; // set flag for carrying over values
+        roundsWon++;        // increment scoreboard counter
         NewGameProcess();
     }
     
     void StartNewGameFromDead()
     {
         losePlayed = false; // reset audio play
-        mobsKilled = 0;     // reset mob kill count
         isDead = false;     // reset player death flag
-        GameObject.FindWithTag("UI").BroadcastMessage("Reset");
+        GameObject.FindWithTag("UI").BroadcastMessage("Reset"); // resets powerups
         GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
         NewGameProcess();
+    }
+    
+    void ResetScoreboard()
+    {
+        mobsKilled = 0; // reset mob kill count
+        roundsWon = 0;  // reset round win count
+        timePlayed = 0; // reset time played amount
     }
     
     void NewGameProcess()
