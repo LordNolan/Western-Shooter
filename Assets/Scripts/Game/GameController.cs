@@ -40,7 +40,14 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // keep mouse cursor locked when we come back
             Screen.lockCursor = true;
-            
+        
+        // DEBUG: reset game on R
+        if (Input.GetKeyDown(KeyCode.R)) {
+            isDead = true;
+            GlobalParams.EnterNonPlayingState();
+            StartNewGameFromDead();
+        }
+             
         switch (currentState) {
         // new game or new level because of win/death
             case GameState.NewGame:

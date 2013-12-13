@@ -198,14 +198,6 @@ public class WorldGenerator : MonoBehaviour
         }
     }
 	
-    void Update()
-    {
-        // regenerate on keypress
-        if (!generating && Input.GetKeyDown(KeyCode.R)) {
-            GenerateWorld();
-        }
-    }
-	
     void AddTile(Vector2 position, int actionNum)
     {
         if (!TileExistsWithPosition(position, floorTileList)) {
