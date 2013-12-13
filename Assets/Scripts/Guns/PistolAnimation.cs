@@ -20,6 +20,11 @@ public class PistolAnimation : MonoBehaviour {
         Recoil();
     }
     
+    public void FireEmpty() {
+        AnimateHammer();
+        AnimateChamber();
+    }
+    
     void AnimateHammer()
     {
         // hammer goes instantly full down then lerps back to pulled back
@@ -27,9 +32,8 @@ public class PistolAnimation : MonoBehaviour {
         iTween.RotateAdd(hammerBone, iTween.Hash("amount", Vector3.up * 40.0f, "easeType", "easeOutCubic", "delay", 0.2f, "time", 0.5f));
     }
     
-    void AnimateChamber()
+    void AnimateChamber() // clockwise
     {
-        // when hammer pulled back, rotate chamber
         iTween.RotateAdd(chamberBone, iTween.Hash("amount", Vector3.right * 60.0f, "easeType", "easeOutCubic", "delay", 0.2f, "time", 0.5f));
     }
     

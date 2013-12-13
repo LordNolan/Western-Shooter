@@ -27,6 +27,7 @@ public class PlayerFireWeapon : MonoBehaviour
             currentTime = 0; // reset delay            
            
             if (ammoAmount <= 0) {
+                transform.FindChild("Pistol").GetComponent<PistolAnimation>().FireEmpty(); // fire animation
                 audio.PlayOneShot(fireEmpty);
             }
             else {

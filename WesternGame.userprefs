@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Guns\PistolAnimation.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Guns\PistolAnimation.cs" Line="33" Column="74" />
+      <File FileName="Assets\Scripts\Powerups\PowerupMovement.cs" Line="17" Column="136" />
+      <File FileName="Assets\Scripts\Mobs\PlayerFireWeapon.cs" Line="23" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
