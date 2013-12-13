@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class AmmoUI : MonoBehaviour 
-{
-    public void AmmoSpent(int newAmount)
+{   
+    public void SetAmmoCount(int amount)
     {
-          guiText.text = ": " + newAmount;
+        guiText.text = ": + amount";
     }
 }

@@ -17,6 +17,7 @@ public class PlayerFireWeapon : MonoBehaviour
     {
         // ensures we can fire as soon as game starts
         currentTime = fireDelayTime;
+        GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", ammoAmount);
     }
     
     void Update()
@@ -36,11 +37,11 @@ public class PlayerFireWeapon : MonoBehaviour
                 transform.FindChild("Pistol").GetComponent<RaycastFire>().Fire(GetBulletSpawnPosition(), GetForwardDirection()); // fire raycast
             }
                 
-            GameObject.FindWithTag("UI").BroadcastMessage("AmmoSpent", GetAmmoAmount());
+            GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", GetDecrementedAmmoAmount());
         }
     }
     
-    int GetAmmoAmount()
+    int GetDecrementedAmmoAmount()
     {
         return Mathf.Max(0, --ammoAmount);
     }
