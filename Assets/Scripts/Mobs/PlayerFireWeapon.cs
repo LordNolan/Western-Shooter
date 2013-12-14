@@ -46,6 +46,12 @@ public class PlayerFireWeapon : MonoBehaviour
         return Mathf.Max(0, --ammoAmount);
     }
     
+    public void AddAmmo(int amount)
+    {
+        ammoAmount += amount;
+        GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", ammoAmount);
+    }
+    
     Vector3 GetBulletSpawnPosition()
     {
         // our position + offset for camera height
