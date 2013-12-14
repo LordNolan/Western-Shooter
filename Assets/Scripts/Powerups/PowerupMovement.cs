@@ -5,8 +5,8 @@ public class PowerupMovement : MonoBehaviour {
  
     float rotateSpeed = 100.0f;
     float tweenDelay = 0.2f;
-    float tweenHeight = 0.9f;
-    float tweenTime = 0.5f;
+    float tweenHeight = 0.45f;
+    float tweenTime = 0.4f;
     float aliveTime = 3.0f;
     float currentTime = 0;
     
@@ -14,7 +14,7 @@ public class PowerupMovement : MonoBehaviour {
     
     void Start() 
     {
-        iTween.MoveBy(gameObject, iTween.Hash("y", tweenHeight, "easeType", "easeOutElastic", "delay", tweenDelay, "time", tweenTime));
+        iTween.MoveBy(gameObject, iTween.Hash("y", tweenHeight, "easeType", "easeOutBack", "delay", tweenDelay, "time", tweenTime));
     }
     
 	void Update () 
