@@ -178,6 +178,8 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 697a479efc38aeb4cb10cd1625598ddd, type: 3}
   mobDead: 0
   maxFlickerTime: .100000001
+  lootDropChance: 50
+  lootDrop: {fileID: 100000, guid: 773bb885e307f2944b73840d3e9a0295, type: 2}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

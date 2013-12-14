@@ -631,6 +631,8 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   mobDead: 0
   maxFlickerTime: 0
+  lootDropChance: 0
+  lootDrop: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
