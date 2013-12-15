@@ -617,7 +617,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 82705e2da29476b41a47d7e4dea91a7d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -750,8 +750,6 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   mobDead: 0
   maxFlickerTime: 0
-  lootDropChance: 0
-  lootDrop: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1

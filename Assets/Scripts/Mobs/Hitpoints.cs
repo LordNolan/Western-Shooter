@@ -12,10 +12,7 @@ public class Hitpoints : MonoBehaviour
     int HP;
     float flickerTime;
     public float maxFlickerTime;
-    public int lootDropChance;
-    
-    public GameObject lootDrop;
-    
+
     void Start()
     {
         // default behavior
@@ -64,23 +61,8 @@ public class Hitpoints : MonoBehaviour
         mobDead = true;
         
         // attempt to drop loot
-        DropLoot();
-    }
-    
-    void DropLoot()
-    {
-        if (Random.Range(0,100) < lootDropChance)
-        {
-            Instantiate(lootDrop,GetDropLootPosition(),lootDrop.transform.rotation);
-        }
-    }
-    
-    // drop loot in front of dead mob facing player and on ground
-    Vector3 GetDropLootPosition()
-    {
-        Vector3 pos = transform.position + transform.forward * 0.3f;
-        pos.y = lootDrop.transform.position.y;
-        return pos;
+        LootDrop ld = GetComponent<LootDrop>();
+        if (ld != null) ld.DoDropLoot();
     }
     
     void MobSpriteFlicker()

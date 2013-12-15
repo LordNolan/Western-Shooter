@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 11
   m_Name: BanditCrab
   m_TagString: Enemy
@@ -179,8 +180,6 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 697a479efc38aeb4cb10cd1625598ddd, type: 3}
   mobDead: 0
   maxFlickerTime: .100000001
-  lootDropChance: 50
-  lootDrop: {fileID: 100000, guid: 773bb885e307f2944b73840d3e9a0295, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +193,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   collisionDelay: .5
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130dd6c263c65d143970c4e7d8d7b5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootDropChance: 50
+  lootDrop: {fileID: 100000, guid: 773bb885e307f2944b73840d3e9a0295, type: 2}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
