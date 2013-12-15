@@ -28,13 +28,14 @@ public class PlayerFireWeapon : MonoBehaviour
             currentTime = 0; // reset delay            
            
             if (ammoAmount <= 0) {
-                transform.FindChild("Pistol").GetComponent<PistolAnimation>().FireEmpty(); // fire animation
+                transform.FindChild("Pistol").GetComponent<PistolAnimation>().FireEmpty(); // out of ammo animation
                 fireEmpty.Play();
             }
             else {
                 transform.FindChild("Pistol").GetComponent<PistolAnimation>().Fire(); // fire animation
                 fireBullet.Play();
                 transform.FindChild("Pistol").GetComponent<RaycastFire>().Fire(GetBulletSpawnPosition(), GetForwardDirection()); // fire raycast
+                GetComponent<PlayerMovement>().shouldRecoil = true;
             }
                 
             GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", GetDecrementedAmmoAmount());

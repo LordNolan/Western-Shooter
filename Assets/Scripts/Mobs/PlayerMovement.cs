@@ -10,8 +10,11 @@ public class PlayerMovement : MonoBehaviour
     float rotationY = 0;
     Vector3 forwardVector;
     float movementMagnitude;
-    
+    public float playerRecoilDistance = 15.0f;
     public float pu_SpeedBoost = 0f;
+    
+    [HideInInspector]
+    public bool shouldRecoil = false;
     
     void Start()
     {
@@ -37,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
             rotationX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
             rotationX = rotationX % 360; // we just want remainder so we don't have crazy rotation values
             rotationY += Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime * isInvertedAxis();
+            if (shouldRecoil) // we fired pistol, jerk camera
+            {
+                shouldRecoil = false;
+                rotationY += playerRecoilDistance;
+            }
             rotationY = Mathf.Clamp(rotationY, -80.0f, 80.0f); // don't rotate further than 80 so we don't flip
             transform.localEulerAngles = new Vector3(rotationY, rotationX, 0);
         }

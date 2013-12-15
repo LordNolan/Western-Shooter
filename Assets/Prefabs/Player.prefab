@@ -766,7 +766,9 @@ MonoBehaviour:
   movementSpeed: 100
   rotateSpeed: 80
   invertedAxis: 0
+  playerRecoilDistance: -2
   pu_SpeedBoost: 0
+  shouldRecoil: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
