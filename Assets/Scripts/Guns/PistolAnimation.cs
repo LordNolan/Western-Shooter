@@ -7,6 +7,8 @@ public class PistolAnimation : MonoBehaviour {
     public GameObject chamberBone;
     public GameObject rigBone;
 	
+    public AudioSource chamberRotate;
+    
     Quaternion hammerInitRotation;
     
     void Start()
@@ -45,5 +47,6 @@ public class PistolAnimation : MonoBehaviour {
     void SettleRecoil()
     {
         iTween.RotateAdd(rigBone, iTween.Hash("amount", Vector3.back * 30.0f, "easeType", "easeOutSine", "time", 0.2f));
+        chamberRotate.Play();
     }
 }

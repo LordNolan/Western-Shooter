@@ -4,13 +4,22 @@ using System.Collections;
 public class AmmoBoxCollision : MonoBehaviour 
 {
     public int amount;
+    public AudioSource collectSound;
+    bool collected = false;
     
 	void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
             collider.GetComponent<PlayerFireWeapon>().AddAmmo(amount);
-            Destroy(gameObject);
+            collectSound.Play();
+            collected = true;
         }
+    }
+    
+    void Update()
+    {
+        if (collected && !collectSound.isPlaying)
+            Destroy(gameObject);
     }
 }

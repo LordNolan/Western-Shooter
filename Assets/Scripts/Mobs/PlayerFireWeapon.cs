@@ -8,8 +8,8 @@ public class PlayerFireWeapon : MonoBehaviour
     public int ammoAmount = 20;
     public float fireDelayTime;
     
-    public AudioClip fireBullet;
-    public AudioClip fireEmpty;
+    public AudioSource fireBullet;
+    public AudioSource fireEmpty;
     
     float currentTime;
     
@@ -29,11 +29,11 @@ public class PlayerFireWeapon : MonoBehaviour
            
             if (ammoAmount <= 0) {
                 transform.FindChild("Pistol").GetComponent<PistolAnimation>().FireEmpty(); // fire animation
-                audio.PlayOneShot(fireEmpty);
+                fireEmpty.Play();
             }
             else {
                 transform.FindChild("Pistol").GetComponent<PistolAnimation>().Fire(); // fire animation
-                audio.PlayOneShot(fireBullet);
+                fireBullet.Play();
                 transform.FindChild("Pistol").GetComponent<RaycastFire>().Fire(GetBulletSpawnPosition(), GetForwardDirection()); // fire raycast
             }
                 

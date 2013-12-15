@@ -13,6 +13,7 @@ public class OpenChest : MonoBehaviour
     void PlayOpenAnimation(GameObject powerup)
     {
         animation.PlayQueued("Open", QueueMode.CompleteOthers);
+        audio.Play();
         GameObject newPowerup = (GameObject) Instantiate(powerup, transform.position, transform.rotation);
 		newPowerup.transform.parent = transform;
         animation.PlayQueued("Idle_Open", QueueMode.CompleteOthers);
