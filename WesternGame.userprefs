@@ -1,6 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Mobs\LootDrop.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Mobs\Hitpoints.cs" Line="65" Column="41" />
+      <File FileName="Assets\Scripts\Mobs\LootDrop.cs" Line="14" Column="65" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 8;
     public float rotateSpeed = 3;
     public bool invertedAxis = false;
-    float rotationX = 0;
+    float rotationX = 180;
     float rotationY = 0;
     Vector3 forwardVector;
     float movementMagnitude;
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             controller.SimpleMove(transform.TransformDirection(forwardVector));
             
             rotationX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
-            rotationX = rotationX % 360; // we just want remainder so we don't have crazy rotation values
+            rotationX = rotationX % 360;
             rotationY += Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime * isInvertedAxis();
             if (shouldRecoil) // we fired pistol, jerk camera
             {
@@ -48,6 +48,12 @@ public class PlayerMovement : MonoBehaviour
             rotationY = Mathf.Clamp(rotationY, -80.0f, 80.0f); // don't rotate further than 80 so we don't flip
             transform.localEulerAngles = new Vector3(rotationY, rotationX, 0);
         }
+    }
+    
+    // resets rotationX so that we're always facing correct way in new level
+    public void Reset()
+    {
+        rotationX = 180;
     }
     
     int isInvertedAxis()

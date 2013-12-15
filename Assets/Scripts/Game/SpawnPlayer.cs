@@ -21,9 +21,13 @@ public class SpawnPlayer : MonoBehaviour
     {
         System.Diagnostics.Debug.Assert(GlobalParams.IsWorldGenComplete(), "[SpawnPlayer.ResetPlayerSpawn] worldgen not complete and trying to reset player spawn.");
         
+        GameObject player = GameObject.FindWithTag("Player");
+        // reset movement rotation first
+        player.GetComponent<PlayerMovement>().Reset();
         // reset player's position
         Vector2 pos = GetComponent<WorldGenerator>().getPlayerSpawnPosition();
-        GameObject.FindWithTag("Player").transform.position = new Vector3(pos.x, playerPrefab.transform.position.y, pos.y);
+        player.transform.position = new Vector3(pos.x, playerPrefab.transform.position.y, pos.y);
+        player.transform.rotation = playerPrefab.transform.rotation;
         GlobalParams.MarkPlayerSpawned();
       
     }

@@ -60,7 +60,7 @@ public class WorldGenerator : MonoBehaviour
         walkerList.Add(new FloorWalker(Vector2.zero, walkerSteps));
         generating = true;
 		
-        GenerateSpawnpoint(); // do spawnpoint
+        GenerateStartPoint(); // do spawnpoint
 		
         // generate world
         while (generating) {
@@ -96,12 +96,46 @@ public class WorldGenerator : MonoBehaviour
                 generating = false;
         }
 		
+        GenerateSpawnArea(); // create area for player to spawn
         GenerateWalls();   // create all the walls
         GenerateChest();   // only keep one chest
         SpawnEnemies();
         
         // tell game we're done with world gen.
         GlobalParams.MarkWorldGenComplete();
+    }
+    
+    void GenerateSpawnArea()
+    {
+        var maxY = floorTileList.Max(tile => tile.GetPosition().y); // get max y value
+        Tile maxTile = floorTileList.Where(tile => tile.GetPosition().y == maxY).First(); // get highest y tile
+        
+        /* w = wall
+         * s = spawnpoint
+         * - = floor
+         * x = maxTile
+         * 
+         * w w w
+         * w s w
+         * w - w w
+         * w - - w
+         * w w - w
+         *     x  
+         */
+        
+        Tile t;
+        t = new Tile(new Vector2(maxTile.GetPosition().x, maxTile.GetPosition().y + 1));
+        floorTileList.Add(t);
+        t = new Tile(new Vector2(maxTile.GetPosition().x, maxTile.GetPosition().y + 2));
+        floorTileList.Add(t);
+        t = new Tile(new Vector2(maxTile.GetPosition().x - 1, maxTile.GetPosition().y + 2));
+        floorTileList.Add(t);
+        t = new Tile(new Vector2(maxTile.GetPosition().x - 1, maxTile.GetPosition().y + 3));
+        floorTileList.Add(t);
+        t = new Tile(new Vector2(maxTile.GetPosition().x - 1, maxTile.GetPosition().y + 4));
+        floorTileList.Add(t);
+         
+        playerSpawn = t; // set player spawn to last tile
     }
 	
     void SpawnEnemies()
@@ -128,11 +162,10 @@ public class WorldGenerator : MonoBehaviour
         GameObject.FindWithTag("Global").GetComponent<GameController>().SetMobCount(mobcount);
     }
     
-    void GenerateSpawnpoint()
+    void GenerateStartPoint()
     {
         Tile t = new Tile(Vector2.zero);
         floorTileList.Add(t);
-        playerSpawn = t;
     }
 	
     public Vector2 getPlayerSpawnPosition()
@@ -265,10 +298,9 @@ public class WorldGenerator : MonoBehaviour
         AddTile(position + new Vector2(0, 1), 0);
     }
 	
-    // player always spawns at 0,0
     bool FarFromPlayerSpawn(Vector2 pos)
     {
-        return Vector2.Distance(pos, Vector2.zero) > 5;
+        return Vector2.Distance(pos, playerSpawn.GetPosition()) > 5;
     }
     
     void TrySpawnAnotherWalker(Vector2 position, int parentMovesLeft)
