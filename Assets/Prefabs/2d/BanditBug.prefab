@@ -148,9 +148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: eff34385fbce6eb4a88624782860e661, type: 2}
   bulletSpeed: 500
-  firingRange: 5
   delay: 1
   delayVariance: .200000003
+  gunshotSound: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,8 +179,6 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 697a479efc38aeb4cb10cd1625598ddd, type: 3}
   mobDead: 0
   maxFlickerTime: .100000001
-  lootDropChance: 50
-  lootDrop: {fileID: 100000, guid: 773bb885e307f2944b73840d3e9a0295, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
