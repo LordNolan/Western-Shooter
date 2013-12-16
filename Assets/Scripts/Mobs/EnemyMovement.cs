@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour {
     
 	void Update() 
     {
-        if (canMove) {
+        if (canMove && !GetComponent<Hitpoints>().mobDead) {
             transform.Translate(Vector3.right * speed * GetDirection() * Time.deltaTime);
             currentTime += Time.deltaTime;
         }
