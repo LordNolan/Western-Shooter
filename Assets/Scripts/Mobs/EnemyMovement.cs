@@ -10,13 +10,14 @@ public class EnemyMovement : MonoBehaviour {
     public float collisionDelay = .5f;
     float currentTime = 0;
     
-	void Update () 
+    public bool canMove = false;
+    
+	void Update() 
     {
-        if (GlobalParams.IsMobAIDelayComplete() && !GlobalParams.InNonPlayingState() && !GetComponent<Hitpoints>().mobDead) {
+        if (canMove) {
             transform.Translate(Vector3.right * speed * GetDirection() * Time.deltaTime);
+            currentTime += Time.deltaTime;
         }
-        
-        currentTime += Time.deltaTime;
 	}
     
     float GetDirection()

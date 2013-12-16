@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CactusAI : MonoBehaviour 
+public class CrabAI : MonoBehaviour 
 {
     [HideInInspector]
     public enum AIState
@@ -39,6 +39,7 @@ public class CactusAI : MonoBehaviour
                     LookForPlayer();
                     break;
                 case AIState.Aggressive:
+                    StartMoving();
                     FireAtPlayer();
                     break;
             }
@@ -69,6 +70,11 @@ public class CactusAI : MonoBehaviour
     {
         iTween.ScaleTo(transform.FindChild("alert").gameObject, iTween.Hash("y", .8f, "easeType", "easeOutElastic", "time", .5));
         alerted = true;
+    }
+    
+    void StartMoving()
+    {
+        GetComponent<EnemyMovement>().canMove = true;
     }
     
     void FireAtPlayer()
