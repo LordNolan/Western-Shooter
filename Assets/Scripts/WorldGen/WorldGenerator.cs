@@ -68,7 +68,7 @@ public class WorldGenerator : MonoBehaviour
         GenerateCanyonWalls();
         
         // GenerateChest();    // only keep one chest
-        // SpawnEnemies();
+        SpawnEnemies();
         
         // tell game we're done with world gen.
         GlobalParams.MarkWorldGenComplete();
@@ -260,7 +260,8 @@ public class WorldGenerator : MonoBehaviour
     {
         int mobcount = 0;
         foreach (Tile t in floorTileList) {
-            if (t.GetPosition() != treasureSpawn.GetPosition() && FarFromPlayerSpawn(t.GetPosition())) {
+            //if (t.GetPosition() != treasureSpawn.GetPosition() && FarFromPlayerSpawn(t.GetPosition())) {
+            if (FarFromPlayerSpawn(t.GetPosition())) {
                 if (Random.Range(0, 10) <= 0) {
                     if (Random.Range(0, 4) == 1) {
                         if (Random.Range(0, 2) == 1)
