@@ -104,8 +104,6 @@ public class WorldGenerator : MonoBehaviour
                     InstantiateTile(wallTile, new Vector2(x,y));
                     InstantiateTile(wallTile, new Vector3(x,1,y));
                 } else if (m[x,y] == 0) {
-                    InstantiateTile(wallTile, new Vector2(x,y));
-                    InstantiateTile(wallTile, new Vector3(x,1,y));
                     InstantiateTile(wallTile, new Vector3(x,2,y));
                 }
             }
@@ -151,7 +149,7 @@ public class WorldGenerator : MonoBehaviour
         for(int x = 0; x < W; x++) {
             for(int y = 0; y < H; y++) {
                 if      (m[x,y] == 3)        { continue; }
-                if      (InRange(x, y, 3, 3)) { m[x,y] = Random.Range(0,100) < 25 ? 2 : 1; }
+                if      (InRange(x, y, 3, 3)) { m[x,y] = Random.Range(0,100) < 75 ? 2 : 1; }
                 else if (InRange(x, y, 3, 4)) { m[x,y] = 1; }
             }
         }
