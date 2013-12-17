@@ -60,49 +60,155 @@ public class WorldGenerator : MonoBehaviour
         walkerList.Add(new FloorWalker(Vector2.zero, walkerSteps));
         generating = true;
 		
-        GenerateStartPoint(); // do spawnpoint
-		
-        // generate world
+        GenerateCanyons();     // generate world IJ style
+        GenerateSpawnArea();
+        GenerateCanyonWalls();
+        
+        // GenerateChest();    // only keep one chest
+        // SpawnEnemies();
+        
+        // tell game we're done with world gen.
+        GlobalParams.MarkWorldGenComplete();
+    }
+    
+    #region IJ CANYON MAP GENERATOR
+    static int C = 8;
+    static int W = 60;
+    static int H = 60;
+    int[,] m = new int[H,W];
+    
+    void GenerateCanyons()
+    {
+        for(int z = 0; z < 4; z++)
+        {
+            Zigzag();
+            Smooth();
+        }
+        
+        for(int x = 0; x < W; x++) {
+            for(int y = 0; y < H; y++) {
+                if (m[x,y] == 3) {
+                    AddTile(new Vector2(x,y),0);
+                }
+            }
+        }
+    }
+    
+    void GenerateCanyonWalls()
+    {
+        for(int x = 0; x < W; x++) {
+            for(int y = 0; y < H; y++) {
+                if (m[x,y] == 2) {
+                    InstantiateTile(wallTile, new Vector2(x,y));
+                } else if (m[x,y] == 1) {
+                    InstantiateTile(wallTile, new Vector2(x,y));
+                    InstantiateTile(wallTile, new Vector3(x,1,y));
+                } else if (m[x,y] == 0) {
+                    InstantiateTile(wallTile, new Vector2(x,y));
+                    InstantiateTile(wallTile, new Vector3(x,1,y));
+                    InstantiateTile(wallTile, new Vector3(x,2,y));
+                }
+            }
+        }
+    }
+    
+    void Zigzag()
+    {
+        int x = C;
+        int y = C;
+        while (x < W-C-1 || y < H-C-1) 
+        {
+            int dx = 0;
+            int dy = 0;
+            if      (x == W-C-1)            { dy = Random.Range(1, Mathf.Min(H-C-1-y, 3)); }
+            else if (y == H-C-1)            { dx = Random.Range(1, Mathf.Min(W-C-1-x, 3)); }
+            else if (Random.Range(0,2) < 1) { dy = Random.Range(1, Mathf.Min(H-C-1-y, 3)); }
+            else                            { dx = Random.Range(1, Mathf.Min(W-C-1-x, 3)); }
+            Carve(x, y, dx, dy);
+            x += dx;
+            y += dy;
+        }
+        m[W-C-1,H-C-1] = 3;
+    }
+    
+    void Carve(int x, int y, int dx, int dy) 
+    {
+        while(dx > 0 || dy > 0) {
+            m[x,y] = 3;
+            if (Random.Range(0,10) < 2) {
+                for (int i=-1; i<=1; i++) {
+                    for (int j=-1; j<=1; j++) {
+                        m[x+i,y+j] = 3;
+                    }
+                }
+            }
+            if (dx > 0) { dx--; x++; }
+            if (dy > 0) { dy--; y++; }
+        }
+    }
+    
+    void Smooth() {
+        for(int x = 0; x < W; x++) {
+            for(int y = 0; y < H; y++) {
+                if      (m[x,y] == 3)        { continue; }
+                if      (InRange(x, y, 3, 3)) { m[x,y] = Random.Range(0,100) < 25 ? 2 : 1; }
+                else if (InRange(x, y, 3, 4)) { m[x,y] = 1; }
+            }
+        }
+    }
+
+    bool InRange(int x, int y, int val, int range) {
+        for(int a = -range; a <= range; a++) {
+            for(int b = -range; b <= range; b++) {
+                if (Get(x+a, y+b) == val) { return true; }
+            }
+        }
+        return false;
+    }
+
+    int Get(int x, int y) 
+    {
+        if (x < 0 || y < 0 || x >= W || y >= H) { return 0; }
+        return m[x,y];
+    }
+    
+    
+    #endregion
+    
+    void GenerateFloor()
+    {
         while (generating) {
             foreach (FloorWalker walker in walkerList) {
                 if (walker.HasMovesLeft()) {
                     int actionNum = walker.Move();
-					
+                 
                     // 50% chance of 2x2 room
                     if (Random.Range(0, 2) == 0) {
                         CreateTwoByTwoRoom(walker.getPosition(), actionNum);
                     } else {
                         AddTile(walker.getPosition(), actionNum);
                     }
-					
+                 
                     // small chance of spawning another walker
                     TrySpawnAnotherWalker(walker.getPosition(), walker.getMovesLeft());
                 } else {
                     deadWalkerList.Add(walker);
                 }
             }
-			
+         
             // remove dead walkers from walkerList
             foreach (FloorWalker deadWalker in deadWalkerList) {
                 walkerList.Remove(deadWalker);
             }
             deadWalkerList.Clear();
-			
+         
             // add in any child walkers
             walkerList.AddRange(childWalkerList);
             childWalkerList.Clear();
-			
+         
             if (walkerList.Count() == 0)
                 generating = false;
         }
-		
-        GenerateSpawnArea(); // create area for player to spawn
-        GenerateWalls();   // create all the walls
-        GenerateChest();   // only keep one chest
-        SpawnEnemies();
-        
-        // tell game we're done with world gen.
-        GlobalParams.MarkWorldGenComplete();
     }
     
     void GenerateSpawnArea()
@@ -134,7 +240,14 @@ public class WorldGenerator : MonoBehaviour
         floorTileList.Add(t);
         t = new Tile(new Vector2(maxTile.GetPosition().x - 1, maxTile.GetPosition().y + 4));
         floorTileList.Add(t);
-         
+        
+        // add floor pieces IJ style generation
+        m[(int)maxTile.GetPosition().x, (int)maxTile.GetPosition().y + 1] = 3;
+        m[(int)maxTile.GetPosition().x, (int)maxTile.GetPosition().y + 2] = 3;
+        m[(int)maxTile.GetPosition().x - 1, (int)maxTile.GetPosition().y + 2] = 3;
+        m[(int)maxTile.GetPosition().x - 1, (int)maxTile.GetPosition().y + 3] = 3;
+        m[(int)maxTile.GetPosition().x - 1, (int)maxTile.GetPosition().y + 4] = 3;
+        
         playerSpawn = t; // set player spawn to last tile
     }
 	
