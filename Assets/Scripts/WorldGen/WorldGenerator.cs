@@ -51,6 +51,9 @@ public class WorldGenerator : MonoBehaviour
             Destroy(child.gameObject);
         }
         
+        // reset world array
+        m = new int[H,W];
+        
         // reset tile Lists
         floorTileList.Clear();
         wallTileList.Clear();
@@ -246,6 +249,10 @@ public class WorldGenerator : MonoBehaviour
         m[(int)maxTile.GetPosition().x - 1, (int)maxTile.GetPosition().y + 3] = 3;
         m[(int)maxTile.GetPosition().x - 1, (int)maxTile.GetPosition().y + 4] = 3;
         
+        // add wall pieces on back row
+        m[(int)maxTile.GetPosition().x - 2, (int)maxTile.GetPosition().y + 5] = 1;
+        m[(int)maxTile.GetPosition().x - 1, (int)maxTile.GetPosition().y + 5] = 1;
+        m[(int)maxTile.GetPosition().x, (int)maxTile.GetPosition().y + 5] = 1;
         playerSpawn = t; // set player spawn to last tile
     }
 	
