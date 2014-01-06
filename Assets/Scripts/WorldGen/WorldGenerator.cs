@@ -12,14 +12,7 @@ public class WorldGenerator : MonoBehaviour
     public GameObject scenery2; // cactus
 	
     private List<Tile> floorTileList;
-    private List<Tile> wallTileList;
     private List<Tile> treasureList;
-    private List<FloorWalker> walkerList;
-    private List<FloorWalker> deadWalkerList;
-    private List<FloorWalker> childWalkerList;
-	
-    private bool generating = false;
-    private int walkerSteps = 150;
     private Tile treasureSpawn;
     private Tile playerSpawn;
 	
@@ -34,12 +27,7 @@ public class WorldGenerator : MonoBehaviour
     void Start()
     {	
         floorTileList = new List<Tile>();
-        wallTileList = new List<Tile>();
         treasureList = new List<Tile>();
-        walkerList = new List<FloorWalker>();
-        deadWalkerList = new List<FloorWalker>();
-        childWalkerList = new List<FloorWalker>();
-        walkerList.Add(new FloorWalker(Vector2.zero, walkerSteps));
 		
         GenerateWorld();
     }
@@ -52,16 +40,10 @@ public class WorldGenerator : MonoBehaviour
         }
         
         // reset world array
-        m = new int[H,W];
+        m = new int[H, W];
         
         // reset tile Lists
         floorTileList.Clear();
-        wallTileList.Clear();
-        
-        // reset walkerList
-        walkerList.Clear();
-        walkerList.Add(new FloorWalker(Vector2.zero, walkerSteps));
-        generating = true;
 		
         GenerateCanyons();     // generate world IJ style
         GenerateSpawnArea();
@@ -75,23 +57,33 @@ public class WorldGenerator : MonoBehaviour
     }
     
     #region IJ CANYON MAP GENERATOR
+    
+    /* Values:
+     * 3 = floor
+     * 2 = low wall
+     * 1 = mid wall
+     * 0 = high wall
+     * -1 = trimmed
+    */
+    
     static int C = 8;
     static int W = 60;
     static int H = 60;
-    int[,] m = new int[H,W];
+    int[,] m = new int[H, W];
     
     void GenerateCanyons()
     {
-        for(int z = 0; z < 4; z++)
-        {
+        for (int z = 0; z < 4; z++) {
             Zigzag();
             Smooth();
         }
         
-        for(int x = 0; x < W; x++) {
-            for(int y = 0; y < H; y++) {
-                if (m[x,y] == 3) {
-                    AddTile(new Vector2(x,y),0);
+        DestroyExcess();
+        
+        for (int x = 0; x < W; x++) {
+            for (int y = 0; y < H; y++) {
+                if (m[x, y] == 3) {
+                    AddTile(new Vector2(x, y), 0);
                 }
             }
         }
@@ -99,15 +91,15 @@ public class WorldGenerator : MonoBehaviour
     
     void GenerateCanyonWalls()
     {
-        for(int x = 0; x < W; x++) {
-            for(int y = 0; y < H; y++) {
-                if (m[x,y] == 2) {
-                    InstantiateTile(wallTile, new Vector2(x,y));
-                } else if (m[x,y] == 1) {
-                    InstantiateTile(wallTile, new Vector2(x,y));
-                    InstantiateTile(wallTile, new Vector3(x,1,y));
-                } else if (m[x,y] == 0) {
-                    InstantiateTile(wallTile, new Vector3(x,2,y));
+        for (int x = 0; x < W; x++) {
+            for (int y = 0; y < H; y++) {
+                if (m[x, y] == 2) {
+                    InstantiateTile(wallTile, new Vector2(x, y));
+                } else if (m[x, y] == 1) {
+                    InstantiateTile(wallTile, new Vector2(x, y));
+                    InstantiateTile(wallTile, new Vector3(x, 1, y));
+                } else if (m[x, y] == 0) {
+                    InstantiateTile(wallTile, new Vector3(x, 2, y));
                 }
             }
         }
@@ -117,100 +109,112 @@ public class WorldGenerator : MonoBehaviour
     {
         int x = C;
         int y = C;
-        while (x < W-C-1 || y < H-C-1) 
-        {
+        while (x < W-C-1 || y < H-C-1) {
             int dx = 0;
             int dy = 0;
-            if      (x == W-C-1)            { dy = Random.Range(1, Mathf.Min(H-C-1-y, 3)); }
-            else if (y == H-C-1)            { dx = Random.Range(1, Mathf.Min(W-C-1-x, 3)); }
-            else if (Random.Range(0,2) < 1) { dy = Random.Range(1, Mathf.Min(H-C-1-y, 3)); }
-            else                            { dx = Random.Range(1, Mathf.Min(W-C-1-x, 3)); }
+            if (x == W - C - 1) {
+                dy = Random.Range(1, Mathf.Min(H - C - 1 - y, 3));
+            } else if (y == H - C - 1) {
+                dx = Random.Range(1, Mathf.Min(W - C - 1 - x, 3));
+            } else if (Random.Range(0, 2) < 1) {
+                dy = Random.Range(1, Mathf.Min(H - C - 1 - y, 3));
+            } else {
+                dx = Random.Range(1, Mathf.Min(W - C - 1 - x, 3));
+            }
             Carve(x, y, dx, dy);
             x += dx;
             y += dy;
         }
-        m[W-C-1,H-C-1] = 3;
+        m[W - C - 1, H - C - 1] = 3;
     }
     
-    void Carve(int x, int y, int dx, int dy) 
+    void Carve(int x, int y, int dx, int dy)
     {
-        while(dx > 0 || dy > 0) {
-            m[x,y] = 3;
-            if (Random.Range(0,10) < 2) {
+        while (dx > 0 || dy > 0) {
+            m[x, y] = 3;
+            if (Random.Range(0, 10) < 2) {
                 for (int i=-1; i<=1; i++) {
                     for (int j=-1; j<=1; j++) {
-                        m[x+i,y+j] = 3;
+                        m[x + i, y + j] = 3;
                     }
                 }
             }
-            if (dx > 0) { dx--; x++; }
-            if (dy > 0) { dy--; y++; }
-        }
-    }
-    
-    void Smooth() {
-        for(int x = 0; x < W; x++) {
-            for(int y = 0; y < H; y++) {
-                if      (m[x,y] == 3)        { continue; }
-                if      (InRange(x, y, 3, 3)) { m[x,y] = Random.Range(0,100) < 75 ? 2 : 1; }
-                else if (InRange(x, y, 3, 4)) { m[x,y] = 1; }
+            if (dx > 0) {
+                dx--;
+                x++;
+            }
+            if (dy > 0) {
+                dy--;
+                y++;
             }
         }
     }
+    
+    void Smooth()
+    {
+        for (int x = 0; x < W; x++) {
+            for (int y = 0; y < H; y++) {
+                if (m[x, y] == 3) {
+                    continue;
+                }
+                if (InRange(x, y, 3, 3)) {
+                    m[x, y] = Random.Range(0, 100) < 75 ? 2 : 1;
+                } else if (InRange(x, y, 3, 4)) {
+                    m[x, y] = 1;
+                }
+            }
+        }
+    }
+    
+    void DestroyExcess()
+    {
+        for (int x = 0; x < W; x++) {
+            for (int y = 0; y < H; y++) {
+                if (m[x, y] != 0) {
+                    continue;
+                }
+                if (NeedsTrim(x, y)) {
+                    m[x, y] = -1;
+                }
+            }
+        }
+    }
+    
+    bool NeedsTrim(int x, int y)
+    {
+        for (int a = -1; a <= 1; a++) {
+            for (int b = -1; b <= 1; b++) {
+                int t = Get(x + a, y + b);
+                if (t == 1 || t == 2) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-    bool InRange(int x, int y, int val, int range) {
-        for(int a = -range; a <= range; a++) {
-            for(int b = -range; b <= range; b++) {
-                if (Get(x+a, y+b) == val) { return true; }
+    bool InRange(int x, int y, int val, int range)
+    {
+        for (int a = -range; a <= range; a++) {
+            for (int b = -range; b <= range; b++) {
+                if (Get(x + a, y + b) == val) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    int Get(int x, int y) 
+    int Get(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= W || y >= H) { return 0; }
-        return m[x,y];
+        if (x < 0 || y < 0 || x >= W || y >= H) {
+            return 0;
+        }
+        return m[x, y];
     }
     
     
     #endregion
-    
-    void GenerateFloor()
-    {
-        while (generating) {
-            foreach (FloorWalker walker in walkerList) {
-                if (walker.HasMovesLeft()) {
-                    int actionNum = walker.Move();
-                 
-                    // 50% chance of 2x2 room
-                    if (Random.Range(0, 2) == 0) {
-                        CreateTwoByTwoRoom(walker.getPosition(), actionNum);
-                    } else {
-                        AddTile(walker.getPosition(), actionNum);
-                    }
-                 
-                    // small chance of spawning another walker
-                    TrySpawnAnotherWalker(walker.getPosition(), walker.getMovesLeft());
-                } else {
-                    deadWalkerList.Add(walker);
-                }
-            }
-         
-            // remove dead walkers from walkerList
-            foreach (FloorWalker deadWalker in deadWalkerList) {
-                walkerList.Remove(deadWalker);
-            }
-            deadWalkerList.Clear();
-         
-            // add in any child walkers
-            walkerList.AddRange(childWalkerList);
-            childWalkerList.Clear();
-         
-            if (walkerList.Count() == 0)
-                generating = false;
-        }
-    }
     
     void GenerateSpawnArea()
     {
@@ -280,32 +284,10 @@ public class WorldGenerator : MonoBehaviour
         }
         GameObject.FindWithTag("Global").GetComponent<GameController>().SetMobCount(mobcount);
     }
-    
-    void GenerateStartPoint()
-    {
-        Tile t = new Tile(Vector2.zero);
-        floorTileList.Add(t);
-    }
 	
     public Vector2 getPlayerSpawnPosition()
     {
         return playerSpawn.GetPosition();
-    }
-	
-    void GenerateWalls()
-    {
-        // for each floor piece put up walls if there's no adjacent floor piece and no existing wall
-        foreach (Tile t in floorTileList) {
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    Vector2 offset = new Vector2(x, y);
-                    if (!TileExistsWithPosition(t.GetPosition() + offset, floorTileList) && !TileExistsWithPosition(t.GetPosition() + offset, wallTileList)) {
-                        InstantiateTile(wallTile, t.GetPosition() + offset);
-                        wallTileList.Add(new Tile(t.GetPosition() + offset));
-                    }
-                }
-            }
-        }
     }
 	
     // remove all chests but furthest
@@ -405,31 +387,9 @@ public class WorldGenerator : MonoBehaviour
         var matches = tileGroup.Where(x => x.GetPosition() == position);
         return (matches.Count() > 0);
     }
-
-    void CreateTwoByTwoRoom(Vector2 position, int action)
-    {
-        // x x
-        // p x
-        // only apply action to position of walker
-        AddTile(position, action);
-        AddTile(position + new Vector2(1, 0), 0);
-        AddTile(position + new Vector2(1, 1), 0);
-        AddTile(position + new Vector2(0, 1), 0);
-    }
-	
+    
     bool FarFromPlayerSpawn(Vector2 pos)
     {
         return Vector2.Distance(pos, playerSpawn.GetPosition()) > 5;
-    }
-    
-    void TrySpawnAnotherWalker(Vector2 position, int parentMovesLeft)
-    {
-        // depends on how many walkers exist
-        // should have less moves so we aren't walking forever
-		
-        // 10% chance to spawn walker
-        if (Random.Range(0, 10) == 0) {
-            childWalkerList.Add(new FloorWalker(position, Mathf.CeilToInt(parentMovesLeft / 4)));
-        }
     }
 }
