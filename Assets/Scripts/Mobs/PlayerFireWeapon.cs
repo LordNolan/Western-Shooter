@@ -11,6 +11,9 @@ public class PlayerFireWeapon : MonoBehaviour
     public AudioSource fireBullet;
     public AudioSource fireEmpty;
     
+    Transform pistol1;
+    Transform pistol2;
+    bool isPistol1TurnToShoot = true;
     float currentTime;
     
     void Start()
@@ -18,6 +21,8 @@ public class PlayerFireWeapon : MonoBehaviour
         // ensures we can fire as soon as game starts
         currentTime = fireDelayTime;
         GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", ammoAmount);
+        pistol1 = transform.FindChild("Pistol1");
+        pistol2 = transform.FindChild("Pistol2");
     }
     
     void Update()
@@ -26,31 +31,18 @@ public class PlayerFireWeapon : MonoBehaviour
         
         if (currentTime > fireDelayTime && !GlobalParams.InNonPlayingState() && Input.GetMouseButton(0)) { // left click or held down
             currentTime = 0; // reset delay            
-           
-            if (ammoAmount <= 0) {
-                transform.FindChild("Pistol").GetComponent<PistolAnimation>().FireEmpty(); // out of ammo animation
-                fireEmpty.Play();
-            }
-            else {
-                transform.FindChild("Pistol").GetComponent<PistolAnimation>().Fire(); // fire animation
-                fireBullet.Play();
-                transform.FindChild("Pistol").GetComponent<RaycastFire>().Fire(GetBulletSpawnPosition(), GetForwardDirection()); // fire raycast
-                GetComponent<PlayerMovement>().shouldRecoil = true;
-            }
+            
+            Transform pistol = (isPistol1TurnToShoot) ? pistol1 : pistol2; // get correct pistol to fire
+            isPistol1TurnToShoot = !isPistol1TurnToShoot;
+            
+            pistol.GetComponent<PistolAnimation>().Fire(); // fire animation
+            fireBullet.Play(); // fire noise
+            pistol.GetComponent<RaycastFire>().Fire(GetBulletSpawnPosition(), GetForwardDirection()); // fire raycast
+            GetComponent<PlayerMovement>().shouldRecoil = true;
+            
                 
-            GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", GetDecrementedAmmoAmount());
+            //GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", GetDecrementedAmmoAmount());
         }
-    }
-    
-    int GetDecrementedAmmoAmount()
-    {
-        return Mathf.Max(0, --ammoAmount);
-    }
-    
-    public void AddAmmo(int amount)
-    {
-        ammoAmount += amount;
-        GameObject.FindWithTag("UI").BroadcastMessage("SetAmmoCount", ammoAmount);
     }
     
     Vector3 GetBulletSpawnPosition()

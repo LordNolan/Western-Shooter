@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float pu_SpeedBoost = 0f;
     
     [HideInInspector]
-    public bool shouldRecoil = false;
+    public bool
+        shouldRecoil = false;
     
     void Start()
     {
@@ -40,10 +41,9 @@ public class PlayerMovement : MonoBehaviour
             rotationX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
             rotationX = rotationX % 360;
             rotationY += Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime * isInvertedAxis();
-            if (shouldRecoil) // we fired pistol, jerk camera
-            {
+            if (shouldRecoil) { // we fired pistol, jerk camera
                 shouldRecoil = false;
-                rotationY += playerRecoilDistance;
+                iTween.RotateAdd(gameObject, iTween.Hash("x", playerRecoilDistance, "easeType", "easeOutCubic", "time", 0.2f));
             }
             rotationY = Mathf.Clamp(rotationY, -80.0f, 80.0f); // don't rotate further than 80 so we don't flip
             transform.localEulerAngles = new Vector3(rotationY, rotationX, 0);

@@ -1,6 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\JumpPhysics\Assets\JumpPhysics\JumpPhysics.cs">
+    <Files>
+      <File FileName="..\JumpPhysics\Assets\JumpPhysics\JumpPhysics.cs" Line="198" Column="105" />
+      <File FileName="..\JumpPhysics\Assets\JumpPhysics\JumpPhysics2D.cs" Line="168" Column="17" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
