@@ -30,4 +30,13 @@ public class RageUI : MonoBehaviour
         rageAmount = Mathf.Min(10, rageAmount + amount);
         gui.texture = rageArray[rageAmount];
     }
+    
+    // if amount is new, then swap textures
+    public void SetRage(int amount)
+    {
+        if (rageAmount != amount) {
+            rageAmount = amount;
+            gui.texture = rageArray[rageAmount];
+        }
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed = 8;
+    public float movementSpeed;
     public float rotateSpeed = 3;
     public bool invertedAxis = false;
     float rotationX = 180;
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             rotationY += Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime * isInvertedAxis();
             if (shouldRecoil) { // we fired pistol, jerk camera
                 shouldRecoil = false;
-                iTween.RotateAdd(gameObject, iTween.Hash("x", playerRecoilDistance, "easeType", "easeOutCubic", "time", 0.2f));
+                iTween.RotateAdd(gameObject, iTween.Hash("x", playerRecoilDistance, "easeType", "easeOutCubic", "time", 0.15f));
             }
             rotationY = Mathf.Clamp(rotationY, -80.0f, 80.0f); // don't rotate further than 80 so we don't flip
             transform.localEulerAngles = new Vector3(rotationY, rotationX, 0);

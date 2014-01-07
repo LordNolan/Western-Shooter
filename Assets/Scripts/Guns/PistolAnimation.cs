@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PistolAnimation : MonoBehaviour {
+public class PistolAnimation : MonoBehaviour
+{
  
     public GameObject hammerBone;
     public GameObject chamberBone;
@@ -16,13 +17,15 @@ public class PistolAnimation : MonoBehaviour {
         hammerInitRotation = hammerBone.transform.localRotation;
     }
     
-	public void Fire() {
+    public void Fire()
+    {
         AnimateHammer();
         AnimateChamber();
         Recoil();
     }
     
-    public void FireEmpty() {
+    public void FireEmpty()
+    {
         AnimateHammer();
         AnimateChamber();
     }
@@ -41,12 +44,12 @@ public class PistolAnimation : MonoBehaviour {
     
     void Recoil()
     {
-        iTween.RotateAdd(rigBone, iTween.Hash("amount", Vector3.forward * 30.0f, "easeType", "easeOutElastic", "time", 0.2f, "oncomplete", "SettleRecoil", "oncompletetarget", gameObject));
+        iTween.RotateAdd(rigBone, iTween.Hash("amount", Vector3.forward * 30.0f, "easeType", "easeOutElastic", "time", 0.15f, "oncomplete", "SettleRecoil", "oncompletetarget", gameObject));
     }
     
     void SettleRecoil()
     {
-        iTween.RotateAdd(rigBone, iTween.Hash("amount", Vector3.back * 30.0f, "easeType", "easeOutSine", "time", 0.2f));
+        iTween.RotateAdd(rigBone, iTween.Hash("amount", Vector3.back * 30.0f, "easeType", "easeOutSine", "time", 0.15f));
         chamberRotate.Play();
     }
 }

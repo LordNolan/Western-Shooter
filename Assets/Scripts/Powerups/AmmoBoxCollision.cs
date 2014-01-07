@@ -10,6 +10,7 @@ public class AmmoBoxCollision : MonoBehaviour
     {
         if (collider.CompareTag("Player")) {
             GameObject.FindWithTag("UI").BroadcastMessage("AddRage", 1);
+            GameObject.FindWithTag("Player").GetComponent<RageBehavior>().AddRage(1);
             collectSound.Play();
             collected = true;
         }
