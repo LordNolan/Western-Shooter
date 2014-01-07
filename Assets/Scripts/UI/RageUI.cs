@@ -39,4 +39,10 @@ public class RageUI : MonoBehaviour
             gui.texture = rageArray[rageAmount];
         }
     }
+    
+    public void Reset()
+    {
+        rageAmount = 0;
+        gui.texture = rageArray[0];
+    }
 }
