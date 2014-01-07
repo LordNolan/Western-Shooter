@@ -352,32 +352,6 @@ public class WorldGenerator : MonoBehaviour
         newObj.transform.parent = gameObject.transform;
     }
     
-    void InstantiateWall(GameObject tile, Vector3 position)
-    {
-        // instantiate wall prefab in unity and set it as child object to World
-        GameObject newTile = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), Quaternion.identity);
-        
-        
-        // set proper texture based on y position
-        if (position.y == 0) {
-            MakeBottomWallTexture(newTile);
-        }
-        
-        newTile.transform.parent = gameObject.transform;
-    }
-    
-    void MakeBottomWallTexture(GameObject wall)
-    {
-        Texture sandyWall = wall.GetComponent<MeshRenderer>().materials[1].mainTexture;
-        for (int i = 0; i < wall.transform.childCount; i++) {
-            MeshRenderer[] childRenderers = wall.transform.GetChild(i).GetComponents<MeshRenderer>();
-            for (int j = 0; j < childRenderers.Count(); j++) {
-                // swap material texture for sandywall
-                childRenderers[j].material.mainTexture = sandyWall;
-            }
-        }
-    }
-	
     void InstantiateTile(GameObject tile, Vector2 position)
     {
         InstantiateTile(tile, new Vector3(position.x, 0, position.y));
@@ -394,6 +368,66 @@ public class WorldGenerator : MonoBehaviour
         // instantiate tile prefab in unity and set it as child object to World
         GameObject newTile = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), rotation);
         newTile.transform.parent = gameObject.transform;
+    }
+    
+    void InstantiateWall(GameObject tile, Vector3 position)
+    {
+        // instantiate wall prefab in unity and set it as child object to World
+        GameObject newWall = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), Quaternion.identity);
+        newWall.transform.parent = gameObject.transform;
+        
+        // set proper texture based on y position
+        if (position.y == 0) {
+            MakeBottomWallTexture(newWall);
+        }
+        
+        // destroy quads that aren't facing open area that player might see and destroy wall if all quads gone
+        if (DisableNonVisibleQuads(newWall, position)) {
+            Destroy(newWall);
+        }
+    }
+    
+    void MakeBottomWallTexture(GameObject wall)
+    {
+        Texture sandyWall = wall.GetComponent<MeshRenderer>().materials[1].mainTexture;
+        for (int i = 0; i < wall.transform.childCount; i++) {
+            MeshRenderer[] childRenderers = wall.transform.GetChild(i).GetComponents<MeshRenderer>();
+            for (int j = 0; j < childRenderers.Count(); j++) {
+                // swap material texture for sandywall
+                childRenderers[j].material.mainTexture = sandyWall;
+            }
+        }
+    }
+    
+    // returns true if all quads were destroyed
+    bool DisableNonVisibleQuads(GameObject wall, Vector3 position)
+    {
+        // get x,y location on map array
+        int x = (int)position.x;
+        int y = (int)position.z;
+        int value = m[x, y];
+        
+        List<Transform> deadChildList = new List<Transform>();
+        
+        // south 0
+        if (y - 1 >= 0 && m[x, y - 1] <= value) {
+            deadChildList.Add(wall.transform.GetChild(0));
+        }
+        // east  1
+        if (x + 1 < W && m[x + 1, y] <= value) {
+            deadChildList.Add(wall.transform.GetChild(1));
+        }
+        // north 2
+        if (y + 1 < H && m[x, y + 1] <= value) {
+            deadChildList.Add(wall.transform.GetChild(2));
+        }
+        // west  3
+        if (x - 1 >= 0 && m[x - 1, y] <= value) {
+            deadChildList.Add(wall.transform.GetChild(3));
+        }
+        
+        deadChildList.ForEach(child => Destroy(child.gameObject));
+        return (deadChildList.Count == 4);
     }
     
     bool TileExistsWithPosition(Vector2 position, List<Tile> tileGroup)
