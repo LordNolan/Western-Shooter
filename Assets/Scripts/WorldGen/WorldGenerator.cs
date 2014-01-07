@@ -18,12 +18,7 @@ public class WorldGenerator : MonoBehaviour
 	
     private float tileSizeOffset = 1f;
 	
-    private enum TileType
-    {
-        Treasure,
-        Wall
-    }
-	
+   
     void Start()
     {	
         floorTileList = new List<Tile>();
@@ -78,12 +73,14 @@ public class WorldGenerator : MonoBehaviour
             Smooth();
         }
         
+        // remove excess high canyon points
         DestroyExcess();
         
+        // floors
         for (int x = 0; x < W; x++) {
             for (int y = 0; y < H; y++) {
                 if (m[x, y] == 3) {
-                    AddTile(new Vector2(x, y), 0);
+                    AddToFloorTileList(new Vector2(x, y));
                 }
             }
         }
@@ -94,12 +91,12 @@ public class WorldGenerator : MonoBehaviour
         for (int x = 0; x < W; x++) {
             for (int y = 0; y < H; y++) {
                 if (m[x, y] == 2) {
-                    InstantiateTile(wallTile, new Vector2(x, y));
+                    InstantiateWall(wallTile, new Vector3(x, 0, y));
                 } else if (m[x, y] == 1) {
-                    InstantiateTile(wallTile, new Vector2(x, y));
-                    InstantiateTile(wallTile, new Vector3(x, 1, y));
+                    InstantiateWall(wallTile, new Vector3(x, 0, y));
+                    InstantiateWall(wallTile, new Vector3(x, 1, y));
                 } else if (m[x, y] == 0) {
-                    InstantiateTile(wallTile, new Vector3(x, 2, y));
+                    InstantiateWall(wallTile, new Vector3(x, 2, y));
                 }
             }
         }
@@ -269,9 +266,9 @@ public class WorldGenerator : MonoBehaviour
                 if (Random.Range(0, 3) <= 0) {
                     if (Random.Range(0, 4) <= 2) {
                         if (Random.Range(0, 2) == 1)
-                            InstantiateObject(enemy1, t.GetPosition());
+                            InstantiateEnemy(enemy1, t.GetPosition());
                         else
-                            InstantiateObject(enemy2, t.GetPosition());
+                            InstantiateEnemy(enemy2, t.GetPosition());
                         mobcount++;
                     } else {
                         if (Random.Range(0, 2) == 1)
@@ -332,26 +329,17 @@ public class WorldGenerator : MonoBehaviour
         }
     }
 	
-    void AddTile(Vector2 position, int actionNum)
+    // 3 for floor, 2 for lowest wall
+    void AddToFloorTileList(Vector2 position)
     {
+        // add to floor list
         if (!TileExistsWithPosition(position, floorTileList)) {
-            // create tile object for adding to list
             Tile t = new Tile(position);
             floorTileList.Add(t);
-			
-            // based on walker action, create different tile
-            // (0:none, 1:left, 2:right:, 3:around)
-            switch (actionNum) {
-                case 3:
-                    treasureList.Add(t);
-                    break;
-                default:
-                    break;
-            }
         }
     }
     
-    void InstantiateObject(GameObject obj, Vector2 position)
+    void InstantiateEnemy(GameObject obj, Vector2 position)
     {
         GameObject newObj = (GameObject)Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), obj.transform.rotation);
         newObj.transform.parent = gameObject.transform;
@@ -362,6 +350,32 @@ public class WorldGenerator : MonoBehaviour
         Quaternion randomRotation = Quaternion.Euler(new Vector3(270, Random.Range(0, 4) * 90, 0));
         GameObject newObj = (GameObject)Instantiate(obj, new Vector3(position.x * tileSizeOffset, obj.transform.position.y, position.y * tileSizeOffset), randomRotation);
         newObj.transform.parent = gameObject.transform;
+    }
+    
+    void InstantiateWall(GameObject tile, Vector3 position)
+    {
+        // instantiate wall prefab in unity and set it as child object to World
+        GameObject newTile = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), Quaternion.identity);
+        
+        
+        // set proper texture based on y position
+        if (position.y == 0) {
+            MakeBottomWallTexture(newTile);
+        }
+        
+        newTile.transform.parent = gameObject.transform;
+    }
+    
+    void MakeBottomWallTexture(GameObject wall)
+    {
+        Texture sandyWall = wall.GetComponent<MeshRenderer>().materials[1].mainTexture;
+        for (int i = 0; i < wall.transform.childCount; i++) {
+            MeshRenderer[] childRenderers = wall.transform.GetChild(i).GetComponents<MeshRenderer>();
+            for (int j = 0; j < childRenderers.Count(); j++) {
+                // swap material texture for sandywall
+                childRenderers[j].material.mainTexture = sandyWall;
+            }
+        }
     }
 	
     void InstantiateTile(GameObject tile, Vector2 position)
@@ -381,7 +395,7 @@ public class WorldGenerator : MonoBehaviour
         GameObject newTile = (GameObject)Instantiate(tile, new Vector3(position.x * tileSizeOffset, position.y, position.z * tileSizeOffset), rotation);
         newTile.transform.parent = gameObject.transform;
     }
-	
+    
     bool TileExistsWithPosition(Vector2 position, List<Tile> tileGroup)
     {
         var matches = tileGroup.Where(x => x.GetPosition() == position);
