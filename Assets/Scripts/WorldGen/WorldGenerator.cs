@@ -266,8 +266,8 @@ public class WorldGenerator : MonoBehaviour
         foreach (Tile t in floorTileList) {
             //if (t.GetPosition() != treasureSpawn.GetPosition() && FarFromPlayerSpawn(t.GetPosition())) {
             if (FarFromPlayerSpawn(t.GetPosition())) {
-                if (Random.Range(0, 10) <= 0) {
-                    if (Random.Range(0, 4) == 1) {
+                if (Random.Range(0, 3) <= 0) {
+                    if (Random.Range(0, 4) <= 2) {
                         if (Random.Range(0, 2) == 1)
                             InstantiateObject(enemy1, t.GetPosition());
                         else

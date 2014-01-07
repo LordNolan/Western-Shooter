@@ -247,6 +247,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400018}
   - 143: {fileID: 14300000}
   - 82: {fileID: 8200000}
   - 82: {fileID: 8200002}
@@ -1236,7 +1237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heightOffset: 0
   directionOffset: .150000006
-  ammoAmount: 25
   fireDelayTime: .300000012
   fireBullet: {fileID: 8200002}
   fireEmpty: {fileID: 8200000}
@@ -1286,6 +1286,17 @@ MonoBehaviour:
   chamberBone: {fileID: 100046}
   rigBone: {fileID: 100054}
   chamberRotate: {fileID: 8200006}
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0da9beac2fe1c41a17bdefacbe6a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

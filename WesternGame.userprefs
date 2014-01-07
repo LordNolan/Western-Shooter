@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\JumpPhysics\Assets\JumpPhysics\JumpPhysics.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Powerups\AmmoBoxCollision.cs">
     <Files>
-      <File FileName="..\JumpPhysics\Assets\JumpPhysics\JumpPhysics.cs" Line="198" Column="105" />
-      <File FileName="..\JumpPhysics\Assets\JumpPhysics\JumpPhysics2D.cs" Line="168" Column="17" />
+      <File FileName="Assets\Scripts\Powerups\AmmoBoxCollision.cs" Line="11" Column="45" />
+      <File FileName="Assets\Scripts\Powerups\AmmoBoxMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Mobs\EnemyMovement.cs" Line="11" Column="38" />
+      <File FileName="Assets\Scripts\UI\RageUI.cs" Line="31" Column="45" />
+      <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="270" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
