@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed;
+    private float originalMovementSpeed;
     public float rotateSpeed = 3;
     public bool invertedAxis = false;
     float rotationX = 180;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         forwardVector = Vector3.zero;
+        originalMovementSpeed = movementSpeed;
     }
     
     void FixedUpdate()
@@ -69,5 +71,10 @@ public class PlayerMovement : MonoBehaviour
     public float GetForwardMagnitude()
     {
         return movementMagnitude;
+    }
+    
+    public void ResetSpeed()
+    {
+        movementSpeed = originalMovementSpeed;
     }
 }

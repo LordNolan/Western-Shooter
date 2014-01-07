@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3b491318c13f5448a79f969dda8f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHP: 3
+  startingHP: 2
   deadSprite: {fileID: 21300000, guid: ff5b530b76f033f45afed91b22353c4c, type: 3}
   hurtSound: {fileID: 8300000, guid: 5c859f2bcbc059c46be62a83b9fde793, type: 3}
   deathSound: {fileID: 8300000, guid: 697a479efc38aeb4cb10cd1625598ddd, type: 3}

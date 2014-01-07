@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd72ecfd852e6bb458cf81c7f3ffdc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 5
   collectSound: {fileID: 8200000}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -154,6 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9baa332ba402e3e4d997ec36b36df3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateSpeed: 100
+  tweenHeight: .400000006
+  tweenRiseTime: .600000024
+  tweenFallTime: .800000012
+  bounceDelay: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

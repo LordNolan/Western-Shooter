@@ -38,7 +38,7 @@ public class RageBehavior : MonoBehaviour
         enraged = true;
         enrageSound.Play();
         fireWeapon.fireDelayTime = .2f;
-        movement.movementSpeed = 200.0f;
+        movement.movementSpeed = 250.0f;
     }
     
     // undo rage bonuses
@@ -46,7 +46,7 @@ public class RageBehavior : MonoBehaviour
     {
         enraged = false;
         fireWeapon.fireDelayTime = .3f;
-        movement.movementSpeed = 100.0f;
+        movement.ResetSpeed();
     }
     
     // add rage on pickup

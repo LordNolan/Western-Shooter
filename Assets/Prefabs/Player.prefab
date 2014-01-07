@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86cb12973e597145bc5e6a05a7ec9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 100
+  movementSpeed: 125
   rotateSpeed: 80
   invertedAxis: 0
   playerRecoilDistance: -5
