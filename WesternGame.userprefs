@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Guns\PistolAnimation.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameController.cs">
     <Files>
+      <File FileName="Assets\Scripts\Guns\PistolAnimation.cs" Line="17" Column="55" />
       <File FileName="Assets\Scripts\Guns\PistolAnimation.cs" Line="22" Column="115" />
-      <File FileName="Assets\Scripts\Guns\BulletCollision.cs" Line="59" Column="13" />
+      <File FileName="Assets\Scripts\Guns\BulletCollision.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMovement.cs" Line="35" Column="47" />
+      <File FileName="Assets\Scripts\Game\GameController.cs" Line="51" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

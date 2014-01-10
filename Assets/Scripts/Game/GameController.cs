@@ -47,6 +47,11 @@ public class GameController : MonoBehaviour
             GlobalParams.EnterNonPlayingState();
             StartNewGameFromDead();
         }
+        
+        // quit the game
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
              
         switch (currentState) {
         // new game or new level because of win/death
@@ -75,13 +80,13 @@ public class GameController : MonoBehaviour
                 PlayLoseAudio(); // play death sound
                 GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
                 string sb = DisplayScoreboard();
-				if (!loseAudio.isPlaying) {
+                if (!loseAudio.isPlaying) {
                     GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb + "Press Spacebar to Restart");
-				}
+                }
 				// don't allow spacebar continue until audio is done playing.
-				if (Input.GetKeyDown(KeyCode.Space) && !loseAudio.isPlaying) {
+                if (Input.GetKeyDown(KeyCode.Space) && !loseAudio.isPlaying) {
                     StartNewGameFromDead(); // start new game if spacebar
-				}
+                }
                 break;
             case GameState.LevelWon:
                 PlayWinAudio(); // play win sound
@@ -104,7 +109,7 @@ public class GameController : MonoBehaviour
         return sb.ToString();
     }
     
-    string GetTimePlayedString() 
+    string GetTimePlayedString()
     {
         if (timePlayed >= 60)
             return (int)(timePlayed / 60) + "m " + (int)(timePlayed % 60) + "s";
@@ -117,10 +122,10 @@ public class GameController : MonoBehaviour
         GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "");
     }
     
-    void PlayLoseAudio() 
-	{
+    void PlayLoseAudio()
+    {
         if (!losePlayed) {
-        	losePlayed = true;
+            losePlayed = true;
             loseAudio.Play();
         }
     }
