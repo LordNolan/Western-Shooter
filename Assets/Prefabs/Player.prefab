@@ -475,6 +475,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100060
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400060}
+  m_Layer: 0
+  m_Name: Smoke
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100062
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400062}
+  m_Layer: 0
+  m_Name: Smoke
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -639,6 +669,7 @@ Transform:
   m_LocalPosition: {x: -.0500000007, y: -.0467669964, z: .0622609966}
   m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
   m_Children:
+  - {fileID: 400060}
   - {fileID: 400024}
   - {fileID: 400022}
   m_Father: {fileID: 400030}
@@ -833,7 +864,30 @@ Transform:
   m_Children:
   - {fileID: 400056}
   - {fileID: 400054}
+  - {fileID: 400062}
   m_Father: {fileID: 400030}
+--- !u!4 &400060
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100060}
+  m_LocalRotation: {x: -.655959129, y: .0131714698, z: -.754594684, w: -.0114498409}
+  m_LocalPosition: {x: .886586308, y: .45417583, z: -7.9907586e-05}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_Children: []
+  m_Father: {fileID: 400026}
+--- !u!4 &400062
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100062}
+  m_LocalRotation: {x: -.754594624, y: .0114497757, z: -.655959129, w: -.0131715257}
+  m_LocalPosition: {x: .886578858, y: .454178691, z: -.00244531804}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400058}
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -1249,6 +1303,7 @@ MonoBehaviour:
   chamberBone: {fileID: 100016}
   rigBone: {fileID: 100020}
   chamberRotate: {fileID: 8200004}
+  smokeParticles: {fileID: 19800000, guid: cc29a99b594fd9441b4b16f37450d8e1, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1297,7 +1352,7 @@ MonoBehaviour:
   heightOffset: 0
   directionOffset: .150000006
   fireDelayTime: .300000012
-  fireBullet: {fileID: 8200002}
+  fireBullet: {fileID: 8300000, guid: 7bbf1e01acbefe94e99ae5e8bed6a444, type: 3}
   fireEmpty: {fileID: 8200000}
 --- !u!114 &11400012
 MonoBehaviour:
@@ -1345,6 +1400,7 @@ MonoBehaviour:
   chamberBone: {fileID: 100046}
   rigBone: {fileID: 100054}
   chamberRotate: {fileID: 8200006}
+  smokeParticles: {fileID: 19800000, guid: cc29a99b594fd9441b4b16f37450d8e1, type: 2}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1

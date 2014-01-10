@@ -7,7 +7,7 @@ public class PlayerFireWeapon : MonoBehaviour
     public float directionOffset = 0.3f;
     public float fireDelayTime;
     
-    public AudioSource fireBullet;
+    public AudioClip fireBullet;
     public AudioSource fireEmpty;
     
     Transform pistol1;
@@ -34,7 +34,8 @@ public class PlayerFireWeapon : MonoBehaviour
             isPistol1TurnToShoot = !isPistol1TurnToShoot;
             
             pistol.GetComponent<PistolAnimation>().Fire(); // fire animation
-            fireBullet.Play(); // fire noise
+            pistol.GetComponent<PistolAnimation>().MuzzleFlash();
+            fireEmpty.PlayOneShot(fireBullet);             // fire noise
             pistol.GetComponent<RaycastFire>().Fire(GetBulletSpawnPosition(), GetForwardDirection()); // fire raycast
             GetComponent<PlayerMovement>().shouldRecoil = true;
         }

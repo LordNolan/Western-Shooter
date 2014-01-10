@@ -3,18 +3,25 @@ using System.Collections;
 
 public class PistolAnimation : MonoBehaviour
 {
- 
     public GameObject hammerBone;
     public GameObject chamberBone;
     public GameObject rigBone;
-	
     public AudioSource chamberRotate;
-    
+    public ParticleSystem smokeParticles;
     Quaternion hammerInitRotation;
+    Transform smokeTransform;
     
     void Start()
     {
         hammerInitRotation = hammerBone.transform.localRotation;
+        smokeTransform = transform.FindChild("Smoke");
+    }
+    
+    public void MuzzleFlash()
+    {
+        ParticleSystem s = GameObject.Instantiate(smokeParticles, smokeTransform.position, smokeTransform.rotation) as ParticleSystem;
+        s.transform.parent = transform;
+        s.Play();
     }
     
     public void Fire()
