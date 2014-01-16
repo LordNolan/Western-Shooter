@@ -181,14 +181,16 @@ public class GameController : MonoBehaviour
         mobCount = amount;
     }
     
+    public void ChestWin()
+    {    
+        currentState = GameState.LevelWon;
+        GlobalParams.EnterNonPlayingState();
+    }
+    
     public void MobDied()
     {
         mobCount--;
         mobsKilled++;
-        if (mobCount <= 0) {
-            currentState = GameState.LevelWon;
-            GlobalParams.EnterNonPlayingState();
-        }
     }
     
     public void PlayerDied()

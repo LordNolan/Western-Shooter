@@ -3,29 +3,21 @@ using System.Collections;
 
 public class OpenChest : MonoBehaviour
 {
-    private bool isOpen = false;
+    bool isOpen = false;
     
     void Start()
     {
         animation.PlayQueued("Idle_Closed", QueueMode.CompleteOthers);
     }
     
-    void PlayOpenAnimation(GameObject powerup)
-    {
-        animation.PlayQueued("Open", QueueMode.CompleteOthers);
-        audio.Play();
-        GameObject newPowerup = (GameObject) Instantiate(powerup, transform.position, transform.rotation);
-		newPowerup.transform.parent = transform;
-        animation.PlayQueued("Idle_Open", QueueMode.CompleteOthers);
-    }
-    
     void OnTriggerEnter(Collider collider)
     {
         if (!isOpen && collider.CompareTag("Player")) {
-            // Get random powerup so we can pop it up on lid open
-            GameObject powerup = GameObject.FindWithTag("Global").GetComponent<PowerupController>().AddRandomPowerup();
-            PlayOpenAnimation(powerup);
+            animation.PlayQueued("Open", QueueMode.CompleteOthers);
+            animation.PlayQueued("Idle_Open", QueueMode.CompleteOthers);
+            audio.Play();
             isOpen = true;
+            GameObject.FindGameObjectWithTag("Global").GetComponent<GameController>().ChestWin();
         }
     }
 }
