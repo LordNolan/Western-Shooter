@@ -12,7 +12,6 @@ public class WorldGenerator : MonoBehaviour
     public GameObject scenery2; // cactus
 	
     private List<Tile> floorTileList;
-    private List<Tile> treasureList;
     private Tile treasureSpawn;
     private Tile playerSpawn;
 	
@@ -22,7 +21,6 @@ public class WorldGenerator : MonoBehaviour
     void Start()
     {	
         floorTileList = new List<Tile>();
-        treasureList = new List<Tile>();
 		
         GenerateWorld();
     }
@@ -44,7 +42,7 @@ public class WorldGenerator : MonoBehaviour
         GenerateSpawnArea();
         GenerateCanyonWalls();
         
-        // GenerateChest();    // only keep one chest
+        GenerateChest();    // only keep one chest
         SpawnEnemies();
         
         // tell game we're done with world gen.
@@ -261,8 +259,7 @@ public class WorldGenerator : MonoBehaviour
     {
         int mobcount = 0;
         foreach (Tile t in floorTileList) {
-            //if (t.GetPosition() != treasureSpawn.GetPosition() && FarFromPlayerSpawn(t.GetPosition())) {
-            if (FarFromPlayerSpawn(t.GetPosition())) {
+            if (t.GetPosition() != treasureSpawn.GetPosition() && FarFromPlayerSpawn(t.GetPosition())) {
                 if (Random.Range(0, 3) <= 0) {
                     if (Random.Range(0, 4) <= 1) {
                         if (Random.Range(0, 2) == 1)
@@ -276,7 +273,7 @@ public class WorldGenerator : MonoBehaviour
                         else
                             InstantiateScenery(scenery2, t.GetPosition());
                     }
-                }
+                }               
             }
         }
         GameObject.FindWithTag("Global").GetComponent<GameController>().SetMobCount(mobcount);
@@ -287,31 +284,19 @@ public class WorldGenerator : MonoBehaviour
         return playerSpawn.GetPosition();
     }
 	
-    // remove all chests but furthest
     void GenerateChest()
     {
-        // find furthest chest from origin
-        Tile furthestTile = treasureList[0];
-        float furthestDist = Vector2.Distance(Vector2.zero, furthestTile.GetPosition());
-        foreach (Tile t in treasureList) {
-            float dist = Vector2.Distance(Vector2.zero, t.GetPosition());
-            if (furthestDist < dist) {
-                furthestTile = t;
-                furthestDist = dist;
-            }
-        }
+        var minX = floorTileList.Min(tile => tile.GetPosition().x); // get min value
+        Tile minTile = floorTileList.Where(tile => tile.GetPosition().x == minX).Last(); // get lowest x tile
 		
         // set treasure spawn
-        treasureSpawn = furthestTile;
+        treasureSpawn = minTile;
         
         // get proper rotation so that chest always faces open tile
         Quaternion rotation = GetChestRotationFacingOpenTile(treasureSpawn.GetPosition());
         
         // create the chest
         InstantiateTile(treasureTile, new Vector3(treasureSpawn.GetPosition().x, treasureTile.transform.position.y, treasureSpawn.GetPosition().y), rotation);
-		
-        // clear treasure list
-        treasureList.Clear();
     }
     
     Quaternion GetChestRotationFacingOpenTile(Vector2 chestPosition)
