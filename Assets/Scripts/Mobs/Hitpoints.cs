@@ -25,6 +25,12 @@ public class Hitpoints : MonoBehaviour
         }  
     }
     
+    public void Heal(int amount)
+    {
+        HP = Mathf.Min(HP + amount, startingHP);
+        GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
+    }
+    
     void TakeDamage(int amount)
     {
         if (CompareTag("Player") && !GlobalParams.IsPlayerEnraged()) {
@@ -40,6 +46,11 @@ public class Hitpoints : MonoBehaviour
                 flicker = true; // enemy flicker
             audio.PlayOneShot(hurtSound); // enemy hit sound
         }
+    }
+    
+    public bool IsHurt()
+    {
+        return HP != startingHP;
     }
     
     void Update()

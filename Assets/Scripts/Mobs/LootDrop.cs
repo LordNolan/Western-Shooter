@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LootDrop : MonoBehaviour 
+public class LootDrop : MonoBehaviour
 {
     public int lootDropChance;    
     public GameObject lootDrop;
+    public GameObject hpDrop;
     
-	public void DoDropLoot()
+    public void DoDropLoot()
     {
-        if (Random.Range(0,100) < lootDropChance)
-        {
-            GameObject loot = (GameObject)Instantiate(lootDrop,GetDropLootPosition(),lootDrop.transform.rotation);
+        GameObject drop;
+        if (Random.Range(0, 100) < lootDropChance) {
+            // if player hurt, 50% chance to drop hp kit
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Hitpoints>().IsHurt()) {
+                drop = (Random.Range(0, 2) == 1) ? lootDrop : hpDrop;
+            } else {
+                drop = lootDrop;
+            }
+            
+            GameObject loot = (GameObject)Instantiate(drop, GetDropLootPosition(), drop.transform.rotation);
             loot.transform.parent = gameObject.transform.parent;
         }
     }

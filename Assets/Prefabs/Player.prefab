@@ -906,7 +906,7 @@ Camera:
     height: 1
   near clip plane: .00999999978
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 100
   m_Depth: 0
@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3b491318c13f5448a79f969dda8f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHP: 3
+  startingHP: 5
   deadSprite: {fileID: 0}
   hurtSound: {fileID: 8300000, guid: 2da27f884710a1e48ba0d02a11f4cc61, type: 3}
   deathSound: {fileID: 0}

@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: eff34385fbce6eb4a88624782860e661, type: 2}
-  bulletSpeed: 200
+  bulletSpeed: 350
   delay: 1
   delayVariance: .200000003
   gunshotSound: {fileID: 0}
