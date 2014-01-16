@@ -10,6 +10,7 @@ public class EnemyFireWeapon : MonoBehaviour
     public float delayVariance = 0.2f;
     private double currentDelay;
     public AudioSource gunshotSound;
+    public float accuracyOffset = 5.0f;
     
     void Start()
     {
@@ -28,7 +29,7 @@ public class EnemyFireWeapon : MonoBehaviour
             float x = bulletPrefab.transform.localEulerAngles.x;
             Vector3 relativePos = player.transform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(relativePos);
-            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(x, rotation.eulerAngles.y, 0));
+            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(x, rotation.eulerAngles.y + Random.Range(-accuracyOffset, accuracyOffset), 0));
             gunshotSound.Play();
         }
         
