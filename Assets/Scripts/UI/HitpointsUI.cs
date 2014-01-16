@@ -26,7 +26,6 @@ public class HitpointsUI : MonoBehaviour
     {
         // when hit, we we need to remove badges equal to amount
         // we need to start removing from last alive badge and move forward. 
-        
         for (int x = amount; x > 0; x--) {
             if (hitpoints > 0) {
                 badgeList[hitpoints - 1].GetComponent<HPBadgeUI>().Hit();

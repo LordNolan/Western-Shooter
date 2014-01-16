@@ -27,18 +27,18 @@ public class Hitpoints : MonoBehaviour
     
     void TakeDamage(int amount)
     {
-        if (CompareTag("Player")) {
+        if (CompareTag("Player") && !GlobalParams.IsPlayerEnraged()) {
             GameObject.FindWithTag("UI").BroadcastMessage("PlayerHit", amount);
             if ((HP -= amount) <= 0)
                 PlayerDied();
             else
                 audio.PlayOneShot(hurtSound);
-        } else {
+        } else if (!CompareTag("Player")) {
             if ((HP -= amount) <= 0)
                 MobDied();
             else
                 flicker = true; // enemy flicker
-                audio.PlayOneShot(hurtSound); // enemy hit sound
+            audio.PlayOneShot(hurtSound); // enemy hit sound
         }
     }
     
@@ -62,7 +62,8 @@ public class Hitpoints : MonoBehaviour
         
         // attempt to drop loot
         LootDrop ld = GetComponent<LootDrop>();
-        if (ld != null) ld.DoDropLoot();
+        if (ld != null)
+            ld.DoDropLoot();
     }
     
     void MobSpriteFlicker()

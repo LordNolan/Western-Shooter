@@ -7,10 +7,26 @@ public class GlobalParams
     static bool mobAIDelayComplete = false;
     static bool inNonPlayingState = false;
     static bool playerSpawned = false;
+    static bool isEnraged = false;
     
     public static bool IsPlayerSpawned()
     {
         return playerSpawned;
+    }
+    
+    public static bool IsPlayerEnraged()
+    {
+        return isEnraged;
+    }
+    
+    public static void MarkPlayerEnraged()
+    {
+        isEnraged = true;
+    }
+    
+    public static void ResetPlayerEnraged()
+    {
+        isEnraged = false;
     }
     
     public static void MarkPlayerSpawned()
@@ -34,6 +50,7 @@ public class GlobalParams
         mobAIDelayComplete = false;
         inNonPlayingState = false;
         playerSpawned = false;
+        isEnraged = false;
     }
     
     public static void MarkWorldGenComplete()
