@@ -379,7 +379,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1540349683}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 13100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_full
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_empty
+      value: 
+      objectReference: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
   m_RootGameObject: {fileID: 697026781}
@@ -497,8 +509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7eb6110e30c4f419a2f5b3065f5846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badge_full: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
-  badge_empty: {fileID: 2800000, guid: 1d250bda9ab3da745b3d013586ee4730, type: 3}
+  badge_full: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+  badge_empty: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
 --- !u!131 &697026784
 GUITexture:
   m_ObjectHideFlags: 0
@@ -507,7 +519,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 180154229}
   m_GameObject: {fileID: 697026781}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
+  m_Texture: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -548,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7eb6110e30c4f419a2f5b3065f5846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badge_full: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
-  badge_empty: {fileID: 2800000, guid: 1d250bda9ab3da745b3d013586ee4730, type: 3}
+  badge_full: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+  badge_empty: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
 --- !u!131 &750154093
 GUITexture:
   m_ObjectHideFlags: 0
@@ -558,7 +570,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 2099000121}
   m_GameObject: {fileID: 750154091}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
+  m_Texture: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -621,8 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7eb6110e30c4f419a2f5b3065f5846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badge_full: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
-  badge_empty: {fileID: 2800000, guid: 1d250bda9ab3da745b3d013586ee4730, type: 3}
+  badge_full: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+  badge_empty: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
 --- !u!131 &814399480
 GUITexture:
   m_ObjectHideFlags: 0
@@ -631,7 +643,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 1474567426}
   m_GameObject: {fileID: 814399477}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
+  m_Texture: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -678,6 +690,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_full
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_empty
+      value: 
+      objectReference: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
   m_RootGameObject: {fileID: 978398387}
@@ -723,8 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7eb6110e30c4f419a2f5b3065f5846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badge_full: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
-  badge_empty: {fileID: 2800000, guid: 1d250bda9ab3da745b3d013586ee4730, type: 3}
+  badge_full: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+  badge_empty: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
 --- !u!131 &978398390
 GUITexture:
   m_ObjectHideFlags: 0
@@ -733,7 +757,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 823577349}
   m_GameObject: {fileID: 978398387}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
+  m_Texture: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -841,7 +865,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1312176076}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: e4f0870a5a2270942b707409a5daf73b, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0d9612952d036414f9a4d7909373c38e, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -969,6 +993,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_full
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_empty
+      value: 
+      objectReference: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
   m_RootGameObject: {fileID: 814399477}
@@ -1007,7 +1043,7 @@ GUITexture:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520753059}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Texture: {fileID: 2800000, guid: faf9ba2fd14596943ba8c384acf5fc25, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
@@ -1043,8 +1079,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1538687464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .574999988, y: .100000001, z: .200000003}
-  m_LocalScale: {x: .140000001, y: .063000001, z: 1}
+  m_LocalPosition: {x: .0599999987, y: .884000003, z: .200000003}
+  m_LocalScale: {x: .100000001, y: .0359999985, z: 1}
   m_Children: []
   m_Father: {fileID: 1450945224}
 --- !u!131 &1538687466
@@ -1089,8 +1125,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1540349682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0900000036, y: .0930000022, z: .200000003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: .0939999968, y: .953999996, z: .200000003}
+  m_LocalScale: {x: .699999988, y: .699999988, z: 1}
   m_Children:
   - {fileID: 697026782}
   - {fileID: 978398388}
@@ -1171,8 +1207,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1566774270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .949999988, z: .200000003}
-  m_LocalScale: {x: .200000003, y: .063000001, z: 1}
+  m_LocalPosition: {x: .870000005, y: .957000017, z: .200000003}
+  m_LocalScale: {x: .219999999, y: .0549999997, z: 1}
   m_Children: []
   m_Father: {fileID: 1450945224}
 --- !u!131 &1566774272
@@ -1218,8 +1254,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1620308132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .610000014, y: .0930000022, z: .200000003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: .100000001, y: .879999995, z: .200000003}
+  m_LocalScale: {x: .600000024, y: .600000024, z: 1}
   m_Children:
   - {fileID: 1312176077}
   m_Father: {fileID: 1450945224}
@@ -1234,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8944dc9a1e3f3046bcf8e07213c64d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rage0: {fileID: 2800000, guid: e4f0870a5a2270942b707409a5daf73b, type: 3}
+  rage0: {fileID: 2800000, guid: 0d9612952d036414f9a4d7909373c38e, type: 3}
   rage1: {fileID: 2800000, guid: 58a633d60a78e0146ae8f7a22899747b, type: 3}
   rage2: {fileID: 2800000, guid: f42326d4d00084d41808246b4593115d, type: 3}
   rage3: {fileID: 2800000, guid: 8fc1874b1087f9b4eaddbe83d2d7cd18, type: 3}
@@ -1301,6 +1337,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_full
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_empty
+      value: 
+      objectReference: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
   m_RootGameObject: {fileID: 1947082288}
@@ -1390,8 +1438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7eb6110e30c4f419a2f5b3065f5846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badge_full: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
-  badge_empty: {fileID: 2800000, guid: 1d250bda9ab3da745b3d013586ee4730, type: 3}
+  badge_full: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+  badge_empty: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
 --- !u!131 &1947082291
 GUITexture:
   m_ObjectHideFlags: 0
@@ -1400,7 +1448,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 1643613361}
   m_GameObject: {fileID: 1947082288}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 3935ef221eb0f2a409989ec6c2ce4f37, type: 3}
+  m_Texture: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -1435,8 +1483,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1949684068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .075000003, y: .100000001, z: .200000003}
-  m_LocalScale: {x: .0729999989, y: .063000001, z: 1}
+  m_LocalPosition: {x: .0599999987, y: .95599997, z: .200000003}
+  m_LocalScale: {x: .0500000007, y: .0359999985, z: 1}
   m_Children: []
   m_Father: {fileID: 1450945224}
 --- !u!131 &1949684070
@@ -1493,6 +1541,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_full
+      value: 
+      objectReference: {fileID: 2800000, guid: f4647b0ef84e8f94d8acb3ed225502f6, type: 3}
+    - target: {fileID: 11400000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
+      propertyPath: badge_empty
+      value: 
+      objectReference: {fileID: 2800000, guid: 9cd4a001d8468ca4e9b9dddc30ca8c7e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec14156facfed57499723e0373e68ab2, type: 2}
   m_RootGameObject: {fileID: 750154091}
