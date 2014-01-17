@@ -127,7 +127,7 @@ public class WorldGenerator : MonoBehaviour
     {
         while (dx > 0 || dy > 0) {
             m[x, y] = 3;
-            if (Random.Range(0, 10) < 2) {
+            if (Random.Range(0, 10) < 3) {
                 for (int i=-1; i<=1; i++) {
                     for (int j=-1; j<=1; j++) {
                         m[x + i, y + j] = 3;
