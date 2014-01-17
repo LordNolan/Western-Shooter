@@ -21,7 +21,6 @@ public class PortraitUI : MonoBehaviour
     {
         p_texture = GetComponent<GUITexture>();
         currentState = p_State.forward;
-        transform.localScale = Vector2.zero;
     }
     
     private double timer = 0;

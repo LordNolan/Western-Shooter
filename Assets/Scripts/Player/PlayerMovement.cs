@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!GlobalParams.InNonPlayingState()) {
-            
             forwardVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // get input
             // normalize vector so we have unit vector in direction of input
             if (forwardVector.magnitude > 1) 
