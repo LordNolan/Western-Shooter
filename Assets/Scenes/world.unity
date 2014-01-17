@@ -926,6 +926,7 @@ Transform:
   m_Children:
   - {fileID: 1408038240}
   - {fileID: 1520753060}
+  - {fileID: 1566774271}
   - {fileID: 1538687465}
   - {fileID: 1949684069}
   - {fileID: 1540349683}
@@ -1147,6 +1148,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconOffset: .0350000001
+--- !u!1 &1566774270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1566774271}
+  - 131: {fileID: 1566774272}
+  m_Layer: 0
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1566774271
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1566774270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: .949999988, z: .200000003}
+  m_LocalScale: {x: .200000003, y: .063000001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1450945224}
+--- !u!131 &1566774272
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1566774270}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 58cd4711bb2115b439737b2e9ba9e217, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &1620308132
 GameObject:
   m_ObjectHideFlags: 0
