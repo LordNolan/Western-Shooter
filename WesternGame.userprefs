@@ -1,8 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\ResolutionChange.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameController.cs">
     <Files>
-      <File FileName="Assets\Scripts\UI\ResolutionChange.cs" Line="11" Column="57" />
+      <File FileName="Assets\Scripts\UI\LoadingBehavior.cs" Line="26" Column="53" />
+      <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="47" Column="48" />
+      <File FileName="Assets\Scripts\UI\HideUI.cs" Line="21" Column="36" />
+      <File FileName="Assets\Scripts\Chest\OpenChest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\GameController.cs" Line="173" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

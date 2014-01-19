@@ -62,6 +62,10 @@ public class GameController : MonoBehaviour
         switch (currentState) {
         // new game or new level because of win/death
             case GameState.NewGame:
+                if (!GlobalParams.IsWorldGenStarted()) {
+                    GlobalParams.MarkWorldGenStarted();
+                    SendMessage("GenerateWorld");
+                }
                 if (GlobalParams.IsWorldGenComplete()) {
                     if (GlobalParams.IsPlayerSpawned()) { // player spawned, let's play
                         ClearMessageUI();
@@ -84,7 +88,7 @@ public class GameController : MonoBehaviour
                 break;
             case GameState.PlayerDead:
                 PlayLoseAudio(); // play death sound
-                GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+                //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
                 string sb = DisplayScoreboard();
                 if (!loseAudio.isPlaying) {
                     GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb + "Press Spacebar to Restart");
@@ -96,7 +100,7 @@ public class GameController : MonoBehaviour
                 break;
             case GameState.LevelWon:
                 PlayWinAudio(); // play win sound
-                GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+                //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
                 GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
                 if (Input.GetKeyDown(KeyCode.Space))
                     StartNewLevelFromWin(); // start new level if spacebar
@@ -170,11 +174,11 @@ public class GameController : MonoBehaviour
     
     void NewGameProcess()
     {
-        GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeClear(); // clear faded background
+        //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeClear(); // clear faded background
         ClearMessageUI();
         GlobalParams.ResetForNewLevel();
+        GameObject.FindWithTag("Loading").GetComponent<LoadingBehavior>().ShowLoadingScreen();
         currentState = GameState.NewGame;
-        SendMessage("GenerateWorld");
     }
     
     public int GetMobCount()

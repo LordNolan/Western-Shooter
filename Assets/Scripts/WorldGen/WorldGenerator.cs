@@ -21,7 +21,6 @@ public class WorldGenerator : MonoBehaviour
     void Start()
     {	
         floorTileList = new List<Tile>();
-		
         GenerateWorld();
     }
 	

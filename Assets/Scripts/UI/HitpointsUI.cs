@@ -19,6 +19,7 @@ public class HitpointsUI : MonoBehaviour
     
     public void SetPlayerHitpoints(int amount)
     {
+        amount = Mathf.Max(0, amount);
         for (int i = 0; i < amount; i++) {
             badgeList[i].GetComponent<HPBadgeUI>().Heal();
         }
