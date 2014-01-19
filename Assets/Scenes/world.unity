@@ -1313,6 +1313,7 @@ GameObject:
   - 4: {fileID: 1863276427}
   - 131: {fileID: 1863276426}
   - 114: {fileID: 1863276428}
+  - 114: {fileID: 1863276429}
   m_Layer: 0
   m_Name: a_PORTRAIT
   m_TagString: Untagged
@@ -1327,7 +1328,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1863276425}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 46b3ab33e9a4fb049aa1b95011c63bd6, type: 3}
+  m_Texture: {fileID: 2800000, guid: 4aa671c2d4162a64ea74dc901e70f685, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -1361,6 +1362,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1863276429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1863276425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01c7d534d6c14e4faec72dc2a01730d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p_forward: {fileID: 2800000, guid: 4aa671c2d4162a64ea74dc901e70f685, type: 3}
+  p_left: {fileID: 2800000, guid: d58b150cfc28c944eaf3e3929fc11b16, type: 3}
+  p_right: {fileID: 2800000, guid: 714702b10a7482e4fac96ded00af8a7c, type: 3}
 --- !u!1001 &1870555239
 Prefab:
   m_ObjectHideFlags: 0
