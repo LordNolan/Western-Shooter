@@ -10,7 +10,8 @@ public class HitpointsUI : MonoBehaviour
     {
         badgeList = new List<Transform>();
         foreach (Transform child in transform) {
-            badgeList.Add(child);
+            if (child.CompareTag("Badge"))
+                badgeList.Add(child);
         }
     }
     

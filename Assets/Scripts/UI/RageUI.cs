@@ -21,7 +21,7 @@ public class RageUI : MonoBehaviour
     
     void Start()
     {
-        gui = GetComponentInChildren<GUITexture>();
+        gui = transform.FindChild("Bandolier").guiTexture;
         rageArray = new Texture[] {rage0, rage1, rage2, rage3, rage4, rage5, rage6, rage7, rage8, rage9, rage10};
     }
     
