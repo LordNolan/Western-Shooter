@@ -48,6 +48,12 @@ public class GameController : MonoBehaviour
             StartNewGameFromDead();
         }
         
+        // DEBUG: 10 rage on P
+        if (Input.GetKeyDown(KeyCode.P)) {
+            GameObject.FindWithTag("UI").BroadcastMessage("AddRage", 10);
+            GameObject.FindWithTag("Player").GetComponent<RageBehavior>().AddRage(10);
+        }
+        
         // quit the game
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();

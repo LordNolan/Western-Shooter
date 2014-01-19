@@ -103,7 +103,9 @@ public class PortraitUI : MonoBehaviour
     
     void CheckForHPTextureChange(int hpLeft)
     {
-        if (hpLeft < hp4Amount) {
+        if (enraged)
+            PlayerEnraged();
+        else if (hpLeft < hp4Amount) {
             if (hpLeft < hp3Amount) {
                 if (hpLeft < hp2Amount) {
                     if (hpLeft < hp1Amount) {
