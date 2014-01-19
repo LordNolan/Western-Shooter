@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class HitpointsUI : MonoBehaviour
 {
-    int hitpoints;
     List<Transform> badgeList;
+    int maxHP;
     
     void Awake()
     {
@@ -13,25 +13,23 @@ public class HitpointsUI : MonoBehaviour
             if (child.CompareTag("Badge"))
                 badgeList.Add(child);
         }
+        
+        maxHP = badgeList.Count;
     }
     
     public void SetPlayerHitpoints(int amount)
     {
-        hitpoints = amount;
-        for (int x = 0; x < amount; x++) {
-            badgeList[x].GetComponent<HPBadgeUI>().Heal();
+        for (int i = 0; i < amount; i++) {
+            badgeList[i].GetComponent<HPBadgeUI>().Heal();
+        }
+        
+        for (int j = amount; j < maxHP; j++) {
+            badgeList[j].GetComponent<HPBadgeUI>().Hit();
         }
     }
     
-    public void PlayerHit(int amount)
+    public void PlayerHit(int hpLeft)
     {
-        // when hit, we we need to remove badges equal to amount
-        // we need to start removing from last alive badge and move forward. 
-        for (int x = amount; x > 0; x--) {
-            if (hitpoints > 0) {
-                badgeList[hitpoints - 1].GetComponent<HPBadgeUI>().Hit();
-                hitpoints--;
-            }
-        }
+        SetPlayerHitpoints(hpLeft);
     }
 }

@@ -1066,7 +1066,7 @@ GameObject:
   - 131: {fileID: 1431122091}
   - 114: {fileID: 1431122093}
   m_Layer: 0
-  m_Name: a_SCORE
+  m_Name: SCORE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1267,7 +1267,7 @@ GameObject:
   - 4: {fileID: 1720062242}
   - 131: {fileID: 1720062241}
   m_Layer: 0
-  m_Name: a_BACKGROUND
+  m_Name: UI_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,7 +1315,7 @@ GameObject:
   - 114: {fileID: 1863276428}
   - 114: {fileID: 1863276429}
   m_Layer: 0
-  m_Name: a_PORTRAIT
+  m_Name: PORTRAIT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1373,9 +1373,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01c7d534d6c14e4faec72dc2a01730d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_forward: {fileID: 2800000, guid: 4aa671c2d4162a64ea74dc901e70f685, type: 3}
-  p_left: {fileID: 2800000, guid: d58b150cfc28c944eaf3e3929fc11b16, type: 3}
-  p_right: {fileID: 2800000, guid: 714702b10a7482e4fac96ded00af8a7c, type: 3}
+  hp4_c: {fileID: 2800000, guid: 4aa671c2d4162a64ea74dc901e70f685, type: 3}
+  hp4_l: {fileID: 2800000, guid: d58b150cfc28c944eaf3e3929fc11b16, type: 3}
+  hp4_r: {fileID: 2800000, guid: 714702b10a7482e4fac96ded00af8a7c, type: 3}
+  hp3_c: {fileID: 2800000, guid: 6045db74f6457314fa58722ec2f46940, type: 3}
+  hp3_l: {fileID: 2800000, guid: dd616de566e684740892ca048ffaf897, type: 3}
+  hp3_r: {fileID: 2800000, guid: 51e4c1b71c2eaec469d5d8d22283d087, type: 3}
+  hp2_c: {fileID: 2800000, guid: ba0936627163a774caa607323463efee, type: 3}
+  hp2_l: {fileID: 2800000, guid: d430476fbd9a96948a15841d314602a4, type: 3}
+  hp2_r: {fileID: 2800000, guid: 148b084d0aeb0064c8b05cf0a18436ae, type: 3}
+  hp1_c: {fileID: 2800000, guid: 22a26910dfd54ac46ba46dbf61a80aac, type: 3}
+  hp1_l: {fileID: 2800000, guid: 21fd2c2196abb1d41a077f814d5fd3c3, type: 3}
+  hp1_r: {fileID: 2800000, guid: fe38dcfdaa0cbe04c8d9f8cdd5b617b8, type: 3}
+  rage_c: {fileID: 2800000, guid: e1a35b3332b9740488c9e92ae8043456, type: 3}
+  rage_l: {fileID: 2800000, guid: 019d44fd8853f0b40bae2898c95cbce6, type: 3}
+  rage_r: {fileID: 2800000, guid: 8b82ef89aa7f3674580e3e83d9b63a72, type: 3}
+  collectTexture: {fileID: 2800000, guid: 4cef54a485517b34db61b6e76b6f3a27, type: 3}
+  deadTexture: {fileID: 2800000, guid: 8d9b3f9c2c6d144408498ac8408709fb, type: 3}
+  hp4Amount: 4
+  hp3Amount: 3
+  hp2Amount: 2
+  hp1Amount: 1
 --- !u!1001 &1870555239
 Prefab:
   m_ObjectHideFlags: 0

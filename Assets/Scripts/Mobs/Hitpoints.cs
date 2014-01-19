@@ -34,11 +34,11 @@ public class Hitpoints : MonoBehaviour
     void TakeDamage(int amount)
     {
         if (CompareTag("Player") && !GlobalParams.IsPlayerEnraged()) {
-            GameObject.FindWithTag("UI").BroadcastMessage("PlayerHit", amount);
             if ((HP -= amount) <= 0)
                 PlayerDied();
             else
                 audio.PlayOneShot(hurtSound);
+            GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
         } else if (!CompareTag("Player")) {
             if ((HP -= amount) <= 0)
                 MobDied();

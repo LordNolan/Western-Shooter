@@ -40,6 +40,7 @@ public class RageBehavior : MonoBehaviour
         fireWeapon.fireDelayTime = .2f;
         movement.movementSpeed = 250.0f;
         GlobalParams.MarkPlayerEnraged();
+        GameObject.FindWithTag("UI").BroadcastMessage("PlayerEnraged");
     }
     
     // undo rage bonuses
@@ -49,6 +50,7 @@ public class RageBehavior : MonoBehaviour
         fireWeapon.fireDelayTime = .3f;
         movement.ResetSpeed();
         GlobalParams.ResetPlayerEnraged();
+        GameObject.FindWithTag("UI").BroadcastMessage("PlayerStopEnraged");
     }
     
     // add rage on pickup

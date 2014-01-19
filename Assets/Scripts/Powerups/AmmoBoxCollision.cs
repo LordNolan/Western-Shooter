@@ -15,7 +15,7 @@ public class AmmoBoxCollision : MonoBehaviour
             } else if (CompareTag("HPKit")) {
                 GameObject.FindWithTag("Player").GetComponent<Hitpoints>().Heal(1);
             }
-            
+            GameObject.FindWithTag("UI").BroadcastMessage("PickupItem");
             collectSound.Play();
             collected = true;
         }
