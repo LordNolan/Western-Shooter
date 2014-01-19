@@ -11,8 +11,13 @@ public class BlinkStart : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)) {
+        if (selected && !audio.isPlaying) {
+            Application.LoadLevel("world");
+        }
+        
+        if (!selected && Input.GetKey(KeyCode.Space)) {
             selected = true;
+            audio.Play();
         }
         
         currentRate = (selected) ? selectRate : blinkRate;
