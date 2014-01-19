@@ -10,11 +10,11 @@ public class LoadingBehavior : MonoBehaviour
         // if not done loading and world gen complete, show everything and hide load elements including camera
         if (!loadingDone && GlobalParams.IsWorldGenComplete()) {
             loadingDone = true;
-            camera.enabled = false;
-            transform.GetChild(0).guiTexture.enabled = false;
-            GetComponent<AudioListener>().enabled = false;
-            GameObject.FindWithTag("Floor").SendMessage("ShowElement");
-            GameObject.FindWithTag("UI").BroadcastMessage("ShowElement");
+            camera.enabled = false;                                       // disable our camera
+            transform.GetChild(0).guiTexture.enabled = false;             // remove "Loading..."
+            GetComponent<AudioListener>().enabled = false;                // turn off our audiolistener
+            GameObject.FindWithTag("Floor").SendMessage("ShowElement");   // show game world floor
+            GameObject.FindWithTag("UI").BroadcastMessage("ShowElement"); // show HUD
         }
     }
     

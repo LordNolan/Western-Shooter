@@ -85,7 +85,6 @@ GameObject:
   - 114: {fileID: 57835976}
   - 114: {fileID: 57835977}
   - 114: {fileID: 57835978}
-  - 114: {fileID: 57835982}
   - 114: {fileID: 57835983}
   - 82: {fileID: 57835980}
   - 82: {fileID: 57835979}
@@ -289,18 +288,6 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
---- !u!114 &57835982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 57835974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed5b8549b2e089c488b99fc6b8407d6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shadeAmount: .300000012
 --- !u!114 &57835983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +415,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 144034722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .5, z: 0}
+  m_LocalPosition: {x: -.5, y: .5, z: 0}
   m_LocalScale: {x: .224999994, y: .100000001, z: 1}
   m_Children: []
   m_Father: {fileID: 2061251346}
@@ -1184,7 +1171,7 @@ GUITexture:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1408038239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Texture: {fileID: 2800000, guid: f0b7bccd389ed18409d1195a08795bcd, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
@@ -1794,7 +1781,7 @@ GameObject:
   - 114: {fileID: 2061251347}
   m_Layer: 0
   m_Name: LoadingCamera
-  m_TagString: Untagged
+  m_TagString: Loading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1855,7 +1842,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2061251341}
-  m_LocalRotation: {x: 0, y: -.000349065842, z: 0, w: .99999994}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

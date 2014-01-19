@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// turns on/off the showing of element
 public class HideUI : MonoBehaviour
 {
     public void HideElement()

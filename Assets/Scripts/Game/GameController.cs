@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
         switch (currentState) {
         // new game or new level because of win/death
             case GameState.NewGame:
-                if (!GlobalParams.IsWorldGenStarted()) {
+                if (!GlobalParams.IsWorldGenStarted()) { // generate world if we haven't yet
                     GlobalParams.MarkWorldGenStarted();
                     SendMessage("GenerateWorld");
                 }
