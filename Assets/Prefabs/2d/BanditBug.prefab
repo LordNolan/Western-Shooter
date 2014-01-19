@@ -150,7 +150,7 @@ MonoBehaviour:
   bulletSpeed: 350
   delay: 1
   delayVariance: .200000003
-  gunshotSound: {fileID: 0}
+  gunshotSound: {fileID: 8200000}
   accuracyOffset: 5
 --- !u!114 &11400002
 MonoBehaviour:
