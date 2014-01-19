@@ -1,13 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\HitpointsUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\ResolutionChange.cs">
     <Files>
-      <File FileName="Assets\Scripts\UI\ResolutionChange.cs" Line="39" Column="57" />
-      <File FileName="..\testbed\Assets\MoveCube.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\RageBehavior.cs" Line="32" Column="10" />
-      <File FileName="Assets\Scripts\UI\RageUI.cs" Line="24" Column="59" />
-      <File FileName="Assets\Scripts\Game\GlobalParams.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\HitpointsUI.cs" Line="13" Column="43" />
+      <File FileName="Assets\Scripts\UI\ResolutionChange.cs" Line="11" Column="57" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

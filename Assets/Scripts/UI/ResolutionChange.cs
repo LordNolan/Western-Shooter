@@ -8,6 +8,8 @@ public class ResolutionChange : MonoBehaviour
     private float aspectRatio;
     private bool updated;
     
+    public bool inTitle; // for title screen resolutions
+    
     void Start()
     {
         if (guiTexture != null) {
@@ -18,6 +20,11 @@ public class ResolutionChange : MonoBehaviour
     
     void Update()
     {
+        if (!updated && inTitle) {
+            Letterbox();
+            updated = true;
+        }
+        
         if (!updated && GlobalParams.IsPlayerSpawned()) {
             ChangeResolution();
             updated = true;
@@ -27,6 +34,20 @@ public class ResolutionChange : MonoBehaviour
     public void UpdateResolutionAgain()
     {
         updated = false;
+    }
+    
+    void Letterbox()
+    {
+        float ratio = Camera.main.aspect;
+        if (guiTexture != null) {
+            var v = sizeX / (sizeY * ratio);
+            if ((transform.localScale.y / v) <= 1) {
+                transform.localScale = new Vector3(transform.localScale.y, transform.localScale.y / v, 1); // top bars
+            } else {
+                transform.localScale = new Vector3(v * transform.localScale.y, transform.localScale.y, 1); // side bars
+            }
+            
+        }
     }
     
     void ChangeResolution()
