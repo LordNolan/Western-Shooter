@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be95893d2e842014c90063f27c2a86ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doubleDamage: {fileID: 100002, guid: e0c0442232a141a448ecbd22757917a1, type: 2}
-  speedBuff: {fileID: 100002, guid: 824eae10b550e2e42b68be9cfeb8b88a, type: 2}
+  doubleDamage: {fileID: 0}
+  speedBuff: {fileID: 0}
   powerupSound: {fileID: 57835984}
 --- !u!82 &57835984
 AudioSource:
