@@ -981,8 +981,8 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 12800000, guid: 855aa39aab3565d4d8eb16d0d7dd421c, type: 3}
-  m_Material: {fileID: 0}
+  m_Font: {fileID: 12800000, guid: 37af61efd0e1e204c8f8ac11180e0fea, type: 3}
+  m_Material: {fileID: 2100000, guid: 37af61efd0e1e204c8f8ac11180e0fea, type: 3}
   m_FontSize: 40
   m_FontStyle: 0
   m_Color:
