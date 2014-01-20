@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Image Effects (Pro Only)\AntialiasingAsPostEffect.js">
     <Files>
-      <File FileName="Assets\Scripts\UI\LoadingBehavior.cs" Line="26" Column="53" />
-      <File FileName="Assets\Scripts\WorldGen\WorldGenerator.cs" Line="47" Column="48" />
-      <File FileName="Assets\Scripts\UI\HideUI.cs" Line="21" Column="36" />
-      <File FileName="Assets\Scripts\Chest\OpenChest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\GameController.cs" Line="173" Column="11" />
+      <File FileName="Assets\Scripts\Powerups\HPKitMovement.cs" Line="26" Column="29" />
+      <File FileName="Assets\Scripts\Game\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\BlinkStart.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\ResolutionChange.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Image Effects (Pro Only)\AntialiasingAsPostEffect.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

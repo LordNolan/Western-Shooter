@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootDropChance: 50
   lootDrop: {fileID: 100000, guid: 773bb885e307f2944b73840d3e9a0295, type: 2}
-  hpDrop: {fileID: 100000, guid: d53ed6fd3404a9b4fa517f9c116c10fc, type: 2}
+  hpDrop: {fileID: 100000, guid: 6b4e43f99ff1e2e49b132672aed49d08, type: 2}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
