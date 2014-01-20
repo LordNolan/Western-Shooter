@@ -181,7 +181,7 @@ public class GameController : MonoBehaviour
         //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeClear(); // clear faded background
         ClearMessageUI();
         GlobalParams.ResetForNewLevel();
-        GameObject.FindWithTag("Loading").GetComponent<LoadingBehavior>().ShowLoadingScreen();
+        GameObject.Find("LoadingCamera").GetComponent<LoadingBehavior>().ShowLoadingScreen();
         currentState = GameState.NewGame;
     }
     

@@ -248,7 +248,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1546867456}
   - 131: {fileID: 1546867455}
-  - 114: {fileID: 1546867457}
   m_Layer: 0
   m_Name: LoadingBackground
   m_TagString: Untagged
@@ -287,18 +286,6 @@ Transform:
   m_Children:
   - {fileID: 1981681797}
   m_Father: {fileID: 0}
---- !u!114 &1546867457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1546867454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inTitle: 0
 --- !u!1 &1580213395
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 0
+  letterbox: 0
+  nonGameElement: 0
 --- !u!131 &1580213397
 GUITexture:
   m_ObjectHideFlags: 0
@@ -459,7 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 1
+  letterbox: 1
+  nonGameElement: 0
 --- !u!131 &1656256042
 GUITexture:
   m_ObjectHideFlags: 0
@@ -549,4 +538,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 0
+  letterbox: 0
+  nonGameElement: 1

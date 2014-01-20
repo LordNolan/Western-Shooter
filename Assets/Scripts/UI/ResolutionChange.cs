@@ -8,7 +8,8 @@ public class ResolutionChange : MonoBehaviour
     private float aspectRatio;
     private bool updated;
     
-    public bool inTitle; // for title screen resolutions
+    public bool letterbox; // for title screen resolutions
+    public bool nonGameElement; // for non HUD elements (loading screen)
     
     void Start()
     {
@@ -20,8 +21,13 @@ public class ResolutionChange : MonoBehaviour
     
     void Update()
     {
-        if (!updated && inTitle) {
+        if (!updated && letterbox) {
             Letterbox();
+            updated = true;
+        }
+        
+        if (!updated && nonGameElement) {
+            ChangeResolution();
             updated = true;
         }
         

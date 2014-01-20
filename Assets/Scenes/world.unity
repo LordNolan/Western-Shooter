@@ -388,7 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 0
+  letterbox: 0
+  nonGameElement: 1
 --- !u!131 &144034724
 GUITexture:
   m_ObjectHideFlags: 0
@@ -1032,7 +1033,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 0
+  letterbox: 0
+  nonGameElement: 0
 --- !u!114 &1192353749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1195,7 +1197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 0
+  letterbox: 0
+  nonGameElement: 0
 --- !u!114 &1408038243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1266,7 +1269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 0
+  letterbox: 0
+  nonGameElement: 0
 --- !u!114 &1431122094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1548,7 +1552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac36d055fa712341a1a38c456b45e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inTitle: 0
+  letterbox: 0
+  nonGameElement: 0
 --- !u!114 &1863276429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,7 +1786,7 @@ GameObject:
   - 114: {fileID: 2061251347}
   m_Layer: 0
   m_Name: LoadingCamera
-  m_TagString: Loading
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
