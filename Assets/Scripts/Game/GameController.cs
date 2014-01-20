@@ -105,7 +105,7 @@ public class GameController : MonoBehaviour
                     GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb + "Press Spacebar to Restart");
                 }
 				// don't allow spacebar continue until audio is done playing.
-                if (Input.GetKeyDown(KeyCode.Space) && !loseAudio.isPlaying) {
+                if (Input.GetButtonDown("Fire3") && !loseAudio.isPlaying) {
                     StartNewGameFromDead(); // start new game if spacebar
                 }
                 break;
@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour
                 //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
                 GameObject.FindWithTag("Player").GetComponent<RageBehavior>().WinLevelEnragedCheck(); // if enraged on win, give them full rage
                 GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetButtonDown("Fire3"))
                     StartNewLevelFromWin(); // start new level if spacebar
                 break;
         }

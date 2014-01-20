@@ -21,7 +21,7 @@ public class BlinkStart : MonoBehaviour
             loading = true;
         }
         
-        if (!selected && Input.GetKey(KeyCode.Space)) {
+        if (!selected && Input.GetButtonDown("Fire3")) {
             selected = true;
             audio.Play();
         }

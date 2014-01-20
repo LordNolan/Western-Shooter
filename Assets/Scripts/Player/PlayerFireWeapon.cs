@@ -27,7 +27,7 @@ public class PlayerFireWeapon : MonoBehaviour
     {
         currentTime += Time.deltaTime;
         
-        if (currentTime > fireDelayTime && !GlobalParams.InNonPlayingState() && Input.GetMouseButton(0)) { // left click or held down
+        if (currentTime > fireDelayTime && !GlobalParams.InNonPlayingState() && Input.GetButton("Fire1")) { // left click or held down
             currentTime = 0; // reset delay            
             
             Transform pistol = (isPistol1TurnToShoot) ? pistol1 : pistol2; // get correct pistol to fire
