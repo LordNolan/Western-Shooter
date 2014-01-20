@@ -29,7 +29,7 @@ public class BulletCollision : MonoBehaviour
         
         // enemy bullet
         if (CompareTag("EnemyBullet")) {
-            if (collision.gameObject.CompareTag("Player")) {
+            if (!InNonPlayingState() && collision.gameObject.CompareTag("Player")) {
                 collision.collider.SendMessage("TakeDamage", damage);
                 Destroy(gameObject);
             }
