@@ -28,7 +28,6 @@ public class RageBehavior : MonoBehaviour
         
         if (rageTime <= 0) {
             StopEnrage();
-            rageTime = 10.0f;
         }
     }
     
@@ -36,6 +35,7 @@ public class RageBehavior : MonoBehaviour
     void StartEnrage()
     {
         enraged = true;
+        rageTime = 10.0f;
         enrageSound.Play();
         fireWeapon.fireDelayTime = .2f;
         movement.movementSpeed = 250.0f;
@@ -44,7 +44,7 @@ public class RageBehavior : MonoBehaviour
     }
     
     // undo rage bonuses
-    void StopEnrage()
+    public void StopEnrage()
     {
         enraged = false;
         fireWeapon.fireDelayTime = .3f;

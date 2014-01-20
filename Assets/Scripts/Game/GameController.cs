@@ -46,13 +46,20 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) {
             isDead = true;
             GlobalParams.EnterNonPlayingState();
-            StartNewGameFromDead();
         }
         
         // DEBUG: 10 rage on P
         if (Input.GetKeyDown(KeyCode.P)) {
             GameObject.FindWithTag("UI").BroadcastMessage("AddRage", 10);
             GameObject.FindWithTag("Player").GetComponent<RageBehavior>().AddRage(10);
+        }
+        
+        // DEBUG: kill all enemies
+        if (Input.GetKeyDown(KeyCode.K)) {
+            foreach (Transform child in transform) {
+                if (child.CompareTag("Enemy"))
+                    Destroy(child.gameObject);
+            }   
         }
         
         // quit the game
@@ -105,6 +112,7 @@ public class GameController : MonoBehaviour
             case GameState.LevelWon:
                 PlayWinAudio(); // play win sound
                 //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+                GameObject.FindWithTag("Player").GetComponent<RageBehavior>().StopEnrage(); // stop enrage to keep what's left in meter
                 GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
                 if (Input.GetKeyDown(KeyCode.Space))
                     StartNewLevelFromWin(); // start new level if spacebar
