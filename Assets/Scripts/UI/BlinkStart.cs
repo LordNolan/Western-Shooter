@@ -6,13 +6,19 @@ public class BlinkStart : MonoBehaviour
     float currentTime;
     float currentRate;
     bool selected;
+    bool loading;
     public float blinkRate = 0.2f;
     public float selectRate = 0.1f;
     
     void Update()
     {
-        if (selected && !audio.isPlaying) {
+        if (loading) {
             Application.LoadLevel("world");
+        }
+        if (selected && !audio.isPlaying) {
+            GameObject.Find("LoadingBackground").guiTexture.enabled = true;
+            GameObject.Find("LoadingBackground").transform.GetChild(0).guiTexture.enabled = true;
+            loading = true;
         }
         
         if (!selected && Input.GetKey(KeyCode.Space)) {

@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     
     public enum GameState
     {
+        StartScreen,
         NewGame,
         Playing,
         PlayerDead,
@@ -33,7 +34,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Screen.lockCursor = true; // lock mouse cursor on screen
-        currentState = GameState.NewGame;
+        currentState = GameState.StartScreen;
     }
 	
     void Update()
@@ -60,6 +61,9 @@ public class GameController : MonoBehaviour
         }
              
         switch (currentState) {
+            case GameState.StartScreen:
+                NewGameProcess();
+                break;
         // new game or new level because of win/death
             case GameState.NewGame:
                 if (!GlobalParams.IsWorldGenStarted()) { // generate world if we haven't yet
