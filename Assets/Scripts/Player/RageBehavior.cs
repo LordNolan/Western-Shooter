@@ -44,7 +44,7 @@ public class RageBehavior : MonoBehaviour
     }
     
     // undo rage bonuses
-    public void StopEnrage()
+    void StopEnrage()
     {
         enraged = false;
         fireWeapon.fireDelayTime = .3f;
@@ -61,5 +61,13 @@ public class RageBehavior : MonoBehaviour
             rageTime = Mathf.Min(10.0f, rageTime + amount);
         if (!enraged && currentRage == 10)
             StartEnrage();
+    }
+    
+    // if won while enraged, top us off for new level
+    public void WinLevelEnragedCheck()
+    {
+        if (enraged) {
+            AddRage(10);
+        }
     }
 }

@@ -112,7 +112,7 @@ public class GameController : MonoBehaviour
             case GameState.LevelWon:
                 PlayWinAudio(); // play win sound
                 //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-                GameObject.FindWithTag("Player").GetComponent<RageBehavior>().StopEnrage(); // stop enrage to keep what's left in meter
+                GameObject.FindWithTag("Player").GetComponent<RageBehavior>().WinLevelEnragedCheck(); // if enraged on win, give them full rage
                 GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
                 if (Input.GetKeyDown(KeyCode.Space))
                     StartNewLevelFromWin(); // start new level if spacebar

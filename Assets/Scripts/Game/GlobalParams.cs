@@ -52,7 +52,6 @@ public class GlobalParams
         mobAIDelayComplete = false;
         inNonPlayingState = false;
         playerSpawned = false;
-        isEnraged = false;
     }
     
     public static void MarkWorldGenStarted()
