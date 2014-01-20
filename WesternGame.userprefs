@@ -1,12 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Powerups\AmmoBoxCollision.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Mobs\Hitpoints.cs">
     <Files>
-      <File FileName="Assets\Scripts\Powerups\AmmoBoxCollision.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Powerups\HPKitMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\BlinkStart.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\ResolutionChange.cs" Line="1" Column="1" />
+      <File FileName="Assets\SimplePixelizer\SimplePixelizer.cs" Line="4" Column="29" />
+      <File FileName="Assets\Scripts\Guns\BulletCollision.cs" Line="33" Column="70" />
+      <File FileName="Assets\Scripts\Mobs\Hitpoints.cs" Line="41" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

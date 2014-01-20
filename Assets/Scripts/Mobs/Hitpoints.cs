@@ -36,8 +36,10 @@ public class Hitpoints : MonoBehaviour
         if (CompareTag("Player") && !GlobalParams.IsPlayerEnraged()) {
             if ((HP -= amount) <= 0)
                 PlayerDied();
-            else
+            else {
                 audio.PlayOneShot(hurtSound);
+                transform.GetChild(0).GetComponent<PixelizeOnHit>().Hit();
+            }
             GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
         } else if (!CompareTag("Player")) {
             if ((HP -= amount) <= 0)
