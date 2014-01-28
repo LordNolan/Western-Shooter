@@ -174,6 +174,7 @@ public class GameController : MonoBehaviour
         isDead = false;     // reset player death flag
         GameObject.FindWithTag("UI").BroadcastMessage("Reset"); // resets powerups
         GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
+        ResetScoreboard();
         NewGameProcess();
     }
     
