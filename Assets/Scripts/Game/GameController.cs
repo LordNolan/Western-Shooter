@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<RageBehavior>().WinLevelEnragedCheck(); // if enraged on win, give them full rage
                 GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
                 if (Input.GetButtonDown("Fire3"))
-                    StartNewLevelFromWin(); // start new level if spacebar
+                    StartNewLevelFromWin(); // start new level if spacebar or 360 A
                 break;
         }
     }

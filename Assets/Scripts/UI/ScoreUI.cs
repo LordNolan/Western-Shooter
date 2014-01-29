@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ScoreUI : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ScoreUI : MonoBehaviour
     private GUITexture comma2;
     
     public Texture[] digitTextures;
+    
+    private int score = 0;
     
     void Start()
     {
@@ -20,11 +23,32 @@ public class ScoreUI : MonoBehaviour
         
         Reset();
     }
-	
-    void Update()
+    
+    public void AddScore(int amount)
     {
-        
+        score += amount;
+        UpdateScoreboard();
     }
+    
+    void UpdateScoreboard()
+    {
+        // set new score
+        string temp = score.ToString();
+        for (int i = 0; i < temp.Length; i++) {
+            digitPositions[i].texture = digitTextures[(int)Char.GetNumericValue(temp[(temp.Length - 1) - i])];
+        }
+        
+        // set commas if needed
+        if (temp.Length >= 7) {
+            comma1.enabled = false;
+            comma2.enabled = false;
+        } else if (temp.Length >= 4) {
+            comma1.enabled = false;
+        }
+    }
+    
+    //TODO: instead of hiding commas, the texture for comma 
+    // should be shown much like digits so that HideUI script works
     
     void Reset()
     {
@@ -34,5 +58,7 @@ public class ScoreUI : MonoBehaviour
         digitPositions[0].texture = digitTextures[0];
         comma1.enabled = true;
         comma2.enabled = true;
+        
+        score = 0;
     }
 }

@@ -73,6 +73,9 @@ public class Hitpoints : MonoBehaviour
         collider.enabled = false; // turn off collider
         mobDead = true;
         
+        // award points
+        GetComponent<ScoreValue>().AwardPoints();
+        
         // attempt to drop loot
         LootDrop ld = GetComponent<LootDrop>();
         if (ld != null)
