@@ -29,6 +29,9 @@ public class RageBehavior : MonoBehaviour
         if (rageTime <= 0) {
             StopEnrage();
         }
+
+        if (Input.GetAxisRaw("Enrage") > 0 && !enraged && currentRage == 10)
+            StartEnrage();
     }
     
     // reduce fire delay by 33% and double move speed
@@ -59,8 +62,6 @@ public class RageBehavior : MonoBehaviour
         currentRage = Mathf.Min(10, currentRage + amount);
         if (enraged)
             rageTime = Mathf.Min(10.0f, rageTime + amount);
-        if (!enraged && currentRage == 10)
-            StartEnrage();
     }
     
     // if won while enraged, top us off for new level
