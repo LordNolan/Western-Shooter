@@ -251,6 +251,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400018}
   - 143: {fileID: 14300000}
+  - 114: {fileID: 11400024}
   - 82: {fileID: 8200002}
   - 82: {fileID: 8200008}
   m_Layer: 9
@@ -1435,11 +1436,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 100028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c08e257e5e459249bb35902ce0edcfa, type: 3}
+  m_Script: {fileID: 11500000, guid: b2770ea46388d411db943b10f9a073c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pixelizeAmount: 8
-  pixelizeTime: .5
+  pixelizeTime: 3
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fb69af4cc2547b0abadcb4727b4c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnerableTime: 3
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

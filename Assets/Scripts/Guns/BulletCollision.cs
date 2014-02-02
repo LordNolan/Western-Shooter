@@ -30,7 +30,8 @@ public class BulletCollision : MonoBehaviour
         // enemy bullet
         if (CompareTag("EnemyBullet")) {
             if (!GlobalParams.InNonPlayingState() && collision.gameObject.CompareTag("Player")) {
-                collision.collider.SendMessage("TakeDamage", damage);
+                collision.collider.GetComponent<TempInvulnerability>().TakePotentialDamage(damage);
+                //collision.collider.SendMessage("TakeDamage", damage);
                 Destroy(gameObject);
             }
         }

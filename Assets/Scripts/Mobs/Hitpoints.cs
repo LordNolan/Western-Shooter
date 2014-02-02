@@ -31,14 +31,15 @@ public class Hitpoints : MonoBehaviour
         GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
     }
     
-    void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         if (CompareTag("Player") && !GlobalParams.IsPlayerEnraged()) {
             if ((HP -= amount) <= 0)
                 PlayerDied();
             else {
                 audio.PlayOneShot(hurtSound);
-                transform.GetChild(0).GetComponent<PixelizeOnHit>().Hit();
+                Camera.main.GetComponent<PixelizeOnHit>().Hit();
+                Debug.Log("hit");
             }
             GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
         } else if (!CompareTag("Player")) {
@@ -46,6 +47,7 @@ public class Hitpoints : MonoBehaviour
                 MobDied();
             else
                 flicker = true; // enemy flicker
+
             audio.PlayOneShot(hurtSound); // enemy hit sound
         }
     }
