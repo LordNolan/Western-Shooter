@@ -61,6 +61,12 @@ public class GameController : MonoBehaviour
                     Destroy(child.gameObject);
             }   
         }
+
+        // DEBUG: win level
+        if (Input.GetKeyDown(KeyCode.L)) {
+            currentState = GameState.LevelWon;
+            GlobalParams.EnterNonPlayingState();
+        }
         
         // quit the game
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -68,55 +74,55 @@ public class GameController : MonoBehaviour
         }
              
         switch (currentState) {
-            case GameState.StartScreen:
-                NewGameProcess();
-                break;
+        case GameState.StartScreen:
+            NewGameProcess();
+            break;
         // new game or new level because of win/death
-            case GameState.NewGame:
-                if (!GlobalParams.IsWorldGenStarted()) { // generate world if we haven't yet
-                    GlobalParams.MarkWorldGenStarted();
-                    SendMessage("GenerateWorld");
-                }
-                if (GlobalParams.IsWorldGenComplete()) {
-                    if (GlobalParams.IsPlayerSpawned()) { // player spawned, let's play
-                        ClearMessageUI();
-                        currentState = GameState.Playing;
-                        currentTimer = 0; // timer for mob delay before kicking off AI
+        case GameState.NewGame:
+            if (!GlobalParams.IsWorldGenStarted()) { // generate world if we haven't yet
+                GlobalParams.MarkWorldGenStarted();
+                SendMessage("GenerateWorld");
+            }
+            if (GlobalParams.IsWorldGenComplete()) {
+                if (GlobalParams.IsPlayerSpawned()) { // player spawned, let's play
+                    ClearMessageUI();
+                    currentState = GameState.Playing;
+                    currentTimer = 0; // timer for mob delay before kicking off AI
+                } else {
+                    if (wonPrevious) {
+                        GetComponent<SpawnPlayer>().ResetPlayerSpawn();
+                        wonPrevious = false;
                     } else {
-                        if (wonPrevious) {
-                            GetComponent<SpawnPlayer>().ResetPlayerSpawn();
-                            wonPrevious = false;
-                        } else {
-                            GetComponent<SpawnPlayer>().SpawnNewPlayer();
-                        }
+                        GetComponent<SpawnPlayer>().SpawnNewPlayer();
                     }
                 }
-                break;
-            case GameState.Playing:
-                if ((currentTimer += Time.deltaTime) > mobAIdelay) // wait for delay before kicking off AI
-                    GlobalParams.MarkMobAIDelayComplete();
-                timePlayed += Time.deltaTime; // increment time counter
-                break;
-            case GameState.PlayerDead:
-                PlayLoseAudio(); // play death sound
+            }
+            break;
+        case GameState.Playing:
+            if ((currentTimer += Time.deltaTime) > mobAIdelay) // wait for delay before kicking off AI
+                GlobalParams.MarkMobAIDelayComplete();
+            timePlayed += Time.deltaTime; // increment time counter
+            break;
+        case GameState.PlayerDead:
+            PlayLoseAudio(); // play death sound
                 //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-                string sb = DisplayScoreboard();
-                if (!loseAudio.isPlaying) {
-                    GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb + "Press Spacebar to Restart");
-                }
+            string sb = DisplayScoreboard();
+            if (!loseAudio.isPlaying) {
+                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb + "Press Spacebar to Restart");
+            }
 				// don't allow spacebar continue until audio is done playing.
-                if (Input.GetButtonDown("Fire3") && !loseAudio.isPlaying) {
-                    StartNewGameFromDead(); // start new game if spacebar
-                }
-                break;
-            case GameState.LevelWon:
-                PlayWinAudio(); // play win sound
+            if (Input.GetButtonDown("Fire3") && !loseAudio.isPlaying) {
+                StartNewGameFromDead(); // start new game if spacebar
+            }
+            break;
+        case GameState.LevelWon:
+            PlayWinAudio(); // play win sound
                 //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-                GameObject.FindWithTag("Player").GetComponent<RageBehavior>().WinLevelEnragedCheck(); // if enraged on win, give them full rage
-                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
-                if (Input.GetButtonDown("Fire3"))
-                    StartNewLevelFromWin(); // start new level if spacebar or 360 A
-                break;
+            GameObject.FindWithTag("Player").GetComponent<RageBehavior>().WinLevelEnragedCheck(); // if enraged on win, give them full rage
+            GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
+            if (Input.GetButtonDown("Fire3"))
+                StartNewLevelFromWin(); // start new level if spacebar or 360 A
+            break;
         }
     }
     

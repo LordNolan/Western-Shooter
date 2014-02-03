@@ -9,6 +9,8 @@ public class ScoreUI : MonoBehaviour
     private GUITexture comma2;
     
     public Texture[] digitTextures;
+    public Texture commaShow;
+    public Texture commaHide;
     
     private int score = 0;
     
@@ -40,15 +42,12 @@ public class ScoreUI : MonoBehaviour
         
         // set commas if needed
         if (temp.Length >= 7) {
-            comma1.enabled = false;
-            comma2.enabled = false;
+            comma1.texture = commaShow;
+            comma2.texture = commaShow;
         } else if (temp.Length >= 4) {
-            comma1.enabled = false;
+            comma1.texture = commaShow;
         }
     }
-    
-    //TODO: instead of hiding commas, the texture for comma 
-    // should be shown much like digits so that HideUI script works
     
     void Reset()
     {
@@ -56,8 +55,8 @@ public class ScoreUI : MonoBehaviour
             digitPositions[i].texture = digitTextures[10]; // empty
         }
         digitPositions[0].texture = digitTextures[0];
-        comma1.enabled = true;
-        comma2.enabled = true;
+        comma1.texture = commaHide;
+        comma2.texture = commaHide;
         
         score = 0;
     }
