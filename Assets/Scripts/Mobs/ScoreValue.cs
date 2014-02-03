@@ -7,6 +7,6 @@ public class ScoreValue : MonoBehaviour
     
     public void AwardPoints()
     {
-        GameObject.FindWithTag("UI").BroadcastMessage("AddScore", pointsValue);
+        GameObject.FindWithTag("Global").GetComponent<ScoreController>().AddScore(pointsValue);
     }
 }

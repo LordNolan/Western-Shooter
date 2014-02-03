@@ -12,8 +12,6 @@ public class ScoreUI : MonoBehaviour
     public Texture commaShow;
     public Texture commaHide;
     
-    private int score = 0;
-    
     void Start()
     {
         digitPositions = new GUITexture[9];
@@ -25,22 +23,11 @@ public class ScoreUI : MonoBehaviour
         
         Reset();
     }
-
-    public int GetScore()
-    {
-        return score;
-    }
-
-    public void AddScore(int amount)
-    {
-        score += amount;
-        UpdateScoreboard();
-    }
     
-    void UpdateScoreboard()
+    public void UpdateScoreboard(int newScore)
     {
         // set new score
-        string temp = score.ToString();
+        string temp = newScore.ToString();
         for (int i = 0; i < temp.Length; i++) {
             digitPositions[i].texture = digitTextures[(int)Char.GetNumericValue(temp[(temp.Length - 1) - i])];
         }
@@ -62,7 +49,5 @@ public class ScoreUI : MonoBehaviour
         digitPositions[0].texture = digitTextures[0];
         comma1.texture = commaHide;
         comma2.texture = commaHide;
-        
-        score = 0;
     }
 }

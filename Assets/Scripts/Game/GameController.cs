@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     private int mobsKilled = 0;
     private int roundsWon = 0;
     private float timePlayed = 0;
+
+    private ScoreController scoreController;
     
     public AudioSource winAudio;
     public AudioSource loseAudio;
@@ -35,6 +37,7 @@ public class GameController : MonoBehaviour
     {
         Screen.lockCursor = true; // lock mouse cursor on screen
         currentState = GameState.StartScreen;
+        scoreController = GetComponent<ScoreController>();
     }
 	
     void Update()
@@ -133,7 +136,7 @@ public class GameController : MonoBehaviour
         sb.AppendLine("Mobs Killed:\t" + mobsKilled);
         sb.AppendLine("Rounds Won:\t" + roundsWon);
         sb.AppendLine("Time Played:\t" + GetTimePlayedString());
-        sb.AppendLine("Score:\t" + GetScore());
+        sb.AppendLine("Score:\t" + scoreController.score);
         GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb.ToString());
         return sb.ToString();
     }
@@ -185,16 +188,12 @@ public class GameController : MonoBehaviour
         NewGameProcess();
     }
 
-    int GetScore()
-    {
-        return GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<ScoreUI>().GetScore();
-    }
-    
     void ResetScoreboard()
     {
         mobsKilled = 0; // reset mob kill count
         roundsWon = 0;  // reset round win count
         timePlayed = 0; // reset time played amount
+        scoreController.ResetScore();
     }
     
     void NewGameProcess()

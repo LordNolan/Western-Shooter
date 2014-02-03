@@ -39,7 +39,6 @@ public class Hitpoints : MonoBehaviour
             else {
                 audio.PlayOneShot(hurtSound);
                 Camera.main.GetComponent<PixelizeOnHit>().Hit();
-                Debug.Log("hit");
             }
             GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
         } else if (!CompareTag("Player")) {
