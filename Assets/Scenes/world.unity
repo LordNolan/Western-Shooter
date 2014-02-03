@@ -1131,7 +1131,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1055353988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .649999976, z: 0}
+  m_LocalPosition: {x: .5, y: .5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1450945224}
@@ -1650,7 +1650,7 @@ GameObject:
   - 114: {fileID: 1431122095}
   m_Layer: 0
   m_Name: SCORE
-  m_TagString: Untagged
+  m_TagString: ScoreUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1935,6 +1935,10 @@ Prefab:
     - target: {fileID: 400018, guid: 430ee987b13b74b4696cc3262ff5b7b7, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 430ee987b13b74b4696cc3262ff5b7b7, type: 2}
+      propertyPath: m_TagString
+      value: ScoreUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 430ee987b13b74b4696cc3262ff5b7b7, type: 2}

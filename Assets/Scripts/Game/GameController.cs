@@ -133,6 +133,7 @@ public class GameController : MonoBehaviour
         sb.AppendLine("Mobs Killed:\t" + mobsKilled);
         sb.AppendLine("Rounds Won:\t" + roundsWon);
         sb.AppendLine("Time Played:\t" + GetTimePlayedString());
+        sb.AppendLine("Score:\t" + GetScore());
         GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb.ToString());
         return sb.ToString();
     }
@@ -182,6 +183,11 @@ public class GameController : MonoBehaviour
         GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
         ResetScoreboard();
         NewGameProcess();
+    }
+
+    int GetScore()
+    {
+        return GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<ScoreUI>().GetScore();
     }
     
     void ResetScoreboard()

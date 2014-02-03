@@ -25,7 +25,12 @@ public class ScoreUI : MonoBehaviour
         
         Reset();
     }
-    
+
+    public int GetScore()
+    {
+        return score;
+    }
+
     public void AddScore(int amount)
     {
         score += amount;
