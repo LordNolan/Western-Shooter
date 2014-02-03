@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RaycastFire : MonoBehaviour 
+public class RaycastFire : MonoBehaviour
 {
     public ParticleSystem wallParticles;
     public ParticleSystem barrelParticles;
     public ParticleSystem cactusParticles;
     public ParticleSystem floorParticles;
+    public ParticleSystem bloodParticles;
     
     public int damage = 1;
     public int pu_DamageModifier = 1;  // variable for double damage
     
-	public void Fire(Vector3 origin, Vector3 direction)
+    public void Fire(Vector3 origin, Vector3 direction)
     {
         RaycastHit rayHit;
         if (Physics.Raycast(origin, direction, out rayHit)) {
@@ -24,6 +25,7 @@ public class RaycastFire : MonoBehaviour
             // bullet hit enemy
             if (rayHit.collider.gameObject.CompareTag("Enemy")) {
                 rayHit.collider.SendMessage("TakeDamage", damage * pu_DamageModifier);
+                PlayParticleEffect(bloodParticles, rayHit.point);
             }
             
             // bullet hits barrel

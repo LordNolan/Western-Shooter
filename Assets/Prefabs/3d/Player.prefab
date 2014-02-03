@@ -1275,6 +1275,7 @@ MonoBehaviour:
   barrelParticles: {fileID: 19800000, guid: d20a88f6fb6aacf4590381af092be69e, type: 2}
   cactusParticles: {fileID: 19800000, guid: bc16290309d77554ab6f5e9f6bc32703, type: 2}
   floorParticles: {fileID: 19800000, guid: dbca55f2685b0e144a287439dbc3648e, type: 2}
+  bloodParticles: {fileID: 19800000, guid: c7b4ed46d3a6745cc817cf1422ce1170, type: 2}
   damage: 1
   pu_DamageModifier: 1
 --- !u!114 &11400002
@@ -1372,6 +1373,7 @@ MonoBehaviour:
   barrelParticles: {fileID: 19800000, guid: d20a88f6fb6aacf4590381af092be69e, type: 2}
   cactusParticles: {fileID: 19800000, guid: bc16290309d77554ab6f5e9f6bc32703, type: 2}
   floorParticles: {fileID: 19800000, guid: dbca55f2685b0e144a287439dbc3648e, type: 2}
+  bloodParticles: {fileID: 19800000, guid: c7b4ed46d3a6745cc817cf1422ce1170, type: 2}
   damage: 1
   pu_DamageModifier: 1
 --- !u!114 &11400014
