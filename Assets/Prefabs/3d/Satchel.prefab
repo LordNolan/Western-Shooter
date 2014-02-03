@@ -13,8 +13,8 @@ GameObject:
   - 136: {fileID: 13600000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
-  - 82: {fileID: 8200000}
   - 114: {fileID: 11400004}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Satchel
   m_TagString: HPKit
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db57e2c340077374881ff347aad3aee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 100
+  rotateSpeed: 200
   tweenHeight: .400000006
   tweenRiseTime: .600000024
   tweenFallTime: .800000012
