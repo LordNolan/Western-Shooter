@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelizeAmount: 8
-  pixelizeTime: 3
+  pixelizeTime: 2
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
