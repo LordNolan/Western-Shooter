@@ -65,10 +65,8 @@ public class WorldGenerator : MonoBehaviour
     
     void GenerateCanyons()
     {
-        for (int z = 0; z < 4; z++) {
-            Zigzag();
-            Smooth();
-        }
+        Zigzag();
+        Smooth();
         
         // remove excess high canyon points
         DestroyExcess();
@@ -103,17 +101,29 @@ public class WorldGenerator : MonoBehaviour
     {
         int x = C;
         int y = C;
+        int xpick = 0;
+        int ypick = 0;
+        int pickCap = 5;
+
         while (x < W-C-1 || y < H-C-1) {
             int dx = 0;
             int dy = 0;
             if (x == W - C - 1) {
-                dy = Random.Range(1, Mathf.Min(H - C - 1 - y, 3));
+                dy = Random.Range(1, Mathf.Min(H - C - y, 3));
             } else if (y == H - C - 1) {
-                dx = Random.Range(1, Mathf.Min(W - C - 1 - x, 3));
-            } else if (Random.Range(0, 2) < 1) {
-                dy = Random.Range(1, Mathf.Min(H - C - 1 - y, 3));
+                dx = Random.Range(1, Mathf.Min(W - C - x, 3));
+            } else if (Random.Range(0, 2) < 1 && ypick < pickCap) {
+                dy = Random.Range(1, Mathf.Min(H - C - y, 3));
+                ypick++;
+                xpick = 0;
+            } else if (xpick < pickCap) {
+                dx = Random.Range(1, Mathf.Min(W - C - x, 3));
+                xpick++;
+                ypick = 0;
             } else {
-                dx = Random.Range(1, Mathf.Min(W - C - 1 - x, 3));
+                dy = Random.Range(1, Mathf.Min(H - C - y, 3));
+                ypick++;
+                xpick = 0;
             }
             Carve(x, y, dx, dy);
             x += dx;
@@ -126,9 +136,16 @@ public class WorldGenerator : MonoBehaviour
     {
         while (dx > 0 || dy > 0) {
             m[x, y] = 3;
-            if (Random.Range(0, 10) < 3) {
-                for (int i=-1; i<=1; i++) {
-                    for (int j=-1; j<=1; j++) {
+            // 3x3
+            for (int i=-1; i<=1; i++) {
+                for (int j=-1; j<=1; j++) {
+                    m[x + i, y + j] = 3;
+                }
+            }
+            // 10% 4x4
+            if (Random.Range(0, 10) < 1) {
+                for (int i=-2; i<=1; i++) {
+                    for (int j=-2; j<=1; j++) {
                         m[x + i, y + j] = 3;
                     }
                 }
@@ -213,7 +230,7 @@ public class WorldGenerator : MonoBehaviour
     void GenerateSpawnArea()
     {
         var maxY = floorTileList.Max(tile => tile.GetPosition().y); // get max y value
-        Tile maxTile = floorTileList.Where(tile => tile.GetPosition().y == maxY).First(); // get highest y tile
+        Tile maxTile = floorTileList.Where(tile => tile.GetPosition().y == maxY).Last(); // get highest y tile
         
         /* w = wall
          * s = spawnpoint

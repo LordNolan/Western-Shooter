@@ -11,7 +11,7 @@ public class SpawnPlayer : MonoBehaviour
         System.Diagnostics.Debug.Assert(GlobalParams.IsWorldGenComplete(), "[SpawnPlayer.SpawnNewPlayer] worldgen not complete and trying to instantiate new player.");
         
         // spawn player
-        Vector2 pos = GetComponent<CaveGenerator>().getPlayerSpawnPosition();
+        Vector2 pos = GetComponent<WorldGenerator>().getPlayerSpawnPosition();
         Instantiate(playerPrefab, new Vector3(pos.x, playerPrefab.transform.position.y, pos.y), playerPrefab.transform.rotation);
         GlobalParams.MarkPlayerSpawned();
     }
@@ -25,7 +25,7 @@ public class SpawnPlayer : MonoBehaviour
         // reset movement rotation first
         player.GetComponent<PlayerMovement>().Reset();
         // reset player's position
-        Vector2 pos = GetComponent<CaveGenerator>().getPlayerSpawnPosition();
+        Vector2 pos = GetComponent<WorldGenerator>().getPlayerSpawnPosition();
         player.transform.position = new Vector3(pos.x, playerPrefab.transform.position.y, pos.y);
         player.transform.rotation = playerPrefab.transform.rotation;
         GlobalParams.MarkPlayerSpawned();
