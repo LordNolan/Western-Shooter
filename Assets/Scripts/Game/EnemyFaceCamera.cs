@@ -6,7 +6,7 @@ public class EnemyFaceCamera : MonoBehaviour
 {
     void Update()
     {
-        GameObject player = (GameObject) GameObject.FindGameObjectWithTag("Player");
+        GameObject player = (GameObject) GameObject.FindWithTag("Player");
         if (player != null && !GlobalParams.InNonPlayingState()) {
             Vector3 playerPos = player.transform.position;
             transform.LookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z));

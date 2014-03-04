@@ -4,8 +4,15 @@ using System.Collections;
 public class Hitpoints : MonoBehaviour
 {
     public int startingHP;
-    public int HP;
-    
+    public Sprite deadSprite;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
+    public bool mobDead = false;
+    bool flicker = false;
+    int HP;
+    float flickerTime;
+    public float maxFlickerTime;
+
     void Start()
     {
         // default behavior
@@ -13,40 +20,79 @@ public class Hitpoints : MonoBehaviour
         
         // if we're player and we won last level, lets set our hp to that amount
         if (CompareTag("Player")) {
-            int winningHP = GameObject.Find("Environment").GetComponent<GameController>().GetWinningHP();
-            if (winningHP != -1)
-                HP = winningHP;
-            else
-                HP = startingHP;
-            GameObject.Find("UI").BroadcastMessage("SetPlayerHitpoints", HP);
+            HP = startingHP;
+            GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
         }  
     }
     
-    void TakeDamage(int amount)
+    public void Heal(int amount)
     {
-        if (CompareTag("Player")) {
-            GameObject.Find("UI").BroadcastMessage("PlayerHit", amount);
+        HP = Mathf.Min(HP + amount, startingHP);
+        GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
+    }
+    
+    public void TakeDamage(int amount)
+    {
+        if (CompareTag("Player") && !GlobalParams.IsPlayerEnraged()) {
             if ((HP -= amount) <= 0)
                 PlayerDied();
-        } else {
+            else {
+                audio.PlayOneShot(hurtSound);
+                Camera.main.GetComponent<PixelizeOnHit>().Hit();
+            }
+            GameObject.FindWithTag("UI").BroadcastMessage("SetPlayerHitpoints", HP);
+        } else if (!CompareTag("Player")) {
             if ((HP -= amount) <= 0)
                 MobDied();
+            else
+                flicker = true; // enemy flicker
+
+            audio.PlayOneShot(hurtSound); // enemy hit sound
         }
+    }
+    
+    public bool IsHurt()
+    {
+        return HP != startingHP;
+    }
+    
+    void Update()
+    {
+        MobSpriteFlicker();
     }
     
     void PlayerDied()
     {
-        GameObject.Find("Environment").SendMessage("PlayerDied");
+        GameObject.FindWithTag("Global").SendMessage("PlayerDied");
     }
     
     void MobDied()
     {
-        GameObject.Find("Environment").SendMessage("MobDied");
-        Destroy(gameObject);
+        audio.PlayOneShot(deathSound);
+        GameObject.FindWithTag("Global").SendMessage("MobDied");
+        GetComponent<SpriteRenderer>().sprite = deadSprite; // set it to dead sprite
+        collider.enabled = false; // turn off collider
+        mobDead = true;
+        
+        // award points
+        GetComponent<ScoreValue>().AwardPoints();
+        
+        // attempt to drop loot
+        LootDrop ld = GetComponent<LootDrop>();
+        if (ld != null)
+            ld.DoDropLoot();
     }
     
-    public void ResetHP()
+    void MobSpriteFlicker()
     {
-        Start();
+        if (flicker) {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            if ((flickerTime += Time.deltaTime) > maxFlickerTime) {
+                GetComponent<SpriteRenderer>().color = Color.white;
+                flicker = false;
+                flickerTime = 0;
+            }
+            
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
 
 public class GameController : MonoBehaviour
 {
@@ -8,7 +9,13 @@ public class GameController : MonoBehaviour
     public double mobAIdelay = 2.0;
     private double currentTimer = 0;
     public int mobCount = 0;
+    
+    // scoreboard vars
     private int mobsKilled = 0;
+    private int roundsWon = 0;
+    private float timePlayed = 0;
+
+    private ScoreController scoreController;
     
     public AudioSource winAudio;
     public AudioSource loseAudio;
@@ -19,6 +26,7 @@ public class GameController : MonoBehaviour
     
     public enum GameState
     {
+        StartScreen,
         NewGame,
         Playing,
         PlayerDead,
@@ -28,50 +36,122 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Screen.lockCursor = true; // lock mouse cursor on screen
-        currentState = GameState.NewGame;
+        currentState = GameState.StartScreen;
+        scoreController = GetComponent<ScoreController>();
     }
 	
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) // keep mouse cursor locked when we come back
             Screen.lockCursor = true;
-            
+        
+        // DEBUG: reset game on R
+        if (Input.GetKeyDown(KeyCode.R)) {
+            isDead = true;
+            GlobalParams.EnterNonPlayingState();
+        }
+        
+        // DEBUG: 10 rage on P
+        if (Input.GetKeyDown(KeyCode.P)) {
+            GameObject.FindWithTag("UI").BroadcastMessage("AddRage", 10);
+            GameObject.FindWithTag("Player").GetComponent<RageBehavior>().AddRage(10);
+        }
+        
+        // DEBUG: kill all enemies
+        if (Input.GetKeyDown(KeyCode.K)) {
+            foreach (Transform child in transform) {
+                if (child.CompareTag("Enemy"))
+                    Destroy(child.gameObject);
+            }   
+        }
+
+        // DEBUG: win level
+        if (Input.GetKeyDown(KeyCode.L)) {
+            currentState = GameState.LevelWon;
+            GlobalParams.EnterNonPlayingState();
+        }
+        
+        // quit the game
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+             
         switch (currentState) {
+        case GameState.StartScreen:
+            NewGameProcess();
+            break;
         // new game or new level because of win/death
         case GameState.NewGame:
+            if (!GlobalParams.IsWorldGenStarted()) { // generate world if we haven't yet
+                GlobalParams.MarkWorldGenStarted();
+                SendMessage("GenerateWorld");
+            }
             if (GlobalParams.IsWorldGenComplete()) {
-                ClearMessageUI();
-                if (GetComponent<SpawnPlayerSetup>().DidPlayerSpawn()) { // player spawned, let's play
+                if (GlobalParams.IsPlayerSpawned()) { // player spawned, let's play
+                    ClearMessageUI();
                     currentState = GameState.Playing;
                     currentTimer = 0; // timer for mob delay before kicking off AI
+                } else {
+                    if (wonPrevious) {
+                        GetComponent<SpawnPlayer>().ResetPlayerSpawn();
+                        wonPrevious = false;
+                    } else {
+                        GetComponent<SpawnPlayer>().SpawnNewPlayer();
+                    }
                 }
             }
             break;
         case GameState.Playing:
             if ((currentTimer += Time.deltaTime) > mobAIdelay) // wait for delay before kicking off AI
                 GlobalParams.MarkMobAIDelayComplete();
+            timePlayed += Time.deltaTime; // increment time counter
             break;
         case GameState.PlayerDead:
             PlayLoseAudio(); // play death sound
-            GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-            GameObject.Find("UI").BroadcastMessage("SetMessage", "You Killed " + mobsKilled + " Bandits!\nPress Spacebar to Restart"); // inform player of kill count
-            if (Input.GetKeyDown(KeyCode.Space))
+                //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+            string sb = DisplayScoreboard();
+            if (!loseAudio.isPlaying) {
+                GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb + "Press Spacebar to Restart");
+            }
+				// don't allow spacebar continue until audio is done playing.
+            if (Input.GetButtonDown("Fire3") && !loseAudio.isPlaying) {
                 StartNewGameFromDead(); // start new game if spacebar
+            }
             break;
         case GameState.LevelWon:
             PlayWinAudio(); // play win sound
-            wonPrevious = true; // bool for carrying over previous level values
-            GameObject.Find("Environment").GetComponent<FadeBackground>().MakeShaded(); // make background dark
-            GameObject.Find("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
-            if (Input.GetKeyDown(KeyCode.Space))
-                StartNewLevelFromWin(); // start new level if spacebar
+                //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeShaded(); // make background dark
+            GameObject.FindWithTag("Player").GetComponent<RageBehavior>().WinLevelEnragedCheck(); // if enraged on win, give them full rage
+            GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "Press Spacebar for Next Level"); // inform player of next level
+            if (Input.GetButtonDown("Fire3"))
+                StartNewLevelFromWin(); // start new level if spacebar or 360 A
             break;
         }
     }
     
+    string DisplayScoreboard()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("You were killed. RIP");
+        sb.AppendLine("Mobs Killed:\t" + mobsKilled);
+        sb.AppendLine("Rounds Won:\t" + roundsWon);
+        sb.AppendLine("Time Played:\t" + GetTimePlayedString());
+        sb.AppendLine("Score:\t" + scoreController.score);
+        GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", sb.ToString());
+        return sb.ToString();
+    }
+    
+    string GetTimePlayedString()
+    {
+        if (timePlayed >= 60)
+            return (int)(timePlayed / 60) + "m " + (int)(timePlayed % 60) + "s";
+        else
+            return (int)timePlayed + "s";
+    }
+        
     void ClearMessageUI()
     {
-        GameObject.Find("UI").BroadcastMessage("SetMessage", "");
+        GameObject.FindWithTag("UI").BroadcastMessage("SetMessage", "");
     }
     
     void PlayLoseAudio()
@@ -94,26 +174,35 @@ public class GameController : MonoBehaviour
     {
         winPlayed = false;  // reset audio play
         wonPrevious = true; // set flag for carrying over values
-        winningHP = GameObject.FindGameObjectWithTag("Player").GetComponent<Hitpoints>().HP; // keep previous HP
+        roundsWon++;        // increment scoreboard counter
         NewGameProcess();
     }
     
     void StartNewGameFromDead()
     {
         losePlayed = false; // reset audio play
-        mobsKilled = 0;     // reset mob kill count
         isDead = false;     // reset player death flag
+        GameObject.FindWithTag("UI").BroadcastMessage("Reset"); // resets powerups
+        GetComponent<SpawnPlayer>().DestroyPlayer(); // destroy player
+        ResetScoreboard();
         NewGameProcess();
+    }
+
+    void ResetScoreboard()
+    {
+        mobsKilled = 0; // reset mob kill count
+        roundsWon = 0;  // reset round win count
+        timePlayed = 0; // reset time played amount
+        scoreController.ResetScore();
     }
     
     void NewGameProcess()
     {
-        GameObject.Find("Environment").GetComponent<FadeBackground>().MakeClear(); // clear faded background
+        //GameObject.FindWithTag("Global").GetComponent<FadeBackground>().MakeClear(); // clear faded background
         ClearMessageUI();
         GlobalParams.ResetForNewLevel();
-        GetComponent<SpawnPlayerSetup>().DestroyPlayer();
+        GameObject.Find("LoadingCamera").GetComponent<LoadingBehavior>().ShowLoadingScreen();
         currentState = GameState.NewGame;
-        SendMessage("GenerateWorld");
     }
     
     public int GetMobCount()
@@ -126,14 +215,16 @@ public class GameController : MonoBehaviour
         mobCount = amount;
     }
     
+    public void ChestWin()
+    {    
+        currentState = GameState.LevelWon;
+        GlobalParams.EnterNonPlayingState();
+    }
+    
     public void MobDied()
     {
         mobCount--;
         mobsKilled++;
-        if (mobCount <= 0) {
-            currentState = GameState.LevelWon;
-            GlobalParams.EnterNonPlayingState();
-        }
     }
     
     public void PlayerDied()
@@ -143,14 +234,5 @@ public class GameController : MonoBehaviour
             currentState = GameState.PlayerDead;
             GlobalParams.EnterNonPlayingState();
         }
-    }
-    
-    public int GetWinningHP()
-    {
-        if (wonPrevious) {
-            wonPrevious = false;
-            return winningHP;
-        }
-        return -1;
     }
 }

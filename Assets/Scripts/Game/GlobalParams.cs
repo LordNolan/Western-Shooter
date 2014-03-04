@@ -4,19 +4,35 @@ using System.Collections;
 public class GlobalParams
 {
     static bool worldGenComplete = false;
+    static bool worldGenStarted = false;
     static bool mobAIDelayComplete = false;
     static bool inNonPlayingState = false;
+    static bool playerSpawned = false;
+    static bool isEnraged = false;
     
-    public static float fireXRotationOffset = 10.0f;
-    
-    void Start()
+    public static bool IsPlayerSpawned()
     {
-        Screen.lockCursor = true; // lock the mouse
+        return playerSpawned;
     }
     
-    public static float GetFireXRotationOffset()
+    public static bool IsPlayerEnraged()
     {
-        return fireXRotationOffset;
+        return isEnraged;
+    }
+    
+    public static void MarkPlayerEnraged()
+    {
+        isEnraged = true;
+    }
+    
+    public static void ResetPlayerEnraged()
+    {
+        isEnraged = false;
+    }
+    
+    public static void MarkPlayerSpawned()
+    {
+        playerSpawned = true;
     }
     
     public static void EnterNonPlayingState()
@@ -32,8 +48,20 @@ public class GlobalParams
     public static void ResetForNewLevel()
     {
         worldGenComplete = false;
+        worldGenStarted = false;
         mobAIDelayComplete = false;
         inNonPlayingState = false;
+        playerSpawned = false;
+    }
+    
+    public static void MarkWorldGenStarted()
+    {
+        worldGenStarted = true;
+    }
+    
+    public static bool IsWorldGenStarted()
+    {
+        return worldGenStarted;
     }
     
     public static void MarkWorldGenComplete()

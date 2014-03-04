@@ -11,6 +11,16 @@ TagManager:
   - Cactus
   - Global
   - Chest
+  - Model
+  - Icon
+  - UI
+  - Floor
+  - Weapon
+  - Ammo
+  - HPKit
+  - Badge
+  - Loading
+  - ScoreUI
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
